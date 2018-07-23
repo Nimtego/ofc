@@ -2,9 +2,9 @@ package com.example.pto6.ofc.presenter;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 
 import com.example.pto6.ofc.R;
-import com.example.pto6.ofc.view.AddCreditActivity;
 
 
 public class MainPresenter extends AbstractBasePresenter{
@@ -21,6 +21,11 @@ public class MainPresenter extends AbstractBasePresenter{
     @Override
     Class getNextActivity() {
         Log.v(LOG_TAG, "Get next activity");
-        return AddCreditActivity.class;
+        return null;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
     }
 }

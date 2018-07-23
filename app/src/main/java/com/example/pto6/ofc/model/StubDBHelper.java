@@ -37,7 +37,7 @@ public final class StubDBHelper implements DBHelper {
 
     @Override
     public void putDebitList(List<Debit> debits) {
-        
+
     }
 
     @Override
