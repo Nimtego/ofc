@@ -15,6 +15,8 @@ import com.example.pto6.ofc.view.AddDebitActivity;
 import com.example.pto6.ofc.view.OfcListActivity;
 import com.example.pto6.ofc.view.RecyclerAdapter;
 
+import java.util.Random;
+
 public class OfcListPresenter extends AbstractBasePresenter{
 
     private DBHelper dbHelper;
@@ -55,6 +57,8 @@ public class OfcListPresenter extends AbstractBasePresenter{
         ((OfcListActivity)commonView).setUserFinance(adapter);
     }
     private void testAdd() {
-        dbHelper.putDebit(new BaseDebit("Test", 1000F, TypePeriod.DAY));
+        dbHelper.putDebit(new BaseDebit("Test"+ new Random().nextInt(100),
+                new Random().nextFloat(), TypePeriod.DAY));
+        System.out.println(dbHelper);
     }
 }

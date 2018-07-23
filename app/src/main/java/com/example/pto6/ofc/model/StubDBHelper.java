@@ -12,9 +12,9 @@ public final class StubDBHelper implements DBHelper {
     private StubDBHelper() {
         this.debitList = new ArrayList<>();
         this.creditList = new ArrayList<>();
-        debitList.add(new BaseDebit("Test", 1000f, TypePeriod.DAY));
+       /* debitList.add(new BaseDebit("Test", 1000f, TypePeriod.DAY));
         debitList.add(new BaseDebit("Test2", 1000f, TypePeriod.DAY));
-        debitList.add(new BaseDebit("Test3", 1000f, TypePeriod.DAY));
+        debitList.add(new BaseDebit("Test3", 1000f, TypePeriod.DAY));*/
     }
 
 
@@ -66,7 +66,7 @@ public final class StubDBHelper implements DBHelper {
     @Override
     public boolean putCredit(Credit credit) {
         for (Credit c : creditList) {
-            if (c.name().equals(credit.name()) || c.id() == credit.id()) {
+            if (c.name().equals(credit.name())/* || c.id() == credit.id()*/) {
                 return false;
             }
         }
@@ -76,10 +76,15 @@ public final class StubDBHelper implements DBHelper {
     @Override
     public boolean putDebit(Debit debit) {
         for (Debit d : debitList) {
-            if (d.name().equals(debit.name()) || d.id() == debit.id()) {
+            if (d.name().equals(debit.name()) /*|| d.id() == debit.id()*/) {
                 return false;
             }
         }
         return debitList.add(debit);
+    }
+
+    @Override
+    public String toString() {
+        return debitList.toString();
     }
 }

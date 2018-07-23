@@ -15,64 +15,50 @@ import java.util.List;
 
 public class RecyclerAdapter<T extends BaseUserFinance> extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
-    private List<T> mData;
-    private LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
+    private List<T> mDataset;
+    private Context mContext;
 
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView mTextViewName;
+        public TextView mTextViewDate;
+        public TextView mTextViewDateChange;
+        public TextView mTextViewAmount;
 
-    public RecyclerAdapter(List<T> data, Context context) {
-        this.mInflater = LayoutInflater.from(context);
-        this.mData = data;
+        public ViewHolder(View v) {
+            super(v);
+            mTextViewName = (TextView) v.findViewById(R.id.name);
+            mTextViewDate = (TextView) v.findViewById(R.id.create_date);
+            mTextViewDateChange = (TextView) v.findViewById(R.id.change_date);
+            mTextViewAmount = (TextView) v.findViewById(R.id.amount);
+        }
+    }
+
+    public RecyclerAdapter( List<T> dataset, Context context) {
+        mDataset = dataset;
+        mContext = context;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.credit_card_item, parent, false);
-        return new ViewHolder(view);
-    }
+    public RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                         int viewType) {
+        View v = LayoutInflater.from(mContext).inflate(R.layout.credit_card_item, parent, false);
 
+        ViewHolder vh = new ViewHolder(v);
+        return vh;
+    }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String name = mData.get(position).name();
-        holder.myTextView.setText(name);
-    }
 
+        holder.mTextViewName.setText(mDataset.get(position).name());
+        holder.mTextViewDate.setText(mDataset.get(position).createDate().toString());
+        holder.mTextViewDateChange.setText(mDataset.get(position).changeDate().toString());
+        holder.mTextViewAmount.setText(String.valueOf(((Debit)mDataset.get(position)).arrivalSize()));
+
+    }
 
     @Override
     public int getItemCount() {
-        return mData.size();
-    }
-
-
-
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView myTextView;
-
-        ViewHolder(View itemView) {
-            super(itemView);
-            myTextView = itemView.findViewById(R.id.name);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
-        }
-    }
-
-
-    String getItem(int id) {
-        return mData.get(id).name();
-    }
-
-
-    void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
-    }
-
-
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
+        return mDataset.size();
     }
 }
