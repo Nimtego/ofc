@@ -1,7 +1,11 @@
-package com.example.pto6.ofc;
+package com.example.pto6.ofc.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.pto6.ofc.R;
+
+
 
 public class OfcListActivity extends AppCompatActivity {
 
