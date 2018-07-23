@@ -6,8 +6,10 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 
 import com.example.pto6.ofc.R;
+import com.example.pto6.ofc.model.BaseDebit;
 import com.example.pto6.ofc.model.DBHelper;
 import com.example.pto6.ofc.model.StubDBHelper;
+import com.example.pto6.ofc.model.TypePeriod;
 import com.example.pto6.ofc.view.AddCreditActivity;
 import com.example.pto6.ofc.view.AddDebitActivity;
 import com.example.pto6.ofc.view.OfcListActivity;
@@ -34,8 +36,10 @@ public class OfcListPresenter extends AbstractBasePresenter{
     public void onClick(View view) {
         switch(view.getId())
         {
-            case R.id.add:
-                intent();
+            case R.id.fab:
+                /*intent();*/
+                testAdd();
+                viewReady();
                 break;
         }
     }
@@ -47,7 +51,10 @@ public class OfcListPresenter extends AbstractBasePresenter{
 
     @Override
     public void viewReady() {
-        adapter = new RecyclerAdapter(dbHelper.debitList());
+        adapter = new RecyclerAdapter(dbHelper.debitList(), commonView);
         ((OfcListActivity)commonView).setUserFinance(adapter);
+    }
+    private void testAdd() {
+        dbHelper.putDebit(new BaseDebit("Test", 1000F, TypePeriod.DAY));
     }
 }

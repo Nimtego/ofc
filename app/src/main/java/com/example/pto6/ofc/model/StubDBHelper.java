@@ -12,6 +12,9 @@ public final class StubDBHelper implements DBHelper {
     private StubDBHelper() {
         this.debitList = new ArrayList<>();
         this.creditList = new ArrayList<>();
+        debitList.add(new BaseDebit("Test", 1000f, TypePeriod.DAY));
+        debitList.add(new BaseDebit("Test2", 1000f, TypePeriod.DAY));
+        debitList.add(new BaseDebit("Test3", 1000f, TypePeriod.DAY));
     }
 
 

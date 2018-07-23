@@ -21,8 +21,8 @@ public class OfcListActivity extends AbstractView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ofc_list);
-        this.mRecyclerView = findViewById(R.id.cv);
-        this.fab = findViewById(R.id.add);
+        this.mRecyclerView = findViewById(R.id.recycle_view_finance);
+        this.fab = findViewById(R.id.fab);
         fab.setOnClickListener(mPresenter);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);

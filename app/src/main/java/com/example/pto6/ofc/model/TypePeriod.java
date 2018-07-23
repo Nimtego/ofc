@@ -1,5 +1,5 @@
 package com.example.pto6.ofc.model;
 
-enum TypePeriod {
+public enum TypePeriod {
     DAY, MONTH, WEEK, YEAR
 }
