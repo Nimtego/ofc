@@ -1,6 +1,8 @@
 package com.example.pto6.ofc.presenter;
 
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 
 import com.example.pto6.ofc.R;
@@ -8,16 +10,17 @@ import com.example.pto6.ofc.model.DBHelper;
 import com.example.pto6.ofc.model.StubDBHelper;
 import com.example.pto6.ofc.view.AddCreditActivity;
 import com.example.pto6.ofc.view.AddDebitActivity;
+import com.example.pto6.ofc.view.OfcListActivity;
+import com.example.pto6.ofc.view.RecyclerAdapter;
 
 public class OfcListPresenter extends AbstractBasePresenter{
 
     private DBHelper dbHelper;
-    boolean isCredit;
-
+    private boolean isCredit;
+    private RecyclerView.Adapter adapter;
 
     public OfcListPresenter() {
         this.dbHelper = StubDBHelper.getInstance();
-
     }
 
     @Override
@@ -40,5 +43,11 @@ public class OfcListPresenter extends AbstractBasePresenter{
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         // TODO: 23.07.2018  
+    }
+
+    @Override
+    public void viewReady() {
+        adapter = new RecyclerAdapter(dbHelper.debitList());
+        ((OfcListActivity)commonView).setUserFinance(adapter);
     }
 }

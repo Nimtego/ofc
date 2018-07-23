@@ -19,7 +19,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         public ViewHolder(View v) {
             super(v);
-          //  mTextView = (TextView) v.findViewById(R.id.cv);
+            mTextView = (TextView) v.findViewById(R.id.cv);
         }
     }
 

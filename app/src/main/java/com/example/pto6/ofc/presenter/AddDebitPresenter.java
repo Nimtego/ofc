@@ -21,6 +21,11 @@ public class AddDebitPresenter implements Presenter {
     }
 
     @Override
+    public void viewReady() {
+
+    }
+
+    @Override
     public void onClick(View view) {
 
     }
