@@ -7,13 +7,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.pto6.ofc.R;
+import com.example.pto6.ofc.model.BaseUserFinance;
 import com.example.pto6.ofc.model.Debit;
 
 import java.util.List;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+public class RecyclerAdapter<T extends BaseUserFinance> extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
-    private List<Debit> mDataset;
+    private List<T> mDataset;
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
 
@@ -23,7 +25,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         }
     }
 
-    public RecyclerAdapter(List<Debit> dataset) {
+    public RecyclerAdapter(List<T> dataset) {
         mDataset = dataset;
     }
 
