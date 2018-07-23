@@ -1,6 +1,6 @@
 package com.example.pto6.ofc.model;
 
-import com.example.pto6.ofc.TypePeriod;
+
 
 import java.util.Date;
 

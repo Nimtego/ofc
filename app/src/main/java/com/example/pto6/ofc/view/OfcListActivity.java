@@ -4,14 +4,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.pto6.ofc.R;
+import com.example.pto6.ofc.presenter.OfcListPresenter;
+import com.example.pto6.ofc.presenter.Presenter;
 
 
-
-public class OfcListActivity extends AppCompatActivity {
+public class OfcListActivity extends AbstractView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ofc_list);
+    }
+
+    @Override
+    public Presenter setPresenter() {
+        return new OfcListPresenter();
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }
