@@ -7,4 +7,7 @@ public interface UserFinance {
     long id();
     Date createDate();
     Date changeDate();
+    void setId(long id);
+    void setName(String name);
+    void setChangeDate(Date date);
 }

@@ -14,6 +14,7 @@ public final class StubDBHelper implements DBHelper {
         this.creditList = new ArrayList<>();
     }
 
+
     public static StubDBHelper getInstance() {
         if (instance == null) {
             synchronized (StubDBHelper.class) {

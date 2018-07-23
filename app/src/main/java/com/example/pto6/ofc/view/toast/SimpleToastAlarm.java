@@ -1,8 +1,8 @@
-package com.example.pto6.ofc.presenter;
+package com.example.pto6.ofc.view.toast;
 
 import android.content.Context;
 
-class SimpleToastAlarm implements ToastAlarm {
+public class SimpleToastAlarm implements ToastAlarm {
     public SimpleToastAlarm(Context commonView) {
     }
 

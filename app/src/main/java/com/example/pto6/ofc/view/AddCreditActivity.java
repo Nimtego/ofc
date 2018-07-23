@@ -1,26 +1,22 @@
 package com.example.pto6.ofc.view;
 
-
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 
 import com.example.pto6.ofc.R;
-import com.example.pto6.ofc.presenter.OfcListPresenter;
+import com.example.pto6.ofc.presenter.AddCreditPresenter;
 import com.example.pto6.ofc.presenter.Presenter;
 
+public class AddCreditActivity extends AbstractView{
 
-public class OfcListActivity extends AbstractView {
-
-    private RecyclerView rv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ofc_list);
+        setContentView(R.layout.activity_add_credit);
     }
 
     @Override
     public Presenter setPresenter() {
-        return new OfcListPresenter();
+        return new AddCreditPresenter();
     }
 }

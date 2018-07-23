@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.widget.AdapterView;
 
 import com.example.pto6.ofc.view.AbstractView;
+import com.example.pto6.ofc.view.toast.SimpleToastAlarm;
+import com.example.pto6.ofc.view.toast.ToastAlarm;
 
 
 public abstract class AbstractBasePresenter<T extends AbstractView> implements

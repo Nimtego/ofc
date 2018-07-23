@@ -3,12 +3,16 @@ package com.example.pto6.ofc.presenter;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.model.DBHelper;
 import com.example.pto6.ofc.model.StubDBHelper;
+import com.example.pto6.ofc.view.AddCreditActivity;
+import com.example.pto6.ofc.view.AddDebitActivity;
 
 public class OfcListPresenter extends AbstractBasePresenter{
 
     private DBHelper dbHelper;
+    boolean isCredit;
 
 
     public OfcListPresenter() {
@@ -18,12 +22,19 @@ public class OfcListPresenter extends AbstractBasePresenter{
 
     @Override
     Class getNextActivity() {
-        return null;
+        if (isCredit)
+            return AddCreditActivity.class;
+        return AddDebitActivity.class;
     }
 
     @Override
     public void onClick(View view) {
-        // TODO: 23.07.2018  
+        switch(view.getId())
+        {
+            case R.id.add:
+                intent();
+                break;
+        }
     }
 
     @Override
