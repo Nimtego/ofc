@@ -10,6 +10,7 @@ public class OfcListPresenter extends AbstractBasePresenter{
 
     private DBHelper dbHelper;
 
+
     public OfcListPresenter() {
         this.dbHelper = StubDBHelper.getInstance();
 

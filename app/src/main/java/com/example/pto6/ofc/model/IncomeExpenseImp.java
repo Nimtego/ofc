@@ -65,4 +65,14 @@ public class IncomeExpenseImp implements IncomeExpense {
         }
         return debitList.add(debit);
     }
+
+    @Override
+    public boolean removeCredit(long id) {
+        return false;
+    }
+
+    @Override
+    public boolean removeDebit(long id) {
+        return false;
+    }
 }

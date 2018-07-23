@@ -4,7 +4,7 @@ package com.example.pto6.ofc.model;
 
 import java.util.Date;
 
-interface Debit {
+public interface Debit {
     String name();
     long id();
     Date createDate();

@@ -9,5 +9,6 @@ public interface IncomeExpense {
     Credit getCreditByID(long id);
     boolean putCredit(Credit credit);
     boolean putDebit(Debit debit);
-
+    boolean removeCredit(long id);
+    boolean removeDebit(long id);
 }
