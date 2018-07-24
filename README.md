@@ -1,4 +1,4 @@
-<p align="center"><img src="ofc2.png" width="150" height="100"/></p>
+<p align="center"><img src="res/logo/ofc2.png" width="150" height="100"/></p>
 
 
 
