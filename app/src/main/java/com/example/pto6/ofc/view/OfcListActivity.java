@@ -2,39 +2,38 @@ package com.example.pto6.ofc.view;
 
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 
 import com.example.pto6.ofc.R;
-import com.example.pto6.ofc.presenter.OfcListPresenter;
-import com.example.pto6.ofc.presenter.Presenter;
 
 
-public class OfcListActivity extends AbstractView {
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private FloatingActionButton fab;
+public class OfcListActivity extends AppCompatActivity {
+
+    private TextView textHello;
+    private ImageView imageLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ofc_list);
-        this.mRecyclerView = findViewById(R.id.recycle_view_finance);
-        this.fab = findViewById(R.id.fab);
-        fab.setOnClickListener(mPresenter);
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mPresenter.viewReady();
+        textHello = findViewById(R.id.text_hello);
+        imageLogo = findViewById(R.id.logo);
+        actionText();
     }
-
-    @Override
-    public Presenter setPresenter() {
-        return new OfcListPresenter();
-    }
-
-    public void setUserFinance(RecyclerView.Adapter mAdapter) {
-        mRecyclerView.setAdapter(mAdapter);
+    private void actionText() {
+        Animation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(600);
+        anim.setStartOffset(10);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
+        //textHello.startAnimation(anim);
+        imageLogo.startAnimation(anim);
     }
 }
