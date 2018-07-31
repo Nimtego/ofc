@@ -50,6 +50,12 @@ jobs:
           name: Run Tests
 
           command: ./gradlew lint test
+          
+      - run:
+
+          name: Assemble APK
+
+          command: ./gradlew assemble
 
       - store_artifacts:
 
@@ -60,3 +66,7 @@ jobs:
       - store_test_results:
 
           path: app/build/test-results
+          
+      - store_apk:
+
+          path: app/build/outputs/apk/
