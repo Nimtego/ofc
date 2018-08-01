@@ -1,6 +1,5 @@
 package com.example.pto6.ofc.view;
 
-import android.view.View;
 
 import com.example.pto6.ofc.presenter.Presenter;
 

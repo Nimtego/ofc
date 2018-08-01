@@ -3,7 +3,7 @@ package com.example.pto6.ofc.presenter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.AdapterView;
+import android.support.v7.widget.RecyclerView;
 
 import com.example.pto6.ofc.view.AbstractView;
 import com.example.pto6.ofc.view.toast.SimpleToastAlarm;
@@ -11,7 +11,7 @@ import com.example.pto6.ofc.view.toast.ToastAlarm;
 
 
 public abstract class AbstractBasePresenter<T extends AbstractView> implements
-                                Presenter<T>, AdapterView.OnItemClickListener {
+                                Presenter<T>, RecyclerView.OnItemTouchListener{
     protected T commonView;
     protected ToastAlarm toastAlarm;
 
