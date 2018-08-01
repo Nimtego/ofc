@@ -26,7 +26,6 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="8dp"
-            android:text="name"
             android:textColor="@color/debit_name"
             android:textSize="28sp"
             app:layout_constraintStart_toStartOf="@+id/text_create_data"
@@ -45,7 +44,8 @@
             android:textSize="10sp"
             app:layout_constraintBottom_toTopOf="@+id/text_change"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name"/>
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            tools:ignore="SmallSp"/>
 
 
         <TextView
@@ -60,7 +60,7 @@
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            tools:ignore="SmallSp"/>
 
 
         <TextView
@@ -104,12 +104,12 @@
             android:layout_alignStart="@+id/change_date"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="8dp"
-            android:text="create_date"
             android:textSize="10sp"
             app:layout_constraintBottom_toTopOf="@+id/change_date"
             app:layout_constraintStart_toStartOf="@+id/change_date"
             app:layout_constraintTop_toBottomOf="@+id/name"
-            app:layout_constraintVertical_bias="0.0"/>
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="SmallSp"/>
 
         <TextView
             android:id="@+id/change_date"
@@ -119,10 +119,10 @@
             android:layout_alignTop="@+id/name"
             android:layout_marginBottom="50dp"
             android:layout_marginStart="8dp"
-            android:text="change_date"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/text_change"/>
+            app:layout_constraintStart_toEndOf="@+id/text_change"
+            tools:ignore="SmallSp"/>
 
         <TextView
             android:id="@+id/edit_button"

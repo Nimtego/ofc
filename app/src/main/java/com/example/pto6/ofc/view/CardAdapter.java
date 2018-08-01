@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.pto6.ofc.R;
@@ -22,8 +21,8 @@ import java.util.List;
 public class CardAdapter<T extends BaseUserFinance, V extends AbstractView>
         extends RecyclerView.Adapter<CardAdapter.PersonViewHolder> implements AdapterView.OnItemClickListener{
 
-    List<T> dataSet;
-    V viewParent;
+    private List<T> dataSet;
+    private V viewParent;
 
     public CardAdapter(List<T> persons, V viewParent){
         this.dataSet = persons;
@@ -32,7 +31,7 @@ public class CardAdapter<T extends BaseUserFinance, V extends AbstractView>
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        System.out.println("LKhklhlklkjlkn");
+
     }
 
 

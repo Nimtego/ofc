@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.widget.AdapterView;
 
 import com.example.pto6.ofc.view.AbstractView;
 import com.example.pto6.ofc.view.toast.SimpleToastAlarm;
