@@ -14,7 +14,6 @@ import com.example.pto6.ofc.presenter.OfcListPresenter;
 import com.example.pto6.ofc.presenter.Presenter;
 
 
-
 public class OfcListActivity extends AbstractView {
     private RecyclerView mRecyclerView;
     private FloatingActionButton fab;
@@ -43,6 +42,7 @@ public class OfcListActivity extends AbstractView {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL);
         mRecyclerView.addItemDecoration(dividerItemDecoration);
+        mRecyclerView.addOnItemTouchListener((RecyclerView.OnItemTouchListener) mPresenter);
     }
 
     @Override
@@ -54,28 +54,7 @@ public class OfcListActivity extends AbstractView {
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    /*private RecyclerView mRecyclerView;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private FloatingActionButton fab;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ofc_list);
-        this.mRecyclerView = findViewById(R.id.recycle_view_finance);
-        this.fab = findViewById(R.id.fab);
-        fab.setOnClickListener(mPresenter);
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mPresenter.viewReady();
+    public RecyclerView getRecyclerView() {
+        return mRecyclerView;
     }
-
-    @Override
-    public Presenter setPresenter() {
-        return new OfcListPresenter();
-    }
-
-    public void setUserFinance(RecyclerView.Adapter mAdapter) {
-        mRecyclerView.setAdapter(mAdapter);
-    }*/
 }
