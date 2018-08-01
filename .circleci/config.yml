@@ -33,9 +33,6 @@ jobs:
       # specify the version you desire here
       - image: circleci/android:api-27-alpha
     working_directory: ~/code    
-    environment:
-      SLACK_CHANNEL: GC00Y3RQU
-      SLACK_API_TOKEN: xoxp-407261293861-406567177537-408278627522-47c492251c1bd26aef6584c26f841fe2
     steps:
       - checkout
       - run: echo "Running..."
@@ -67,9 +64,6 @@ jobs:
       # specify the version you desire here
       - image: circleci/android:api-27-alpha
     working_directory: ~/code
-    environment:
-      SLACK_CHANNEL: GC00Y3RQU
-      SLACK_API_TOKEN: xoxp-407261293861-406567177537-408278627522-47c492251c1bd26aef6584c26f841fe2
     steps:
       - checkout
       - run: echo "Running..."
