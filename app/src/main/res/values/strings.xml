@@ -5,4 +5,8 @@
     <string name="change">Change:</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="tab_layout_tab_debit">Debit</string>
+    <string name="tab_layout_tab_credit">Credit</string>
+    <string name="tab_layout_tab_data">Data</string>
+    <string name="text_tab_header">Свой заголовок</string>
 </resources>

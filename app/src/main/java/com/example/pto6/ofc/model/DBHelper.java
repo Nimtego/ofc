@@ -11,4 +11,8 @@ public interface DBHelper {
     Credit getCreditByID(long id);
     boolean putCredit(Credit credit);
     boolean putDebit(Debit debit);
+    boolean removeDebit(Debit debit);
+    boolean removeByNameDebit(String name);
+    boolean removeCredit(Credit debit);
+    boolean removeByNameCredit(String name);
 }

@@ -13,28 +13,28 @@ public class BaseCredit extends BaseUserFinance implements Credit {
     private CreditType creditType;
 
 
-    private BaseCredit(String name) {
+    public BaseCredit(String name) {
         super(name);
     }
 
     @Override
     public Date dateOfCapture() {
-        return null;
+        return dateOfCapture;
     }
 
     @Override
     public int numberOfMonths() {
-        return 0;
+        return numberOfMonths;
     }
 
     @Override
     public int percent() {
-        return 0;
+        return percent;
     }
 
     @Override
     public float arrivalSize() {
-        return 0;
+        return arrivalSize;
     }
 
     @Override

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.model.BaseUserFinance;
+import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
 
 import java.text.DateFormat;
@@ -27,6 +28,10 @@ public class CardAdapter<T extends BaseUserFinance, V extends AbstractView>
     public CardAdapter(List<T> persons, V viewParent){
         this.dataSet = persons;
         this.viewParent = viewParent;
+    }
+
+    public List<T> getDataSet() {
+        return dataSet;
     }
 
     @Override
@@ -74,7 +79,12 @@ public class CardAdapter<T extends BaseUserFinance, V extends AbstractView>
         personViewHolder.mTextViewName.setText(dataSet.get(i).name());
         personViewHolder.mTextViewDate.setText(df.format(create));
         personViewHolder.mTextViewDateChange.setText(df.format(change));
-        personViewHolder.mTextViewAmount.setText(String.valueOf(((Debit)dataSet.get(i)).arrivalSize()));
+        if(dataSet.get(i) instanceof Debit) {
+            personViewHolder.mTextViewAmount.setText(String.valueOf(((Debit) dataSet.get(i)).arrivalSize()));
+        }
+        if(dataSet.get(i) instanceof Credit) {
+            personViewHolder.mTextViewAmount.setText(String.valueOf(((Credit) dataSet.get(i)).arrivalSize()));
+        }
     }
 
     @Override

@@ -84,6 +84,36 @@ public final class StubDBHelper implements DBHelper {
     }
 
     @Override
+    public boolean removeDebit(Debit debit) {
+        return debitList.remove(debit);
+    }
+
+    @Override
+    public boolean removeByNameDebit(String name) {
+        for (Debit d : debitList) {
+            if (((BaseUserFinance)d).name().equals(name)) {
+                return removeDebit(d);
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean removeCredit(Credit credit) {
+        return creditList.remove(credit);
+    }
+
+    @Override
+    public boolean removeByNameCredit(String name) {
+        for (Credit c : creditList) {
+            if (((BaseUserFinance)c).name().equals(name)) {
+                return removeCredit(c);
+            }
+        }
+        return false;
+    }
+
+    @Override
     public String toString() {
         return debitList.toString();
     }

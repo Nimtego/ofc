@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TableLayout;
 
 import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.presenter.OfcListPresenter;
@@ -17,17 +18,19 @@ import com.example.pto6.ofc.presenter.Presenter;
 public class OfcListActivity extends AbstractView {
     private RecyclerView mRecyclerView;
     private FloatingActionButton fab;
+    private TabLayout tabs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ofc_list);
+        this.tabs = findViewById(R.id.tabs);
         this.mRecyclerView = findViewById(R.id.recycler_view);
         setUpRecyclerView();
-        TabLayout tabs = findViewById(R.id.tabs);
-        tabs.addTab(tabs.newTab().setText("Credit"));
         tabs.addTab(tabs.newTab().setText("Debit"));
+        tabs.addTab(tabs.newTab().setText("Credit"));
         tabs.addTab(tabs.newTab().setText("Data"));
+        tabs.addOnTabSelectedListener(mPresenter);
         this.fab = findViewById(R.id.fab);
         fab.setOnClickListener(mPresenter);
         mPresenter.viewReady();
@@ -56,5 +59,8 @@ public class OfcListActivity extends AbstractView {
 
     public RecyclerView getRecyclerView() {
         return mRecyclerView;
+    }
+    public TabLayout getTabLayout() {
+        return tabs;
     }
 }
