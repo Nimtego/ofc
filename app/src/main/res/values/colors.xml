@@ -8,4 +8,10 @@
     <color name="debit_name">#175ea4</color>
     <color name="edit_delete">#2631c6</color>
     <color name="debit_amount">#54a42b</color>
+    <color name="data_entry">#427328</color>
+    <color name="data_entry_dark">#375e23</color>
+    <color name="data_entry_accent">#629b45</color>
+    <color name="with">#cbfafafa</color>
+    <color name="separator_gray">#98a6af</color>
+    <color name="font_text_gray">#fdfdfd</color>
 </resources>

@@ -128,7 +128,8 @@
             android:textColor="@color/edit_delete"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="TODO"/>
 
         <ImageView
             android:id="@+id/arrow"
@@ -140,7 +141,7 @@
             android:src="@drawable/baseline_arrow_downward_24"
             app:layout_constraintBottom_toBottomOf="@+id/amount"
             app:layout_constraintStart_toEndOf="@+id/amount"
-            />
+            android:contentDescription="TODO"/>
 
         <ImageView
             android:id="@+id/text_delete"

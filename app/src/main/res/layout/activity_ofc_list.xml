@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                 android:id="@+id/coordinator"
-                                                 android:layout_width="match_parent"
-                                                 android:layout_height="match_parent"
-                                                 android:fitsSystemWindows="true">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:fitsSystemWindows="false">
-
 
 
         <android.support.design.widget.CollapsingToolbarLayout
@@ -21,9 +21,9 @@
             android:background="@drawable/cap"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:contentScrim="@color/colorPrimary"
-            app:title="@string/app_name"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
 
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:title="@string/app_name">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -33,13 +33,14 @@
                 app:layout_collapseMode="pin"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/transparent"
                 android:layout_gravity="bottom"
                 android:layout_marginTop="100dp"
+                android:background="@color/transparent"
                 app:layout_anchor="@id/app_bar"
                 app:layout_anchorGravity="bottom">
             </android.support.design.widget.TabLayout>
@@ -58,8 +59,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:src="@drawable/baseline_add_white_18dp"
         android:layout_marginBottom="@dimen/fab_margin_bottom"
-        android:layout_marginEnd="@dimen/fab_margin_right"/>
+        android:layout_marginEnd="@dimen/fab_margin_right"
+        android:src="@drawable/baseline_add_white_18dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

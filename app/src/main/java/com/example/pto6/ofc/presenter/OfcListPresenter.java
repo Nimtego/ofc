@@ -1,5 +1,6 @@
 package com.example.pto6.ofc.presenter;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
@@ -20,6 +21,7 @@ import com.example.pto6.ofc.model.StubDBHelper;
 import com.example.pto6.ofc.model.TypePeriod;
 import com.example.pto6.ofc.view.CardAdapter;
 import com.example.pto6.ofc.view.ClickListener;
+import com.example.pto6.ofc.view.DataEntryActivity;
 import com.example.pto6.ofc.view.OfcListActivity;
 
 import java.util.ArrayList;
@@ -90,8 +92,26 @@ public class OfcListPresenter extends AbstractBasePresenter {
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.fab) {
-            testAdd();
-            viewReady();
+            int tabsNumber = ((OfcListActivity) commonView).getTabLayout().getSelectedTabPosition();
+            String type = null;
+            switch (tabsNumber) {
+                case 0:
+                    type = "DEBIT";
+                    break;
+                case 1:
+                    type = "CREDIT";
+                    break;
+            }
+            System.out.println(type);
+            if (type != null) {
+                Intent intent = new Intent(commonView, DataEntryActivity.class);
+                intent.putExtra("type", type);
+                commonView.startActivity(intent);
+            }
+            else
+                viewReady();
+/*            testAdd();
+            viewReady();*/
         }
     }
 

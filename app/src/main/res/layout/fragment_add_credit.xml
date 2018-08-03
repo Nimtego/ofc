@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dip"
+    android:layout_marginRight="5dip"
+    android:layout_marginTop="12dp"
+    android:elevation="12dp"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    app:cardBackgroundColor="@color/font_text_gray"
+    android:foreground="?attr/selectableItemBackground">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/text_view_personal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/personal"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <View
+            android:id="@+id/view_separator_1"
+            android:layout_width="320dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/separator_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_personal">
+        </View>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_debit_name"
+            android:layout_width="204dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_separator_1">
+
+            <EditText
+                android:id="@+id/input_name_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:backgroundTint="@color/colorAccent"
+                android:hint="@string/debit_name"
+                android:singleLine="true"
+                android:textSize="12sp"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/text_view_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/date"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/input_layout_debit_name"/>
+
+        <View
+            android:id="@+id/view_separator_2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/separator_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_date">
+        </View>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_amount"
+            android:layout_width="204dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/input_layout_debit_name"
+            app:layout_constraintTop_toBottomOf="@+id/view_separator_2">
+
+            <EditText
+                android:id="@+id/input_amount_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorAccent"
+                android:hint="@string/amount"
+                android:inputType="numberDecimal"
+                android:singleLine="true"
+                android:textSize="12sp"/>
+        </android.support.design.widget.TextInputLayout>
+
+
+        <EditText
+            android:id="@+id/input_date_take_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorAccent"
+            android:hint="@string/amount"
+            android:inputType="date"
+            android:singleLine="true"
+            android:textSize="12sp"/>
+
+        <CheckBox
+            android:id="@+id/check_box_year"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/year"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/input_layout_amount"/>
+
+        <CheckBox
+            android:id="@+id/check_box_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/month"
+            app:layout_constraintStart_toStartOf="@+id/check_box_year"
+            app:layout_constraintTop_toBottomOf="@+id/check_box_year"/>
+
+        <CheckBox
+            android:id="@+id/check_box_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/week"
+            app:layout_constraintStart_toStartOf="@+id/check_box_month"
+            app:layout_constraintTop_toBottomOf="@+id/check_box_month"/>
+
+        <View
+            android:id="@+id/view_separator_3"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginTop="32dp"
+            android:background="@color/separator_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/check_box_week">
+        </View>
+
+        <Button
+            android:id="@+id/button_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Cancel"
+            android:theme="@style/PrimaryFlatButton"
+            app:layout_constraintEnd_toStartOf="@+id/button_add"
+            app:layout_constraintTop_toBottomOf="@+id/view_separator_3"/>
+
+        <Button
+            android:id="@+id/button_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Add"
+            android:theme="@style/PrimaryButton"
+            app:layout_constraintEnd_toEndOf="@+id/input_layout_amount"
+            app:layout_constraintTop_toBottomOf="@+id/view_separator_3"/>
+
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>
