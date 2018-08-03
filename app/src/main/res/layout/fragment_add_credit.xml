@@ -161,7 +161,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp"
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:theme="@style/PrimaryFlatButton"
             app:layout_constraintEnd_toStartOf="@+id/button_add"
             app:layout_constraintTop_toBottomOf="@+id/view_separator_3"/>
@@ -171,7 +171,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Add"
+            android:text="@string/add"
             android:theme="@style/PrimaryButton"
             app:layout_constraintEnd_toEndOf="@+id/input_layout_amount"
             app:layout_constraintTop_toBottomOf="@+id/view_separator_3"/>

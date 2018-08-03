@@ -17,4 +17,6 @@
     <string name="year">Year</string>
     <string name="month">Month</string>
     <string name="week">Week</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
 </resources>
