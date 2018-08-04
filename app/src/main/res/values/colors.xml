@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#18618b</color>
+    <color name="colorPrimaryDark">#145273</color>
+    <color name="colorAccent">#4bbbe1</color>
     <color name="card_view">#759ca6</color>
+    <color name="transparent">#16145273</color>
+    <color name="debit_name">#175ea4</color>
+    <color name="edit_delete">#2631c6</color>
+    <color name="debit_amount">#54a42b</color>
+    <color name="data_entry">#427328</color>
+    <color name="data_entry_dark">#375e23</color>
+    <color name="data_entry_accent">#629b45</color>
+    <color name="with">#cbfafafa</color>
+    <color name="separator_gray">#98a6af</color>
+    <color name="font_text_gray">#fdfdfd</color>
 </resources>

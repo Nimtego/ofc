@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fab_margin_top">16dp</dimen>
+    <dimen name="fab_margin_bottom">16dp</dimen>
+    <dimen name="fab_margin_right">16dp</dimen>
+    <dimen name="fab_margin_between">32dp</dimen>
+    <dimen name="fab_margin_extra_right">4dp</dimen>
+    <dimen name="fab_margin">34444</dimen>
+</resources>

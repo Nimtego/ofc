@@ -3,7 +3,7 @@ jobs:
   check-build:
     working_directory: ~/code
     docker:
-      - image: circleci/android:api-25-alpha
+      - image: circleci/android:api-26-alpha
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
@@ -31,7 +31,7 @@ jobs:
   dev-build:
     docker:
       # specify the version you desire here
-      - image: circleci/android:api-27-alpha
+      - image: circleci/android:api-26-alpha
     working_directory: ~/code    
     steps:
       - checkout
@@ -62,7 +62,7 @@ jobs:
   prod-build:
     docker:
       # specify the version you desire here
-      - image: circleci/android:api-27-alpha
+      - image: circleci/android:api-26-alpha
     working_directory: ~/code
     steps:
       - checkout

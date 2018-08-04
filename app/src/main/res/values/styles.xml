@@ -6,6 +6,49 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+<!--        <item name="android:windowTranslucentStatus">true</item>-->
     </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <!-- <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item> -->
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
+    <style name="ToolbarDataEntry">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <!-- <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item> -->
+        <item name="android:background">?attr/windowActionBar</item>
+    </style>
+
+    <style name="AppThemeDataEntry" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/data_entry</item>
+        <item name="colorPrimaryDark">@color/data_entry_dark</item>
+        <item name="colorAccent">@color/data_entry_accent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="PrimaryButton" parent="Theme.AppCompat">
+        <item name="colorButtonNormal">@color/colorPrimary</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
+    </style>
+
+    <style name="PrimaryFlatButton" parent="Theme.AppCompat.Light">
+        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless.Colored</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
+
 
 </resources>

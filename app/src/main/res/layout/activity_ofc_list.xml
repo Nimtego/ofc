@@ -1,26 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:fab="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:orientation="vertical"
-              android:background="#FFFF"
-              android:layout_height="match_parent">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
-
-
-    <TextView
-        android:id="@+id/text_hello"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:layout_marginTop="150dp"
-        android:text="@string/hello"/>
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="200dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:src="@drawable/ofc2"/>
+        android:layout_height="300dp"
+        android:fitsSystemWindows="false">
 
 
-</LinearLayout>
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/cap"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:contentScrim="@color/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+
+            app:title="@string/app_name">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:minHeight="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="100dp"
+                android:background="@color/transparent"
+                app:layout_anchor="@id/app_bar"
+                app:layout_anchorGravity="bottom">
+            </android.support.design.widget.TabLayout>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="@dimen/fab_margin_bottom"
+        android:layout_marginEnd="@dimen/fab_margin_right"
+        android:src="@drawable/baseline_add_white_18dp"/>
+
+</android.support.design.widget.CoordinatorLayout>
