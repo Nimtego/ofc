@@ -22,4 +22,5 @@ public abstract class AbstractView extends AppCompatActivity implements CommonVi
         super.onDestroy();
         mPresenter.detach();
     }
+
 }

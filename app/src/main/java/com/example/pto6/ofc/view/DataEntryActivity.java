@@ -6,6 +6,8 @@ import android.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.pto6.ofc.OfcApplication;
@@ -15,15 +17,21 @@ import com.example.pto6.ofc.presenter.Presenter;
 import com.example.pto6.ofc.view.fragments.AddCreditFragment;
 import com.example.pto6.ofc.view.fragments.AddDebitFragment;
 
-public class DataEntryActivity extends AbstractView {
+public class DataEntryActivity extends AbstractView implements AddCreditFragment.OnSomeEventListener{
 
     private Fragment mFragment;
     private FragmentTransaction mFragmentTransaction;
+/*
+    private Button addButton;
+    private Button cancelButton;
+*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_entry);
+
+
 
         Intent intent = getIntent();
         String type = intent.getStringExtra("type");
@@ -39,10 +47,19 @@ public class DataEntryActivity extends AbstractView {
         mFragmentTransaction = getFragmentManager().beginTransaction();
         mFragmentTransaction.add(R.id.fragment_form, mFragment);
         mFragmentTransaction.commit();
+/*        addButton = findViewById(R.id.button_add);
+        cancelButton = findViewById(R.id.button_cancel);
+        addButton.setOnClickListener(mPresenter);
+        cancelButton.setOnClickListener(mPresenter);*/
     }
 
     @Override
     public Presenter setPresenter() {
         return OfcApplication.getPresenterComponent().getDataEntryPresenter();
+    }
+
+    @Override
+    public void someEvent(View view) {
+        mPresenter.onClick(view);
     }
 }
