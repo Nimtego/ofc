@@ -33,6 +33,12 @@ public abstract class AbstractBasePresenter<T extends AbstractView> implements
         Intent intent = new Intent((Activity) commonView, getNextActivity());
         ((Activity) commonView).startActivity(intent);
     }
+    @Override
+    public void intent(String key, String value) {
+        Intent intent = new Intent((Activity) commonView, getNextActivity());
+        intent.putExtra(key, value);
+        ((Activity) commonView).startActivity(intent);
+    }
 
     abstract Class getNextActivity();
 }

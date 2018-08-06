@@ -8,14 +8,14 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.TableLayout;
 
+import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
-import com.example.pto6.ofc.presenter.OfcListPresenter;
 import com.example.pto6.ofc.presenter.Presenter;
 
 
 public class OfcListActivity extends AbstractView {
+
     private RecyclerView mRecyclerView;
     private FloatingActionButton fab;
     private TabLayout tabs;
@@ -50,7 +50,7 @@ public class OfcListActivity extends AbstractView {
 
     @Override
     public Presenter setPresenter() {
-        return new OfcListPresenter();
+        return OfcApplication.getPresenterComponent().getOfcListPresenter();
     }
 
     public void setUserFinance(RecyclerView.Adapter mAdapter) {

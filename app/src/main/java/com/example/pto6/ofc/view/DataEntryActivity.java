@@ -5,20 +5,17 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
+import com.example.pto6.ofc.presenter.DataEntryPresenter;
+import com.example.pto6.ofc.presenter.Presenter;
 import com.example.pto6.ofc.view.fragments.AddCreditFragment;
 import com.example.pto6.ofc.view.fragments.AddDebitFragment;
 
-import java.util.Calendar;
-
-public class DataEntryActivity extends AppCompatActivity {
+public class DataEntryActivity extends AbstractView {
 
     private Fragment mFragment;
     private FragmentTransaction mFragmentTransaction;
@@ -42,5 +39,10 @@ public class DataEntryActivity extends AppCompatActivity {
         mFragmentTransaction = getFragmentManager().beginTransaction();
         mFragmentTransaction.add(R.id.fragment_form, mFragment);
         mFragmentTransaction.commit();
+    }
+
+    @Override
+    public Presenter setPresenter() {
+        return OfcApplication.getPresenterComponent().getDataEntryPresenter();
     }
 }

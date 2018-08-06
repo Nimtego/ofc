@@ -1,15 +1,14 @@
 package com.example.pto6.ofc.presenter;
 
-import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Adapter;
-import android.widget.TableLayout;
 import android.widget.Toast;
 
+import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.model.BaseCredit;
 import com.example.pto6.ofc.model.BaseDebit;
@@ -17,7 +16,6 @@ import com.example.pto6.ofc.model.BaseUserFinance;
 import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.DBHelper;
 import com.example.pto6.ofc.model.Debit;
-import com.example.pto6.ofc.model.StubDBHelper;
 import com.example.pto6.ofc.model.TypePeriod;
 import com.example.pto6.ofc.view.CardAdapter;
 import com.example.pto6.ofc.view.ClickListener;
@@ -28,6 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.inject.Inject;
+
 public class OfcListPresenter extends AbstractBasePresenter {
 
     private DBHelper dbHelper;
@@ -37,9 +37,9 @@ public class OfcListPresenter extends AbstractBasePresenter {
     private List<Debit> mDebitList;
     private List<Credit> mCredits;
 
-
+    @Inject
     public OfcListPresenter() {
-        this.dbHelper = StubDBHelper.getInstance();
+        this.dbHelper = OfcApplication.getDBcomponent().getDBhelper();
         this.clicklistener = new ClickListener() {
             @Override
             public void onClick(View view, final int position) {
@@ -83,10 +83,7 @@ public class OfcListPresenter extends AbstractBasePresenter {
 
     @Override
     Class getNextActivity() {
-        return null;
-/*        if (isCredit)
-            return AddCreditActivity.class;
-        return AddDebitActivity.class;*/
+        return DataEntryActivity.class;
     }
 
     @Override
@@ -104,14 +101,10 @@ public class OfcListPresenter extends AbstractBasePresenter {
             }
             System.out.println(type);
             if (type != null) {
-                Intent intent = new Intent(commonView, DataEntryActivity.class);
-                intent.putExtra("type", type);
-                commonView.startActivity(intent);
+                intent("type", type);
             }
             else
                 viewReady();
-/*            testAdd();
-            viewReady();*/
         }
     }
 

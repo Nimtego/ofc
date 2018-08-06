@@ -11,5 +11,6 @@ public interface Presenter<T extends AbstractView> extends View.OnClickListener,
     void attach(T commonView);
     void detach();
     void intent();
+    void intent(String key, String value);
     void viewReady();
 }

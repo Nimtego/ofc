@@ -3,13 +3,15 @@ package com.example.pto6.ofc.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public final class StubDBHelper implements DBHelper {
 
     private List<Debit> debitList;
     private List<Credit> creditList;
-    private static volatile StubDBHelper instance;
 
-    private StubDBHelper() {
+    @Inject
+    public StubDBHelper() {
         this.debitList = new ArrayList<>();
         this.creditList = new ArrayList<>();
        /* debitList.add(new BaseDebit("Test", 1000f, TypePeriod.DAY));
@@ -17,17 +19,6 @@ public final class StubDBHelper implements DBHelper {
         debitList.add(new BaseDebit("Test3", 1000f, TypePeriod.DAY));*/
     }
 
-
-    public static StubDBHelper getInstance() {
-        if (instance == null) {
-            synchronized (StubDBHelper.class) {
-                if (instance == null) {
-                    instance = new StubDBHelper();
-                }
-            }
-        }
-        return instance;
-    }
 
     @Override
     public List<Debit> debitList() {
