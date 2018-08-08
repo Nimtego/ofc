@@ -38,7 +38,7 @@ public abstract class AbstractView extends AppCompatActivity implements CommonVi
     }
     @Override
     protected void onDestroy() {
-        mPresenter.detach();
+        /*mPresenter.detach();*/
         if (mUnBinder != null) {
             mUnBinder.unbind();
         }

@@ -21,10 +21,8 @@ public class DataEntryActivity extends AbstractView implements DataEntryView, Ad
 
     private Fragment mFragment;
     private FragmentTransaction mFragmentTransaction;
-/*
-    private Button addButton;
-    private Button cancelButton;
-*/
+    TextView cap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +33,7 @@ public class DataEntryActivity extends AbstractView implements DataEntryView, Ad
 
         Intent intent = getIntent();
         String type = intent.getStringExtra("type");
-        TextView cap = findViewById(R.id.cap);
+        cap = findViewById(R.id.cap);
         if (type.equals("DEBIT")) {
             mFragment = new AddDebitFragment();
             cap.setText(getResources().getString(R.string.tab_layout_tab_debit));
@@ -61,5 +59,13 @@ public class DataEntryActivity extends AbstractView implements DataEntryView, Ad
     @Override
     public void someEvent(View view) {
         mPresenter.onClick(view);
+    }
+
+    @Override
+    protected void onDestroy() {
+        mPresenter.detach();
+        mFragment = null;
+        mFragmentTransaction = null;
+        super.onDestroy();
     }
 }

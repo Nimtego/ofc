@@ -2,6 +2,7 @@ package com.example.pto6.ofc.presenter;
 
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,6 +31,8 @@ import java.util.Random;
 import javax.inject.Inject;
 
 public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T> implements OfcPresenter<T>{
+
+    private static final String TAG = "OfcListPresenter";
 
     private DBHelper dbHelper;
     private RecyclerView.Adapter adapter;
@@ -113,6 +116,8 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
     @Override
     public void viewReady() {
         OfcView ofcView = getView();
+        Log.v(TAG, String.valueOf(ofcView == null));
+
         if (ofcView.getTabLayout().getSelectedTabPosition() == 0) {
             List<Debit> list = dbHelper.debitList();
             this.mDebitList = list;

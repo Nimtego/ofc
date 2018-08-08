@@ -13,7 +13,7 @@ public class SimpleToastAlarm implements ToastAlarm {
 
     @Override
     public void destroy() {
-
+        mContext = null;
     }
 
     @Override
