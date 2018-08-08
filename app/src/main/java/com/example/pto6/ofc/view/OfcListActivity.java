@@ -13,27 +13,37 @@ import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.presenter.Presenter;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class OfcListActivity extends AbstractView {
 
-    private RecyclerView mRecyclerView;
-    private FloatingActionButton fab;
-    private TabLayout tabs;
+public class OfcListActivity extends AbstractView implements OfcView {
+
+    @BindView(R.id.recycler_view)
+    RecyclerView mRecyclerView;
+
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
+
+    @BindView(R.id.tabs)
+    TabLayout tabs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ofc_list);
-        this.tabs = findViewById(R.id.tabs);
-        this.mRecyclerView = findViewById(R.id.recycler_view);
+        setUnBinder(ButterKnife.bind(this));
+        init();
+        mPresenter.viewReady();
+    }
+
+    private void init() {
         setUpRecyclerView();
         tabs.addTab(tabs.newTab().setText("Debit"));
         tabs.addTab(tabs.newTab().setText("Credit"));
         tabs.addTab(tabs.newTab().setText("Data"));
         tabs.addOnTabSelectedListener(mPresenter);
-        this.fab = findViewById(R.id.fab);
         fab.setOnClickListener(mPresenter);
-        mPresenter.viewReady();
     }
 
     private void setUpRecyclerView() {
@@ -53,13 +63,17 @@ public class OfcListActivity extends AbstractView {
         return OfcApplication.getPresenterComponent().getOfcListPresenter();
     }
 
+    @Override
     public void setUserFinance(RecyclerView.Adapter mAdapter) {
         mRecyclerView.setAdapter(mAdapter);
     }
 
+    @Override
     public RecyclerView getRecyclerView() {
         return mRecyclerView;
     }
+
+    @Override
     public TabLayout getTabLayout() {
         return tabs;
     }

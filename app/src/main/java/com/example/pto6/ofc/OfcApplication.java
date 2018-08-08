@@ -6,7 +6,6 @@ import com.example.pto6.ofc.component.DBcomponent;
 import com.example.pto6.ofc.component.DaggerDBcomponent;
 import com.example.pto6.ofc.component.DaggerPresenterComponent;
 import com.example.pto6.ofc.component.PresenterComponent;
-import com.example.pto6.ofc.presenter.DataEntryPresenter;
 
 
 public class OfcApplication extends Application {

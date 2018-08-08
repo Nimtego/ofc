@@ -1,5 +1,6 @@
 package com.example.pto6.ofc.presenter;
 
+import android.app.Activity;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
@@ -9,12 +10,15 @@ import android.widget.TextView;
 import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.model.DBHelper;
+import com.example.pto6.ofc.view.DataEntryView;
 import com.example.pto6.ofc.view.toast.SimpleToastAlarm;
 import com.example.pto6.ofc.view.toast.ToastAlarm;
 
 import javax.inject.Inject;
 
-public class DataEntryPresenter extends AbstractBasePresenter {
+public class DataEntryPresenter<T extends DataEntryView>
+                                    extends AbstractBasePresenter<T>
+                                    implements DataPresenter<T> {
 
     private DBHelper mDBHelper;
 
@@ -67,18 +71,18 @@ public class DataEntryPresenter extends AbstractBasePresenter {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_add:
-                ToastAlarm ta = new SimpleToastAlarm(commonView);
+                ToastAlarm ta = new SimpleToastAlarm(getContext());
                 ta.message("ADD Button in fragment");
-/*                getDataFromView();*/
+                /*                getDataFromView();*/
                 break;
             case R.id.button_cancel:
-                commonView.onBackPressed();
+                getView().onBackPressed();
                 break;
         }
     }
 
     private void getDataFromView() {
-        TextView cap = commonView.findViewById(R.id.cap); // TODO: 06.08.2018 убрать колхоз
+        TextView cap = ((Activity)getView()).findViewById(R.id.cap); // TODO: 06.08.2018 убрать колхоз
         if (cap.getText().equals("Debit")) { // TODO: 06.08.2018 убрать колхоз
             /*Debit dto = commonView.getUserData();*/
         }

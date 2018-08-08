@@ -17,7 +17,7 @@ import com.example.pto6.ofc.presenter.Presenter;
 import com.example.pto6.ofc.view.fragments.AddCreditFragment;
 import com.example.pto6.ofc.view.fragments.AddDebitFragment;
 
-public class DataEntryActivity extends AbstractView implements AddCreditFragment.OnSomeEventListener{
+public class DataEntryActivity extends AbstractView implements DataEntryView, AddCreditFragment.OnSomeEventListener{
 
     private Fragment mFragment;
     private FragmentTransaction mFragmentTransaction;
