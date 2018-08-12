@@ -12,9 +12,9 @@ public final class StubDBHelper implements DBHelper {
     private StubDBHelper() {
         this.debitList = new ArrayList<>();
         this.creditList = new ArrayList<>();
-       /* debitList.add(new BaseDebit("Test", 1000f, TypePeriod.DAY));
-        debitList.add(new BaseDebit("Test2", 1000f, TypePeriod.DAY));
-        debitList.add(new BaseDebit("Test3", 1000f, TypePeriod.DAY));*/
+       /* debitList.add(new Debit("Test", 1000f, TypePeriod.DAY));
+        debitList.add(new Debit("Test2", 1000f, TypePeriod.DAY));
+        debitList.add(new Debit("Test3", 1000f, TypePeriod.DAY));*/
     }
 
 
@@ -57,7 +57,7 @@ public final class StubDBHelper implements DBHelper {
     @Override
     public Credit getCreditByID(long id) {
         for (Credit c : creditList) {
-            if (c.id() == id)
+            if (c.getId() == id)
                 return c;
         }
         return null;
@@ -66,7 +66,7 @@ public final class StubDBHelper implements DBHelper {
     @Override
     public boolean putCredit(Credit credit) {
         for (Credit c : creditList) {
-            if (c.name().equals(credit.name())/* || c.id() == credit.id()*/) {
+            if (c.getName().equals(credit.getName())/* || c.id() == credit.id()*/) {
                 return false;
             }
         }
@@ -76,7 +76,7 @@ public final class StubDBHelper implements DBHelper {
     @Override
     public boolean putDebit(Debit debit) {
         for (Debit d : debitList) {
-            if (d.name().equals(debit.name()) /*|| d.id() == debit.id()*/) {
+            if (d.getName().equals(debit.getName()) /*|| d.id() == debit.id()*/) {
                 return false;
             }
         }
@@ -91,7 +91,7 @@ public final class StubDBHelper implements DBHelper {
     @Override
     public boolean removeByNameDebit(String name) {
         for (Debit d : debitList) {
-            if (((BaseUserFinance)d).name().equals(name)) {
+            if (d.getName().equals(name)) {
                 return removeDebit(d);
             }
         }
@@ -106,7 +106,7 @@ public final class StubDBHelper implements DBHelper {
     @Override
     public boolean removeByNameCredit(String name) {
         for (Credit c : creditList) {
-            if (((BaseUserFinance)c).name().equals(name)) {
+            if (c.getName().equals(name)) {
                 return removeCredit(c);
             }
         }

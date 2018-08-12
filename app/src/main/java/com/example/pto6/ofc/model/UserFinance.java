@@ -3,13 +3,13 @@ package com.example.pto6.ofc.model;
 import java.util.Date;
 
 public interface UserFinance {
-    String name();
+    String getName();
 
-    long id();
+    long getId();
 
-    Date createDate();
+    Date getCreateDate();
 
-    Date changeDate();
+    Date getChangeDate();
 
     void setId(long id);
 

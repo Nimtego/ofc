@@ -7,13 +7,9 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Adapter;
-import android.widget.TableLayout;
 import android.widget.Toast;
 
 import com.example.pto6.ofc.R;
-import com.example.pto6.ofc.model.BaseCredit;
-import com.example.pto6.ofc.model.BaseDebit;
-import com.example.pto6.ofc.model.BaseUserFinance;
 import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.DBHelper;
 import com.example.pto6.ofc.model.Debit;
@@ -52,11 +48,11 @@ public class OfcListPresenter extends AbstractBasePresenter {
                 Toast.makeText(commonView, "Long press on position :" + position,
                         Toast.LENGTH_LONG).show();
                 if (((OfcListActivity) commonView).getTabLayout().getSelectedTabPosition() == 0) {
-                    dbHelper.removeByNameDebit(((BaseUserFinance) mDebitList.get(position)).name());
+                    dbHelper.removeByNameDebit((mDebitList.get(position)).getName());
                     viewReady();
                 }
                 if (((OfcListActivity) commonView).getTabLayout().getSelectedTabPosition() == 1) {
-                    dbHelper.removeByNameCredit(((BaseUserFinance) mCredits.get(position)).name());
+                    dbHelper.removeByNameCredit((mCredits.get(position)).getName());
                     viewReady();
                 }
 
@@ -107,8 +103,7 @@ public class OfcListPresenter extends AbstractBasePresenter {
                 Intent intent = new Intent(commonView, DataEntryActivity.class);
                 intent.putExtra("type", type);
                 commonView.startActivity(intent);
-            }
-            else
+            } else
                 viewReady();
 /*            testAdd();
             viewReady();*/
@@ -121,17 +116,17 @@ public class OfcListPresenter extends AbstractBasePresenter {
         if (((OfcListActivity) commonView).getTabLayout().getSelectedTabPosition() == 0) {
             List<Debit> list = dbHelper.debitList();
             this.mDebitList = list;
-            adapter = new CardAdapter(list, commonView);
+            adapter = CardAdapter.of(list, commonView);
             ((OfcListActivity) commonView).setUserFinance(adapter);
         }
         if (((OfcListActivity) commonView).getTabLayout().getSelectedTabPosition() == 1) {
             List<Credit> list = dbHelper.creditList();
             this.mCredits = list;
-            adapter = new CardAdapter(list, commonView);
+            adapter = CardAdapter.of(list, commonView);
             ((OfcListActivity) commonView).setUserFinance(adapter);
         }
         if (((OfcListActivity) commonView).getTabLayout().getSelectedTabPosition() == 2) {
-            adapter = new CardAdapter(new ArrayList(), commonView);
+            adapter = CardAdapter.of(new ArrayList<>(), commonView);
             ((OfcListActivity) commonView).setUserFinance(adapter);
             Toast.makeText(commonView, "IN PROGRESS",
                     Toast.LENGTH_SHORT).show();
@@ -140,15 +135,15 @@ public class OfcListPresenter extends AbstractBasePresenter {
 
     private void testAdd() {
         if (((OfcListActivity) commonView).getTabLayout().getSelectedTabPosition() == 0) {
-            dbHelper.putDebit(new BaseDebit("Test Debit "
-                    + new Random().nextInt(100),
-                    new Random().nextFloat()
-                            + new Random().nextInt(4000), TypePeriod.DAY));
+            dbHelper.putDebit(Debit.builder().name("Test Debit " + new Random().nextInt(100))
+                    .arrival(new Random().nextFloat() + new Random().nextInt(4000))
+                    .typePeriod(TypePeriod.DAY)
+                    .build());
         }
         if (((OfcListActivity) commonView).getTabLayout().getSelectedTabPosition() == 1) {
-            Credit credit = BaseCredit.newBuilder("Test Credit "
-                    + new Random().nextInt(100))
-                    .arrival(new Random().nextFloat() + new Random().nextInt(4000)).build();
+            Credit credit = Credit.builder()
+                    .name("Test Credit " + new Random().nextInt(100))
+                    .arrivalSize(new Random().nextFloat() + new Random().nextInt(4000)).build();
             dbHelper.putCredit(credit);
         }
 
