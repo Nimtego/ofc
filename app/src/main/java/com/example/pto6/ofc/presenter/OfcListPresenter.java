@@ -11,10 +11,10 @@ import android.widget.Toast;
 
 import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.model.Credit;
-import com.example.pto6.ofc.model.DBHelper;
 import com.example.pto6.ofc.model.Debit;
-import com.example.pto6.ofc.model.StubDBHelper;
 import com.example.pto6.ofc.model.TypePeriod;
+import com.example.pto6.ofc.service.DBHelper;
+import com.example.pto6.ofc.service.DBHelperStub;
 import com.example.pto6.ofc.view.CardAdapter;
 import com.example.pto6.ofc.view.ClickListener;
 import com.example.pto6.ofc.view.DataEntryActivity;
@@ -35,7 +35,7 @@ public class OfcListPresenter extends AbstractBasePresenter {
 
 
     public OfcListPresenter() {
-        this.dbHelper = StubDBHelper.getInstance();
+        this.dbHelper = DBHelperStub.getInstance();
         this.clicklistener = new ClickListener() {
             @Override
             public void onClick(View view, final int position) {
