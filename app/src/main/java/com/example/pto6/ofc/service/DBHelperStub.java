@@ -22,7 +22,7 @@ public final class DBHelperStub implements DBHelper {
     }
 
 
-    public static DBHelperStub getInstance() {
+    public static DBHelper getInstance() {
         if (instance == null) {
             synchronized (DBHelperStub.class) {
                 if (instance == null) {

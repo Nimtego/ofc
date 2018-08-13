@@ -1,7 +1,8 @@
 package com.example.pto6.ofc.component;
 
-import com.example.pto6.ofc.model.DBHelper;
-import com.example.pto6.ofc.model.StubDBHelper;
+
+import com.example.pto6.ofc.service.DBHelper;
+import com.example.pto6.ofc.service.DBHelperStub;
 
 import dagger.Module;
 import dagger.Provides;
@@ -11,6 +12,6 @@ public class DatabaseModule {
 
     @Provides
     DBHelper getStubDBhelper() {
-        return new StubDBHelper();
+        return DBHelperStub.getInstance();
     }
 }

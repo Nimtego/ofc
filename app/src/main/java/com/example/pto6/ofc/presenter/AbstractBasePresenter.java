@@ -1,11 +1,12 @@
 package com.example.pto6.ofc.presenter;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.pto6.ofc.view.CommonView;
 import com.example.pto6.ofc.view.toast.SimpleToastAlarm;
-import com.example.pto6.ofc.view.AbstractView;
 import com.example.pto6.ofc.view.toast.ToastAlarm;
 
 
@@ -18,8 +19,7 @@ public abstract class AbstractBasePresenter<T extends CommonView> implements
     @Override
     public void attach(T commonView) {
         this.commonView = commonView;
-        this.toastAlarm = () -> {
-        };
+        this.toastAlarm = new SimpleToastAlarm(getContext());
     }
 
     @Override
@@ -30,8 +30,8 @@ public abstract class AbstractBasePresenter<T extends CommonView> implements
 
     @Override
     public void intent() {
-        Intent intent = new Intent(commonView, getNextActivity());
-        commonView.startActivity(intent);
+        Intent intent = new Intent(getContext(), getNextActivity());
+        ((Activity)commonView).startActivity(intent);
     }
 
     @Override

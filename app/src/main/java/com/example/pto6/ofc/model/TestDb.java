@@ -1,5 +1,7 @@
 package com.example.pto6.ofc.model;
 
+import com.example.pto6.ofc.service.DBHelper;
+
 import java.util.List;
 
 import javax.inject.Inject;

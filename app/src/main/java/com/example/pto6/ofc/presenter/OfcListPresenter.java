@@ -15,7 +15,7 @@ import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
 import com.example.pto6.ofc.model.TypePeriod;
 import com.example.pto6.ofc.service.DBHelper;
-import com.example.pto6.ofc.service.DBHelperStub;
+
 import com.example.pto6.ofc.view.AbstractView;
 import com.example.pto6.ofc.view.CardAdapter;
 import com.example.pto6.ofc.view.ClickListener;
@@ -54,11 +54,11 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
                 Toast.makeText(getContext(), "Long press on position :" + position,
                         Toast.LENGTH_LONG).show();
                 if ( getView().getTabLayout().getSelectedTabPosition() == 0) {
-                    dbHelper.removeByNameDebit(((BaseUserFinance) mDebitList.get(position)).name());
+                    dbHelper.removeByNameDebit(mDebitList.get(position).getName());
                     viewReady();
                 }
                 if (getView().getTabLayout().getSelectedTabPosition() == 1) {
-                    dbHelper.removeByNameCredit(((BaseUserFinance) mCredits.get(position)).name());
+                    dbHelper.removeByNameCredit( mCredits.get(position).getName());
                     viewReady();
                 }
 
@@ -137,22 +137,22 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
     }
 
     private void testAdd() {
-        OfcView ofcView = getView();
-        if (ofcView.getTabLayout().getSelectedTabPosition() == 0) {
-            dbHelper.putDebit(new BaseDebit("Test Debit "
-                    + new Random().nextInt(100),
-                    new Random().nextFloat()
-                            + new Random().nextInt(4000), TypePeriod.DAY));
+        if (getView().getTabLayout().getSelectedTabPosition() == 0) {
+            dbHelper.putDebit(Debit.builder().name("Test Debit " + new Random().nextInt(100))
+                    .arrival(new Random().nextFloat() + new Random().nextInt(4000))
+                    .typePeriod(TypePeriod.DAY)
+                    .build());
         }
-        if (ofcView.getTabLayout().getSelectedTabPosition() == 1) {
-            Credit credit = BaseCredit.newBuilder("Test Credit "
-                    + new Random().nextInt(100))
-                    .arrival(new Random().nextFloat() + new Random().nextInt(4000)).build();
+        if (getView().getTabLayout().getSelectedTabPosition() == 1) {
+            Credit credit = Credit.builder()
+                    .name("Test Credit " + new Random().nextInt(100))
+                    .arrivalSize(new Random().nextFloat() + new Random().nextInt(4000)).build();
             dbHelper.putCredit(credit);
         }
 
         System.out.println(dbHelper);
     }
+
 
     public Adapter getAdapter() {
         return (Adapter) adapter;

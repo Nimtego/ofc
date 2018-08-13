@@ -1,6 +1,6 @@
 package com.example.pto6.ofc.component;
 
-import com.example.pto6.ofc.model.DBHelper;
+import com.example.pto6.ofc.service.DBHelper;
 
 import dagger.Component;
 
