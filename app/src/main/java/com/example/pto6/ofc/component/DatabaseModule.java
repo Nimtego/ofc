@@ -14,6 +14,6 @@ public class DatabaseModule {
 
     @Provides
     DBHelper getStubDBhelper() {
-        return new DBHelperStub();
+        return DBHelperStub.getInstance();
     }
 }

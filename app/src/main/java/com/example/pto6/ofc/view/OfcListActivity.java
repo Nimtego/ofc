@@ -58,7 +58,7 @@ public class OfcListActivity extends AbstractView implements OfcView {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL);
         mRecyclerView.addItemDecoration(dividerItemDecoration);
-        mRecyclerView.addOnItemTouchListener((RecyclerView.OnItemTouchListener) mPresenter);
+        mRecyclerView.addOnItemTouchListener(mPresenter);
     }
 
     @Override

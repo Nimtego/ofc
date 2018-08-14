@@ -3,22 +3,29 @@ package com.example.pto6.ofc.presenter;
 import android.app.Activity;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
+import com.example.pto6.ofc.dto.DebitDTO;
+import com.example.pto6.ofc.model.Debit;
 import com.example.pto6.ofc.service.DBHelper;
 import com.example.pto6.ofc.view.DataEntryView;
 import com.example.pto6.ofc.view.toast.SimpleToastAlarm;
 import com.example.pto6.ofc.view.toast.ToastAlarm;
+
+import java.util.Date;
 
 import javax.inject.Inject;
 
 public class DataEntryPresenter<T extends DataEntryView>
                                     extends AbstractBasePresenter<T>
                                     implements DataPresenter<T> {
+
+    private static final String TAG = "DataEntryPresenter";
 
     private DBHelper mDBHelper;
 
@@ -73,7 +80,24 @@ public class DataEntryPresenter<T extends DataEntryView>
             case R.id.button_add:
                 ToastAlarm ta = new SimpleToastAlarm(getContext());
                 ta.message("ADD Button in fragment");
-                /*                getDataFromView();*/
+                mDBHelper.putDebit(Debit.builder()
+                        .name("Test")
+                        .arrival(100f)
+                        .changeDate(new Date())
+                        .createDate(new Date())
+                        .build());
+/*                DebitDTO debitDTO = getView().getDTO();
+                Float ammount = Float.valueOf(debitDTO.getAmount());
+                String name = debitDTO.getName();
+                Date create = new Date();
+                Date change = new Date();
+                mDBHelper.putDebit(Debit.builder()
+                        .arrival(ammount)
+                        .name(name)
+                        .createDate(create)
+                        .changeDate(change)
+                        .build());*/
+                getView().onBackPressed();
                 break;
             case R.id.button_cancel:
                 getView().onBackPressed();

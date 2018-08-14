@@ -6,7 +6,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 
-@Singleton
+
 @Component(modules = DatabaseModule.class)
 public interface DBcomponent {
     DBHelper getDBhelper();

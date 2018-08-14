@@ -4,19 +4,39 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.pto6.ofc.R;
+import com.example.pto6.ofc.dto.DebitDTO;
+import com.example.pto6.ofc.dto.UserFinanceDTO;
+import com.example.pto6.ofc.presenter.Presenter;
 
-public class AddDebitFragment extends Fragment {
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
+public class AddDebitFragment extends BaseFragment {
+    private static final String TAG = "<< AddDebitFragment >> - ";
     AddCreditFragment.OnSomeEventListener someEventListener;
+
+    @BindView(R.id.input_name_edit_text)
+    EditText name;
+    @BindView(R.id.input_amount_edit_text)
+    EditText amount;
+    @BindView(R.id.button_add)
+    Button add;
+    @BindView(R.id.button_cancel)
+    Button cancel;
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+
         try {
             someEventListener = (AddCreditFragment.OnSomeEventListener) activity;
         } catch (ClassCastException e) {
@@ -24,24 +44,29 @@ public class AddDebitFragment extends Fragment {
         }
     }
 
-    final String LOG_TAG = "myLogs";
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_add_debit, null);
-        rootView.findViewById(R.id.button_add).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                someEventListener.someEvent(view);
-            }
-        });
-        rootView.findViewById(R.id.button_cancel).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                someEventListener.someEvent(view);
-            }
-        });
+       // ButterKnife.bind(this, rootView);
+        Log.v(TAG, String.valueOf(rootView == null));
+        setUnBinder(ButterKnife.bind(rootView));
+        add = rootView.findViewById(R.id.button_add);
+        cancel = rootView.findViewById(R.id.button_cancel);
+        add.setOnClickListener(view -> someEventListener.someEvent(view));
+        cancel.setOnClickListener(view -> someEventListener.someEvent(view));
         return rootView;
     }
+
+    @Override
+    protected void setUp(View view) {
+
+    }
+
+    @Override
+    public UserFinanceDTO getDTO() {
+        return DebitDTO.builder().name(String.valueOf(name.getText())).amount(amount.getText().toString()).build();
+    }
+
+
 }
