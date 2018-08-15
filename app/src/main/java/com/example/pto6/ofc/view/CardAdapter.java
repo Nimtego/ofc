@@ -46,7 +46,7 @@ public class CardAdapter<T extends UserFinance, V extends AbstractView>
 
     @Override
     public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
-        System.out.println(dataSet);
+        System.out.println(dataSet == null);
         Date create = dataSet.get(i).getCreateDate();
         Date change = dataSet.get(i).getChangeDate();
 

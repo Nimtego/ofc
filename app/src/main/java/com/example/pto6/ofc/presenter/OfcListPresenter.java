@@ -115,18 +115,6 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
 
     @Override
     public void viewReady() {
-        dbHelper.putDebit(Debit.builder()
-                .name("Test1")
-                .arrival(100f)
-                .changeDate(new Date())
-                .createDate(new Date())
-                .build());
-        dbHelper.putDebit(Debit.builder()
-                .name("Test2")
-                .arrival(100f)
-                .changeDate(new Date())
-                .createDate(new Date())
-                .build());
         OfcView ofcView = getView();
         Log.v(TAG, String.valueOf(ofcView == null));
 
