@@ -1,8 +1,8 @@
 package com.example.pto6.ofc.model;
 
-import java.util.List;
+import com.example.pto6.ofc.service.DBHelper;
 
-import javax.inject.Inject;
+import java.util.List;
 
 public class TestDb implements DBHelper {
 
