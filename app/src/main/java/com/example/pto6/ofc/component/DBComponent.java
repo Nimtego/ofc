@@ -6,6 +6,6 @@ import com.example.pto6.ofc.service.DBHelper;
 import dagger.Component;
 
 @Component(modules = DatabaseModule.class)
-public interface DBcomponent {
-    DBHelper getDBhelper();
+public interface DBComponent {
+    DBHelper getDBHelper();
 }

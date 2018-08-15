@@ -1,6 +1,5 @@
 package com.example.pto6.ofc.component;
 
-import com.example.pto6.ofc.presenter.AbstractBasePresenter;
 import com.example.pto6.ofc.presenter.DataEntryPresenter;
 import com.example.pto6.ofc.presenter.DataPresenter;
 import com.example.pto6.ofc.presenter.OfcListPresenter;

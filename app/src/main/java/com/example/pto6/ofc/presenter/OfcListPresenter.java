@@ -15,7 +15,6 @@ import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
 import com.example.pto6.ofc.model.TypePeriod;
 import com.example.pto6.ofc.service.DBHelper;
-import com.example.pto6.ofc.service.DBHelperStub;
 import com.example.pto6.ofc.view.AbstractView;
 import com.example.pto6.ofc.view.CardAdapter;
 import com.example.pto6.ofc.view.ClickListener;
@@ -24,6 +23,7 @@ import com.example.pto6.ofc.view.OfcView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 import javax.inject.Inject;
@@ -41,7 +41,7 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
 
     @Inject
     public OfcListPresenter() {
-        this.dbHelper = OfcApplication.getDBcomponent().getDBhelper();
+        this.dbHelper = OfcApplication.getDBComponent().getDBHelper();
         this.clicklistener = new ClickListener() {
             @Override
             public void onClick(View view, final int position) {
@@ -116,20 +116,23 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
         OfcView ofcView = getView();
         Log.v(TAG, String.valueOf(ofcView == null));
 
-        if (ofcView.getTabLayout().getSelectedTabPosition() == 0) {
+        if (Optional.ofNullable(ofcView.getTabLayout())
+                .map(TabLayout::getSelectedTabPosition)
+                .map(pos -> pos == 0)
+                .orElse(false)) {
             List<Debit> list = dbHelper.debitList();
             this.mDebitList = list;
-            adapter = new CardAdapter(list, (AbstractView) ofcView);
+            adapter = CardAdapter.of(list, (AbstractView) ofcView);
             ofcView.setUserFinance(adapter);
         }
         if (ofcView.getTabLayout().getSelectedTabPosition() == 1) {
             List<Credit> list = dbHelper.creditList();
             this.mCredits = list;
-            adapter = new CardAdapter(list, (AbstractView) ofcView);
+            adapter = CardAdapter.of(list, (AbstractView) ofcView);
             ofcView.setUserFinance(adapter);
         }
         if (ofcView.getTabLayout().getSelectedTabPosition() == 2) {
-            adapter = new CardAdapter(new ArrayList(), (AbstractView) ofcView);
+            adapter = CardAdapter.of(new ArrayList<>(), (AbstractView) ofcView);
             ofcView.setUserFinance(adapter);
             Toast.makeText(getContext(), "IN PROGRESS",
                     Toast.LENGTH_SHORT).show();
