@@ -4,8 +4,6 @@ package com.example.pto6.ofc.component;
 import com.example.pto6.ofc.service.DBHelper;
 import com.example.pto6.ofc.service.DBHelperStub;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 
@@ -13,7 +11,7 @@ import dagger.Provides;
 public class DatabaseModule {
 
     @Provides
-    DBHelper getStubDBhelper() {
+    DBHelper getDBHelper() {
         return new DBHelperStub();
     }
 }

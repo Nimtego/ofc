@@ -9,6 +9,9 @@ import java.util.Optional;
 
 import javax.inject.Inject;
 
+import lombok.ToString;
+
+@ToString
 public final class DBHelperStub implements DBHelper {
 
     private Repository<Debit> debitRepository;
@@ -19,7 +22,6 @@ public final class DBHelperStub implements DBHelper {
         this.debitRepository = new RepositoryStub<>();
         this.creditRepository = new RepositoryStub<>();
     }
-
 
     @Override
     public List<Debit> debitList() {
@@ -103,13 +105,5 @@ public final class DBHelperStub implements DBHelper {
                 .map(cdt -> creditRepository.delete(cdt.getId()))
                 .findAny()
                 .isPresent();
-    }
-
-    @Override
-    public String toString() {
-        return "DBHelperStub{" +
-                "debitRepository=" + debitRepository +
-                ", creditRepository=" + creditRepository +
-                '}';
     }
 }

@@ -30,8 +30,8 @@ public abstract class AbstractBasePresenter<T extends CommonView> implements
 
     @Override
     public void intent() {
-        Intent intent = new Intent(getContext(), getNextActivity());
-        ((Activity)commonView).startActivity(intent);
+        Intent intent = new Intent((Activity) commonView, getNextActivity());
+        ((Activity) commonView).startActivity(intent);
     }
 
     @Override

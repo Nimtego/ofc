@@ -17,6 +17,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class CardAdapter<T extends UserFinance, V extends AbstractView>
         extends RecyclerView.Adapter<CardAdapter.PersonViewHolder> implements AdapterView.OnItemClickListener {
@@ -47,7 +48,7 @@ public class CardAdapter<T extends UserFinance, V extends AbstractView>
         Date create = dataSet.get(i).getCreateDate();
         Date change = dataSet.get(i).getChangeDate();
 
-        DateFormat df = new SimpleDateFormat("MMM d, yyyy");
+        DateFormat df = new SimpleDateFormat("MMM d, yyyy", Locale.getDefault());
 
         personViewHolder.mTextViewName.setText(dataSet.get(i).getName());
         personViewHolder.mTextViewDate.setText(df.format(create));
