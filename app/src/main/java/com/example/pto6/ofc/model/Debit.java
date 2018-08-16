@@ -1,8 +1,17 @@
 package com.example.pto6.ofc.model;
 
+import java.util.Date;
 
-public interface Debit extends UserFinance {
-    float arrivalSize();
+import lombok.Builder;
+import lombok.Data;
 
-    TypePeriod period();
+@Data
+@Builder
+public class Debit implements UserFinance {
+    private String name;
+    private long id;
+    private Date createDate;
+    private Date changeDate;
+    private float arrival;
+    private TypePeriod typePeriod;
 }

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
-import com.example.pto6.ofc.model.DBHelper;
+import com.example.pto6.ofc.service.DBHelper;
 import com.example.pto6.ofc.view.DataEntryView;
 import com.example.pto6.ofc.view.toast.SimpleToastAlarm;
 import com.example.pto6.ofc.view.toast.ToastAlarm;
@@ -24,7 +24,7 @@ public class DataEntryPresenter<T extends DataEntryView>
 
     @Inject
     public DataEntryPresenter() {
-        mDBHelper = OfcApplication.getDBcomponent().getDBhelper();
+        mDBHelper = OfcApplication.getDBComponent().getDBHelper();
     }
 
     @Override

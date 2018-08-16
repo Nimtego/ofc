@@ -2,18 +2,16 @@ package com.example.pto6.ofc.model;
 
 import java.util.Date;
 
-public interface UserFinance {
-    String name();
+public interface UserFinance extends Entity {
+    String getName();
 
-    long id();
+    Date getCreateDate();
 
-    Date createDate();
-
-    Date changeDate();
-
-    void setId(long id);
+    Date getChangeDate();
 
     void setName(String name);
 
     void setChangeDate(Date date);
+
+    void setCreateDate(Date date);
 }

@@ -1,4 +1,7 @@
-package com.example.pto6.ofc.model;
+package com.example.pto6.ofc.service;
+
+import com.example.pto6.ofc.model.Credit;
+import com.example.pto6.ofc.model.Debit;
 
 import java.util.List;
 
