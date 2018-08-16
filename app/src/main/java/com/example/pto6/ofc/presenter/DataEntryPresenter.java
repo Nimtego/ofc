@@ -1,6 +1,7 @@
 package com.example.pto6.ofc.presenter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,6 +14,7 @@ import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.dto.DebitDTO;
 import com.example.pto6.ofc.model.Debit;
 import com.example.pto6.ofc.service.DBHelper;
+import com.example.pto6.ofc.utils.CommonUtils;
 import com.example.pto6.ofc.view.DataEntryView;
 import com.example.pto6.ofc.view.toast.SimpleToastAlarm;
 import com.example.pto6.ofc.view.toast.ToastAlarm;
@@ -115,6 +117,7 @@ public class DataEntryPresenter<T extends DataEntryView>
                 .changeDate(change)
                 .build();
         mDBHelper.putDebit(debit);
+        CommonUtils.showLoadingDialog((Context) getView());
         getView().onBackPressed();
     }
 }
