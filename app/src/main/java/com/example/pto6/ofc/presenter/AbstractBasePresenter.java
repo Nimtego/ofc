@@ -19,7 +19,7 @@ public abstract class AbstractBasePresenter<T extends CommonView> implements
     @Override
     public void attach(T commonView) {
         this.commonView = commonView;
-        this.toastAlarm = new SimpleToastAlarm((Context) commonView);
+        this.toastAlarm = new SimpleToastAlarm(getContext());
     }
 
     @Override

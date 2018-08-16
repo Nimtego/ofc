@@ -21,9 +21,6 @@ public final class DBHelperStub implements DBHelper {
     public DBHelperStub() {
         this.debitRepository = new RepositoryStub<>();
         this.creditRepository = new RepositoryStub<>();
-       /* debitList.add(new Debit("Test", 1000f, TypePeriod.DAY));
-        debitList.add(new Debit("Test2", 1000f, TypePeriod.DAY));
-        debitList.add(new Debit("Test3", 1000f, TypePeriod.DAY));*/
     }
 
     @Override
