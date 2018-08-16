@@ -1,5 +1,6 @@
 package com.example.pto6.ofc.view.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -47,10 +48,15 @@ public class AddDebitFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_add_debit, null);
+        @SuppressLint("InflateParams") View rootView = inflater.inflate(R.layout.fragment_add_debit, null);
        // ButterKnife.bind(this, rootView);
         Log.v(TAG, String.valueOf(rootView == null));
+        assert rootView != null;
         setUnBinder(ButterKnife.bind(rootView));
+        name = rootView.findViewById(R.id.input_name_edit_text);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        System.out.println(name == null);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         add = rootView.findViewById(R.id.button_add);
         cancel = rootView.findViewById(R.id.button_cancel);
         add.setOnClickListener(view -> someEventListener.someEvent(view));

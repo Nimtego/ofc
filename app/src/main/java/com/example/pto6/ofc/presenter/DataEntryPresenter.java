@@ -80,24 +80,12 @@ public class DataEntryPresenter<T extends DataEntryView>
             case R.id.button_add:
                 ToastAlarm ta = new SimpleToastAlarm(getContext());
                 ta.message("ADD Button in fragment");
-                mDBHelper.putDebit(Debit.builder()
+/*                Debit debit = Debit.builder()
                         .name("Test")
                         .arrival(100f)
                         .changeDate(new Date())
                         .createDate(new Date())
-                        .build());
-/*                DebitDTO debitDTO = getView().getDTO();
-                Float ammount = Float.valueOf(debitDTO.getAmount());
-                String name = debitDTO.getName();
-                Date create = new Date();
-                Date change = new Date();
-                mDBHelper.putDebit(Debit.builder()
-                        .arrival(ammount)
-                        .name(name)
-                        .createDate(create)
-                        .changeDate(change)
-                        .build());*/
-                getView().onBackPressed();
+                        .build();*/
                 break;
             case R.id.button_cancel:
                 getView().onBackPressed();
@@ -114,4 +102,19 @@ public class DataEntryPresenter<T extends DataEntryView>
 
     }
 
+    @Override
+    public void takeDTO(DebitDTO debitDTO) {
+        Float ammount = Float.valueOf(debitDTO.getAmount());
+        String name = debitDTO.getName();
+        Date create = new Date();
+        Date change = new Date();
+        Debit debit = Debit.builder()
+                .arrival(ammount)
+                .name(name)
+                .createDate(create)
+                .changeDate(change)
+                .build();
+        mDBHelper.putDebit(debit);
+        getView().onBackPressed();
+    }
 }

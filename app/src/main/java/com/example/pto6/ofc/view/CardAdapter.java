@@ -27,6 +27,7 @@ public class CardAdapter<T extends UserFinance, V extends AbstractView>
     private V viewParent;
 
     public CardAdapter(List<T> persons, V viewParent) {
+        System.out.println("persons size" +(persons.size()));
         this.dataSet = persons;
         this.viewParent = viewParent;
     }
@@ -46,7 +47,6 @@ public class CardAdapter<T extends UserFinance, V extends AbstractView>
 
     @Override
     public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
-        System.out.println(dataSet == null);
         Date create = dataSet.get(i).getCreateDate();
         Date change = dataSet.get(i).getChangeDate();
 

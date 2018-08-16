@@ -5,25 +5,30 @@ import android.util.LongSparseArray;
 
 import com.example.pto6.ofc.model.Entity;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
 public class RepositoryStub<E extends Entity> implements Repository<E> {
-    private LongSparseArray<E> entities = new LongSparseArray<>();
+    private Map<Long, E> entities = new HashMap<>();
     private Long idGenerator = 0L;
 
     @Override
     public void save(E model) {
-        E modelWithId = Optional.ofNullable(model)
+        entities.put(++idGenerator, model);
+        /*E modelWithId = Optional.ofNullable(model)
                 .filter(mdl -> mdl.getId() == 0)
                 .map(mdl -> {
                     mdl.setId(++idGenerator);
                     return mdl;
                 })
                 .orElse(model);
-        entities.append(modelWithId.getId(), model);
+        entities.append(modelWithId.getId(), model);*/
     }
 
     @Override
@@ -35,19 +40,21 @@ public class RepositoryStub<E extends Entity> implements Repository<E> {
     @Override
     @Nullable
     public E delete(long id) {
-        return Optional.ofNullable(entities.get(id))
+/*        return Optional.ofNullable(entities.get(id))
                 .map(ety -> {
                     entities.delete(id);
                     return ety;
                 })
-                .orElse(null);
+                .orElse(null);*/
+return null;
     }
 
     @Override
     public Collection<E> getAll() {
-        return LongStream
+        /*return LongStream
                 .range(0, entities.size())
                 .mapToObj(n -> entities.get(n))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList());*/
+        return new ArrayList<>(entities.values());
     }
 }

@@ -82,7 +82,6 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
                 }
             }
         });
-
     }
 
     @Override
@@ -103,7 +102,6 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
                     type = "CREDIT";
                     break;
             }
-            System.out.println(type);
             if (type != null) {
                 intent("type", type);
             }
@@ -117,10 +115,13 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
     public void viewReady() {
         OfcView ofcView = getView();
         Log.v(TAG, String.valueOf(ofcView == null));
-
+        Log.v(TAG, "DBHELPER LIST" +dbHelper.debitList());
+        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+        System.out.println(dbHelper.debitList().size());
+        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         if (ofcView.getTabLayout().getSelectedTabPosition() == 0) {
             List<Debit> list = dbHelper.debitList();
-            this.mDebitList = list;
+            /*this.mDebitList = list;*/
             adapter = new CardAdapter(list, (AbstractView) ofcView);
             ofcView.setUserFinance(adapter);
         }

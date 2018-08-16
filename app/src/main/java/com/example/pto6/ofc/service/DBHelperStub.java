@@ -38,7 +38,7 @@ public final class DBHelperStub implements DBHelper {
 
     @Override
     public List<Debit> debitList() {
-        return new ArrayList<>(debitRepository.getAll());
+        return (List<Debit>) debitRepository.getAll();
     }
 
     @Override
