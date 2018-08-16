@@ -23,6 +23,14 @@ public final class DBHelperStub implements DBHelper {
         this.creditRepository = new RepositoryStub<>();
     }
 
+    void setDebitRepository(Repository<Debit> debitRepository) {
+        this.debitRepository = debitRepository;
+    }
+
+    void setCreditRepository(Repository<Credit> creditRepository) {
+        this.creditRepository = creditRepository;
+    }
+
     @Override
     public List<Debit> debitList() {
         return new ArrayList<>(debitRepository.getAll());
@@ -45,7 +53,7 @@ public final class DBHelperStub implements DBHelper {
 
     @Override
     public Debit getDebitById(long id) {
-        return null;
+        return debitRepository.getOne(id);
     }
 
     @Override

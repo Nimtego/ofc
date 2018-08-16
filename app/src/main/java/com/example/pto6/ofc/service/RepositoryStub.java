@@ -50,4 +50,8 @@ public class RepositoryStub<E extends Entity> implements Repository<E> {
                 .mapToObj(n -> entities.get(n))
                 .collect(Collectors.toList());
     }
+
+    void setEntities(LongSparseArray<E> entities) {
+        this.entities = entities;
+    }
 }
