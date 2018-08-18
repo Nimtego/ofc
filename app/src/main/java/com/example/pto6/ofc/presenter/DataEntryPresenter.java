@@ -33,7 +33,7 @@ public class DataEntryPresenter<T extends DataEntryView>
 
     @Inject
     public DataEntryPresenter() {
-        mDBHelper = OfcApplication.getDBcomponent().getDBhelper();
+        mDBHelper = OfcApplication.getDBComponent().getDBHelper();
     }
 
     @Override

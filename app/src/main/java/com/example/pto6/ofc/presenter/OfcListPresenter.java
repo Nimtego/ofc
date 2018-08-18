@@ -15,7 +15,6 @@ import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
 import com.example.pto6.ofc.model.TypePeriod;
 import com.example.pto6.ofc.service.DBHelper;
-
 import com.example.pto6.ofc.view.AbstractView;
 import com.example.pto6.ofc.view.CardAdapter;
 import com.example.pto6.ofc.view.ClickListener;
@@ -25,6 +24,7 @@ import com.example.pto6.ofc.view.OfcView;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 import javax.inject.Inject;
@@ -42,7 +42,7 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
 
     @Inject
     public OfcListPresenter() {
-        this.dbHelper = OfcApplication.getDBcomponent().getDBhelper();
+        this.dbHelper = OfcApplication.getDBComponent().getDBHelper();
         this.clicklistener = new ClickListener() {
             @Override
             public void onClick(View view, final int position) {
@@ -55,11 +55,11 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
                 Toast.makeText(getContext(), "Long press on position :" + position,
                         Toast.LENGTH_LONG).show();
                 if ( getView().getTabLayout().getSelectedTabPosition() == 0) {
-                    dbHelper.removeByNameDebit(mDebitList.get(position).getName());
+                    dbHelper.removeByNameDebit((mDebitList.get(position)).getName());
                     viewReady();
                 }
                 if (getView().getTabLayout().getSelectedTabPosition() == 1) {
-                    dbHelper.removeByNameCredit( mCredits.get(position).getName());
+                    dbHelper.removeByNameCredit((mCredits.get(position)).getName());
                     viewReady();
                 }
 
@@ -119,20 +119,23 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         System.out.println(dbHelper.debitList().size());
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-        if (ofcView.getTabLayout().getSelectedTabPosition() == 0) {
+        if (Optional.ofNullable(ofcView.getTabLayout())
+                .map(TabLayout::getSelectedTabPosition)
+                .map(pos -> pos == 0)
+                .orElse(false)) {
             List<Debit> list = dbHelper.debitList();
             /*this.mDebitList = list;*/
-            adapter = new CardAdapter(list, (AbstractView) ofcView);
+            adapter = CardAdapter.of(list, (AbstractView) ofcView);
             ofcView.setUserFinance(adapter);
         }
         if (ofcView.getTabLayout().getSelectedTabPosition() == 1) {
             List<Credit> list = dbHelper.creditList();
             this.mCredits = list;
-            adapter = new CardAdapter(list, (AbstractView) ofcView);
+            adapter = CardAdapter.of(list, (AbstractView) ofcView);
             ofcView.setUserFinance(adapter);
         }
         if (ofcView.getTabLayout().getSelectedTabPosition() == 2) {
-            adapter = new CardAdapter(new ArrayList(), (AbstractView) ofcView);
+            adapter = CardAdapter.of(new ArrayList<>(), (AbstractView) ofcView);
             ofcView.setUserFinance(adapter);
             Toast.makeText(getContext(), "IN PROGRESS",
                     Toast.LENGTH_SHORT).show();
@@ -140,13 +143,14 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
     }
 
     private void testAdd() {
-        if (getView().getTabLayout().getSelectedTabPosition() == 0) {
+        OfcView ofcView = getView();
+        if (ofcView.getTabLayout().getSelectedTabPosition() == 0) {
             dbHelper.putDebit(Debit.builder().name("Test Debit " + new Random().nextInt(100))
                     .arrival(new Random().nextFloat() + new Random().nextInt(4000))
                     .typePeriod(TypePeriod.DAY)
                     .build());
         }
-        if (getView().getTabLayout().getSelectedTabPosition() == 1) {
+        if (ofcView.getTabLayout().getSelectedTabPosition() == 1) {
             Credit credit = Credit.builder()
                     .name("Test Credit " + new Random().nextInt(100))
                     .arrivalSize(new Random().nextFloat() + new Random().nextInt(4000)).build();
@@ -155,7 +159,6 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
 
         System.out.println(dbHelper);
     }
-
 
     public Adapter getAdapter() {
         return (Adapter) adapter;

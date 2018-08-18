@@ -9,32 +9,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.inject.Inject;
+
+import lombok.ToString;
+
+@ToString
 public final class DBHelperStub implements DBHelper {
 
     private static volatile DBHelper instance;
     private Repository<Debit> debitRepository;
     private Repository<Credit> creditRepository;
 
-    private DBHelperStub() {
+    @Inject
+    public DBHelperStub() {
         this.debitRepository = new RepositoryStub<>();
         this.creditRepository = new RepositoryStub<>();
-       /* debitList.add(new Debit("Test", 1000f, TypePeriod.DAY));
-        debitList.add(new Debit("Test2", 1000f, TypePeriod.DAY));
-        debitList.add(new Debit("Test3", 1000f, TypePeriod.DAY));*/
     }
-
-
-    public static DBHelper getInstance() {
-        if (instance == null) {
-            synchronized (DBHelperStub.class) {
-                if (instance == null) {
-                    instance = new DBHelperStub();
-                }
-            }
-        }
-        return instance;
-    }
-
 
     @Override
     public List<Debit> debitList() {
@@ -118,13 +108,5 @@ public final class DBHelperStub implements DBHelper {
                 .map(cdt -> creditRepository.delete(cdt.getId()))
                 .findAny()
                 .isPresent();
-    }
-
-    @Override
-    public String toString() {
-        return "DBHelperStub{" +
-                "debitRepository=" + debitRepository +
-                ", creditRepository=" + creditRepository +
-                '}';
     }
 }
