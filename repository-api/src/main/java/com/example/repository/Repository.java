@@ -6,9 +6,9 @@ public interface Repository<E extends Entity> {
 
     void save(E model);
 
-    E getOne(long id);
+    E getOne(Long id);
 
-    E delete(long id);
+    E delete(Long id);
 
     Collection<E> getAll();
 }

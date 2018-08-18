@@ -1,1 +1,1 @@
-include ':app', ':repository-api'
+include ':app', ':repository-api', ':repository-stub'
