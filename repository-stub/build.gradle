@@ -13,6 +13,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.21.0'
 }
 
 sourceCompatibility = "1.8"

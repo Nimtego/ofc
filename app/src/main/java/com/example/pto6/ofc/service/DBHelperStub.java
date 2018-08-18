@@ -1,13 +1,15 @@
 package com.example.pto6.ofc.service;
 
-import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
 import com.example.repository.Repository;
+import com.example.repository.stub.RepositoryStub;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import javax.inject.Inject;
 
 import lombok.Getter;
 import lombok.ToString;
@@ -20,11 +22,12 @@ public final class DBHelperStub implements DBHelper {
 
     //todo: dagger-way
     @Getter
-    private static DBHelper instance = new DBHelperStub();
+    private static DBHelper instance = new DBHelperStub(new RepositoryStub<>(), new RepositoryStub<>());
 
-    public DBHelperStub() {
-        this.debitRepository = OfcApplication.getDBComponent().getDebitRepository();
-        this.creditRepository = OfcApplication.getDBComponent().getCreditRepository();
+    @Inject
+    public DBHelperStub(Repository<Debit> debitRepository, Repository<Credit> creditRepository) {
+        this.debitRepository = debitRepository;
+        this.creditRepository = creditRepository;
     }
 
     void setDebitRepository(Repository<Debit> debitRepository) {
