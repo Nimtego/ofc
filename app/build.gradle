@@ -52,4 +52,6 @@ dependencies {
     annotationProcessor 'com.google.dagger:dagger-compiler:2.15'
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.21.0'
 }
