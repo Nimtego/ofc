@@ -1,6 +1,4 @@
-package com.example.pto6.ofc.service;
-
-import com.example.pto6.ofc.model.Entity;
+package com.example.repository;
 
 import java.util.Collection;
 

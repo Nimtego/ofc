@@ -23,6 +23,7 @@ android {
 }
 
 dependencies {
+    implementation project(':repository-api')
     //lombok
     compileOnly 'org.projectlombok:lombok:1.18.2'
     annotationProcessor 'org.projectlombok:lombok:1.18.2'

@@ -2,12 +2,11 @@ package com.example.pto6.ofc.service;
 
 import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
+import com.example.repository.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import javax.inject.Inject;
 
 public final class DBHelperStub implements DBHelper {
 

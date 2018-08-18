@@ -1,18 +1,14 @@
 package com.example.pto6.ofc.service;
 
 import android.support.annotation.Nullable;
-import android.util.LongSparseArray;
 
-import com.example.pto6.ofc.model.Entity;
+import com.example.repository.Entity;
+import com.example.repository.Repository;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.LongStream;
 
 public class RepositoryStub<E extends Entity> implements Repository<E> {
     private Map<Long, E> entities = new HashMap<>();

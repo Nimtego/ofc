@@ -1,5 +1,7 @@
 package com.example.pto6.ofc.model;
 
+import com.example.repository.Entity;
+
 import java.util.Date;
 
 public interface UserFinance extends Entity {
