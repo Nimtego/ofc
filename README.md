@@ -1,6 +1,7 @@
 <p align="center"><img src="res/logo/ofc2.png" width="150" height="100"/></p>
 
-
+master:[![CircleCI](https://circleci.com/gh/Nimtego/ofc/tree/master.svg?style=svg&circle-token=89eb9291565c29f76f2bf73f889bad000fcb186b)](https://circleci.com/gh/Nimtego/ofc/tree/master)
+dev:[![CircleCI](https://circleci.com/gh/Nimtego/ofc/tree/dev.svg?style=svg&circle-token=89eb9291565c29f76f2bf73f889bad000fcb186b)](https://circleci.com/gh/Nimtego/ofc/tree/dev)
 
 
 Приложение для хранения данных о доходах и расходах пользователя. 
