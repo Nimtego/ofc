@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.inject.Inject;
-
+import lombok.Getter;
 import lombok.ToString;
 
 @ToString
@@ -19,7 +18,10 @@ public final class DBHelperStub implements DBHelper {
     private Repository<Debit> debitRepository;
     private Repository<Credit> creditRepository;
 
-    @Inject
+    //todo: dagger-way
+    @Getter
+    private static DBHelper instance = new DBHelperStub();
+
     public DBHelperStub() {
         this.debitRepository = OfcApplication.getDBComponent().getDebitRepository();
         this.creditRepository = OfcApplication.getDBComponent().getCreditRepository();

@@ -2,10 +2,7 @@ package com.example.pto6.ofc.view.fragments;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
-
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +13,6 @@ import android.widget.EditText;
 import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.dto.DebitDTO;
 import com.example.pto6.ofc.dto.UserFinanceDTO;
-import com.example.pto6.ofc.presenter.Presenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,9 +50,6 @@ public class AddDebitFragment extends BaseFragment {
         assert rootView != null;
         setUnBinder(ButterKnife.bind(rootView));
         name = rootView.findViewById(R.id.input_name_edit_text);
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        System.out.println(name == null);
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         add = rootView.findViewById(R.id.button_add);
         cancel = rootView.findViewById(R.id.button_cancel);
         add.setOnClickListener(view -> someEventListener.someEvent(view));
