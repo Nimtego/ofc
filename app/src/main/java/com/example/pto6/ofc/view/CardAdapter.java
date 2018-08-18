@@ -2,7 +2,6 @@ package com.example.pto6.ofc.view;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +27,6 @@ public class CardAdapter<T extends UserFinance, V extends AbstractView>
     private V viewParent;
 
     public CardAdapter(List<T> persons, V viewParent) {
-        System.out.println("persons size" +(persons.size()));
         this.dataSet = persons;
         this.viewParent = viewParent;
     }

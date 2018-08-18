@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -82,12 +81,6 @@ public class DataEntryPresenter<T extends DataEntryView>
             case R.id.button_add:
                 ToastAlarm ta = new SimpleToastAlarm(getContext());
                 ta.message("ADD Button in fragment");
-/*                Debit debit = Debit.builder()
-                        .name("Test")
-                        .arrival(100f)
-                        .changeDate(new Date())
-                        .createDate(new Date())
-                        .build();*/
                 break;
             case R.id.button_cancel:
                 getView().onBackPressed();

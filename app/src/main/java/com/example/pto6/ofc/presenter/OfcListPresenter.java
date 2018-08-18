@@ -22,13 +22,15 @@ import com.example.pto6.ofc.view.DataEntryActivity;
 import com.example.pto6.ofc.view.OfcView;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
 import javax.inject.Inject;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T> implements OfcPresenter<T>{
 
     private static final String TAG = "OfcListPresenter";
@@ -104,8 +106,7 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
             }
             if (type != null) {
                 intent("type", type);
-            }
-            else
+            } else
                 viewReady();
         }
     }
@@ -116,9 +117,6 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
         OfcView ofcView = getView();
         Log.v(TAG, String.valueOf(ofcView == null));
         Log.v(TAG, "DBHELPER LIST" +dbHelper.debitList());
-        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-        System.out.println(dbHelper.debitList().size());
-        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         if (Optional.ofNullable(ofcView.getTabLayout())
                 .map(TabLayout::getSelectedTabPosition)
                 .map(pos -> pos == 0)
@@ -156,8 +154,6 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
                     .arrivalSize(new Random().nextFloat() + new Random().nextInt(4000)).build();
             dbHelper.putCredit(credit);
         }
-
-        System.out.println(dbHelper);
     }
 
     public Adapter getAdapter() {
