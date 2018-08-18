@@ -9,7 +9,7 @@ import lombok.Data;
 @Builder
 public class Credit implements UserFinance {
     private String name;
-    private long id;
+    private Long id;
     private Date createDate;
     private Date changeDate;
     private Date dateOfCapture;

@@ -4,14 +4,22 @@ import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.StringRes;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.presenter.Presenter;
+import com.example.pto6.ofc.view.fragments.BaseFragment;
 
 import butterknife.Unbinder;
 
 
-public abstract class AbstractView extends AppCompatActivity implements CommonView {
+public abstract class AbstractView extends AppCompatActivity implements CommonView, BaseFragment.Callback{
 
     protected Presenter mPresenter;
     private Unbinder mUnBinder;
@@ -71,17 +79,35 @@ public abstract class AbstractView extends AppCompatActivity implements CommonVi
 
     @Override
     public void onError(String message) {
+        if (message != null) {
+            showSnackBar(message);
+        } else {
+            showSnackBar(getString(R.string.some_error));
+        }
+    }
 
+    private void showSnackBar(String message) {
+        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),
+                message, Snackbar.LENGTH_SHORT);
+        View sbView = snackbar.getView();
+        TextView textView = (TextView) sbView
+                .findViewById(android.support.design.R.id.snackbar_text);
+        textView.setTextColor(ContextCompat.getColor(this, R.color.with));
+        snackbar.show();
     }
 
     @Override
     public void showMessage(String message) {
-
+        if (message != null) {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, getString(R.string.some_error), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
-    public void showMessage(int resId) {
-
+    public void showMessage(@StringRes int resId) {
+        showMessage(getString(resId));
     }
 
     @Override
@@ -91,6 +117,16 @@ public abstract class AbstractView extends AppCompatActivity implements CommonVi
 
     @Override
     public void hideKeyboard() {
+
+    }
+
+    @Override
+    public void onFragmentAttached() {
+
+    }
+
+    @Override
+    public void onFragmentDetached(String tag) {
 
     }
 }

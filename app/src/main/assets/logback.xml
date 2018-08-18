@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://ch.qos.logback/xml/ns/logback"
+    xsi:schemaLocation="http://ch.qos.logback/xml/ns/logback https://raw.githubusercontent.com/enricopulatzo/logback-XSD/master/src/main/xsd/logback.xsd">
+    <!--https://github.com/tony19/logback-android/wiki#configuration-via-xml-->
+    <appender name="file" class="ch.qos.logback.core.FileAppender">
+        <file>/data/data/com.example/files/log/error.log</file>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Create a logcat appender -->
+    <appender name="logcat" class="ch.qos.logback.classic.android.LogcatAppender">
+        <encoder>
+            <pattern>%msg</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Write INFO (and higher-level) messages to the log file -->
+    <root level="ERROR">
+        <appender-ref ref="file" />
+    </root>
+
+    <logger name="com.example" additivity="false" level="DEBUG">
+        <appender-ref ref="logcat" />
+    </logger>
+
+</configuration>
+

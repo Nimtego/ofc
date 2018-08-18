@@ -22,6 +22,7 @@ import java.util.Locale;
 public class CardAdapter<T extends UserFinance, V extends AbstractView>
         extends RecyclerView.Adapter<CardAdapter.PersonViewHolder> implements AdapterView.OnItemClickListener {
 
+    private static final String TAG = "CardAdapter";
     private List<T> dataSet;
     private V viewParent;
 

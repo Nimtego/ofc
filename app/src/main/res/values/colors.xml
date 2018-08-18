@@ -14,4 +14,5 @@
     <color name="with">#cbfafafa</color>
     <color name="separator_gray">#98a6af</color>
     <color name="font_text_gray">#fdfdfd</color>
+    <color name="black_effective">#2a2a2a</color>
 </resources>

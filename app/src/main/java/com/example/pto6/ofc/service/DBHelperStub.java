@@ -2,6 +2,8 @@ package com.example.pto6.ofc.service;
 
 import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
+import com.example.repository.Repository;
+import com.example.repository.stub.RepositoryStub;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.Optional;
 
 import javax.inject.Inject;
 
+import lombok.Getter;
 import lombok.ToString;
 
 @ToString
@@ -17,10 +20,14 @@ public final class DBHelperStub implements DBHelper {
     private Repository<Debit> debitRepository;
     private Repository<Credit> creditRepository;
 
+    //todo: dagger-way
+    @Getter
+    private static DBHelper instance = new DBHelperStub(new RepositoryStub<>(), new RepositoryStub<>());
+
     @Inject
-    public DBHelperStub() {
-        this.debitRepository = new RepositoryStub<>();
-        this.creditRepository = new RepositoryStub<>();
+    public DBHelperStub(Repository<Debit> debitRepository, Repository<Credit> creditRepository) {
+        this.debitRepository = debitRepository;
+        this.creditRepository = creditRepository;
     }
 
     void setDebitRepository(Repository<Debit> debitRepository) {
@@ -33,7 +40,7 @@ public final class DBHelperStub implements DBHelper {
 
     @Override
     public List<Debit> debitList() {
-        return new ArrayList<>(debitRepository.getAll());
+        return (List<Debit>) debitRepository.getAll();
     }
 
     @Override

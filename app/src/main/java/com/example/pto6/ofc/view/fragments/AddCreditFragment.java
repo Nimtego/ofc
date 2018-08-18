@@ -8,10 +8,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.pto6.ofc.R;
+import com.example.pto6.ofc.dto.UserFinanceDTO;
 
-public class AddCreditFragment extends Fragment {
+public class AddCreditFragment extends BaseFragment {
 
     OnSomeEventListener someEventListener;
+
+    @Override
+    protected void setUp(View view) {
+
+    }
+
+    @Override
+    public UserFinanceDTO getDTO() {
+        return null;
+    }
 
     public interface OnSomeEventListener {
         void someEvent(View view);
@@ -27,7 +38,6 @@ public class AddCreditFragment extends Fragment {
         }
     }
 
-    final String LOG_TAG = "myLogs";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

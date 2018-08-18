@@ -28,6 +28,9 @@ import java.util.Random;
 
 import javax.inject.Inject;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T> implements OfcPresenter<T>{
 
     private static final String TAG = "OfcListPresenter";
@@ -101,11 +104,9 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
                     type = "CREDIT";
                     break;
             }
-            System.out.println(type);
             if (type != null) {
                 intent("type", type);
-            }
-            else
+            } else
                 viewReady();
         }
     }
@@ -115,13 +116,13 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
     public void viewReady() {
         OfcView ofcView = getView();
         Log.v(TAG, String.valueOf(ofcView == null));
-
+        Log.v(TAG, "DBHELPER LIST" +dbHelper.debitList());
         if (Optional.ofNullable(ofcView.getTabLayout())
                 .map(TabLayout::getSelectedTabPosition)
                 .map(pos -> pos == 0)
                 .orElse(false)) {
             List<Debit> list = dbHelper.debitList();
-            this.mDebitList = list;
+            /*this.mDebitList = list;*/
             adapter = CardAdapter.of(list, (AbstractView) ofcView);
             ofcView.setUserFinance(adapter);
         }
@@ -153,8 +154,6 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
                     .arrivalSize(new Random().nextFloat() + new Random().nextInt(4000)).build();
             dbHelper.putCredit(credit);
         }
-
-        System.out.println(dbHelper);
     }
 
     public Adapter getAdapter() {
