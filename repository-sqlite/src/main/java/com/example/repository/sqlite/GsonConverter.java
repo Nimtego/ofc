@@ -10,6 +10,10 @@ import lombok.RequiredArgsConstructor;
 public class GsonConverter<E extends Entity> implements ObjectSerializer<E> {
     private final Class<E> type;
 
+    public static <T extends Entity> GsonConverter<T> forEntity(Class<T> entity) {
+        return new GsonConverter<>(entity);
+    }
+
     @Override
     public String serialize(E entity) {
         return new Gson().toJson(entity);

@@ -23,7 +23,7 @@ public class GsonConverterTest {
                 .value(42.00000001D)
                 .date(new Date().getTime())
                 .build();
-        GsonConverter<MockEntity> converter = new GsonConverter<>(MockEntity.class);
+        GsonConverter<MockEntity> converter = GsonConverter.forEntity(MockEntity.class);
         String serialized = converter.serialize(entity);
         log.debug("Serialized entity: {}", serialized);
         MockEntity deserialized = converter.deserialize(serialized);
