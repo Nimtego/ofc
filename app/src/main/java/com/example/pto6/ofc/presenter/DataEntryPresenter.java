@@ -8,11 +8,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.dto.DebitDTO;
 import com.example.pto6.ofc.model.Debit;
-import com.example.pto6.ofc.service.DBHelper;
+import com.example.pto6.ofc.service.DBHelperSQLite;
 import com.example.pto6.ofc.utils.CommonUtils;
 import com.example.pto6.ofc.view.DataEntryView;
 import com.example.pto6.ofc.view.toast.SimpleToastAlarm;
@@ -28,11 +27,11 @@ public class DataEntryPresenter<T extends DataEntryView>
 
     private static final String TAG = "DataEntryPresenter";
 
-    private DBHelper mDBHelper;
+//    private DBHelper mDBHelper;
 
     @Inject
     public DataEntryPresenter() {
-        mDBHelper = OfcApplication.getDBComponent().getDBHelper();
+//        mDBHelper = OfcApplication.getDBComponent().getDBHelper();
     }
 
     @Override
@@ -109,7 +108,8 @@ public class DataEntryPresenter<T extends DataEntryView>
                 .createDate(create)
                 .changeDate(change)
                 .build();
-        mDBHelper.putDebit(debit);
+//        mDBHelper.putDebit(debit);
+        DBHelperSQLite.get(getContext()).putDebit(debit);
         CommonUtils.showLoadingDialog((Context) getView());
         getView().onBackPressed();
     }

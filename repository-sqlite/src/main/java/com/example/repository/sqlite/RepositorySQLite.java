@@ -20,6 +20,8 @@ import java.util.function.Function;
 
 import lombok.extern.slf4j.Slf4j;
 
+//todo separate repository and SQLiteOpenHelper
+
 @Slf4j
 public class RepositorySQLite<E extends Entity> extends SQLiteOpenHelper implements Repository<E> {
     private static final int VERSION = 1;
