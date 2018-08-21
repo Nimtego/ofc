@@ -126,7 +126,7 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
                 .map(pos -> pos == 0)
                 .orElse(false)) {
             List<Debit> list = dbHelper().debitList();
-            /*this.mDebitList = list;*/
+            this.mDebitList = list;
             adapter = CardAdapter.of(list, (AbstractView) ofcView);
             ofcView.setUserFinance(adapter);
         }

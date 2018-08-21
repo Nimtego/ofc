@@ -6,6 +6,8 @@ import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
 import com.example.repository.Repository;
 import com.example.repository.sqlite.GsonConverter;
+import com.example.repository.sqlite.RepositoryHelper;
+import com.example.repository.sqlite.RepositoryHelperSQLite;
 import com.example.repository.sqlite.RepositorySQLite;
 
 import java.util.ArrayList;
@@ -13,10 +15,11 @@ import java.util.List;
 import java.util.Optional;
 
 public final class DBHelperSQLite implements DBHelper {
-
-    public static final String CREDIT = "credit";
     private static final String FINANCE = "finance";
+    private static final int VERSION = 2;
     private static final String DEBIT = "debit";
+    private static final String CREDIT = "credit";
+
     private Repository<Debit> debitRepository;
     private Repository<Credit> creditRepository;
 
@@ -26,14 +29,15 @@ public final class DBHelperSQLite implements DBHelper {
     }
 
     public static DBHelper get(Context context) {
-        Repository<Debit> debitRepository = new RepositorySQLite<>(context,
+        RepositoryHelper helper = new RepositoryHelperSQLite(context,
                 FINANCE,
+                VERSION,
                 DEBIT,
-                GsonConverter.forEntity(Debit.class));
-        Repository<Credit> creditRepository = new RepositorySQLite<>(context,
-                FINANCE,
-                CREDIT,
-                GsonConverter.forEntity(Credit.class));
+                CREDIT);
+        Repository<Debit> debitRepository =
+                new RepositorySQLite<>(GsonConverter.forEntity(Debit.class), helper, DEBIT);
+        Repository<Credit> creditRepository =
+                new RepositorySQLite<>(GsonConverter.forEntity(Credit.class), helper, CREDIT);
         return new DBHelperSQLite(debitRepository, creditRepository);
     }
 
