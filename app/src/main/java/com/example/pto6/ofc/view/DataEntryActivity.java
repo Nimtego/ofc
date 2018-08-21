@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
+import com.example.pto6.ofc.dto.CreditDTO;
 import com.example.pto6.ofc.dto.DebitDTO;
 import com.example.pto6.ofc.dto.UserFinanceDTO;
 import com.example.pto6.ofc.presenter.DataEntryPresenter;
@@ -65,11 +66,24 @@ public class DataEntryActivity extends AbstractView implements DataEntryView, Ad
             Fragment fragment = getFragmentManager().findFragmentById(R.id.fragment_form);
             TextView name = fragment.getView().findViewById(R.id.input_name_edit_text);
             TextView ammount = fragment.getView().findViewById(R.id.input_amount_edit_text);
-            DebitDTO debitDTO = DebitDTO.builder()
-                    .name(String.valueOf(name.getText()))
-                    .amount(ammount.getText().toString())
-                    .build();
-            ((DataEntryPresenter) mPresenter).takeDTO(debitDTO);
+            UserFinanceDTO dto = null;
+            if (fragment instanceof AddDebitFragment) {
+                dto = DebitDTO.builder()
+                        .name(String.valueOf(name.getText()))
+                        .amount(ammount.getText().toString())
+                        .build();
+            }
+            if (fragment instanceof AddCreditFragment) {
+                dto = CreditDTO.builder()
+                        .name(String.valueOf(name.getText()))
+                        .amount(ammount.getText().toString())
+                        .build();
+            }
+            if(dto == null) {
+                onError("DTO == NULL");
+                mPresenter.onClick(view);
+            }
+            ((DataEntryPresenter) mPresenter).takeDTO(dto);
         }
         else mPresenter.onClick(view);
     }
@@ -88,6 +102,6 @@ public class DataEntryActivity extends AbstractView implements DataEntryView, Ad
         if(mFragment instanceof AddDebitFragment)
             return (DebitDTO) userFinanceDTO;
         else
-            return null; // TODO: 14.08.2018  
+            return null; // TODO: 14.08.2018
     }
 }

@@ -11,10 +11,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
-import com.example.pto6.ofc.presenter.OfcPresenter;
 import com.example.pto6.ofc.presenter.Presenter;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

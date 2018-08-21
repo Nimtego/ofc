@@ -20,6 +20,7 @@ import com.example.pto6.ofc.view.CardAdapter;
 import com.example.pto6.ofc.view.ClickListener;
 import com.example.pto6.ofc.view.DataEntryActivity;
 import com.example.pto6.ofc.view.OfcView;
+import com.example.pto6.ofc.view.toast.SimpleToastAlarm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,8 +115,6 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
                 viewReady();
         }
     }
-
-
     @Override
     public void viewReady() {
         OfcView ofcView = getView();
@@ -126,7 +125,7 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
                 .map(pos -> pos == 0)
                 .orElse(false)) {
             List<Debit> list = dbHelper().debitList();
-            /*this.mDebitList = list;*/
+            this.mDebitList = list;
             adapter = CardAdapter.of(list, (AbstractView) ofcView);
             ofcView.setUserFinance(adapter);
         }

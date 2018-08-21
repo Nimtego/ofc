@@ -1,5 +1,6 @@
 package com.example.pto6.ofc.view;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -32,6 +33,7 @@ public abstract class AbstractView extends AppCompatActivity implements CommonVi
     }
 
 
+    @SuppressLint("ObsoleteSdkInt")
     @TargetApi(Build.VERSION_CODES.M)
     public void requestPermissionsSafely(String[] permissions, int requestCode) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -39,6 +41,7 @@ public abstract class AbstractView extends AppCompatActivity implements CommonVi
         }
     }
 
+    @SuppressLint("ObsoleteSdkInt")
     @TargetApi(Build.VERSION_CODES.M)
     public boolean hasPermission(String permission) {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||

@@ -14,6 +14,7 @@ import dagger.Provides;
 @Module
 public class DatabaseModule {
 
+
     @Provides
     DBHelper getDBHelper() {
         return DBHelperStub.getInstance();
