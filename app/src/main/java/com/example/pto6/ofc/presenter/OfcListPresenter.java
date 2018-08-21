@@ -9,12 +9,12 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.Toast;
 
-import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
 import com.example.pto6.ofc.model.TypePeriod;
 import com.example.pto6.ofc.service.DBHelper;
+import com.example.pto6.ofc.service.DBHelperSQLite;
 import com.example.pto6.ofc.view.AbstractView;
 import com.example.pto6.ofc.view.CardAdapter;
 import com.example.pto6.ofc.view.ClickListener;
@@ -31,11 +31,11 @@ import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T> implements OfcPresenter<T>{
+public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T> implements OfcPresenter<T> {
 
     private static final String TAG = "OfcListPresenter";
 
-    private DBHelper dbHelper;
+    //    private DBHelper dbHelper;
     private RecyclerView.Adapter adapter;
     private ClickListener clicklistener;
     private GestureDetector gestureDetector;
@@ -44,7 +44,7 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
 
     @Inject
     public OfcListPresenter() {
-        this.dbHelper = OfcApplication.getDBComponent().getDBHelper();
+//        this.dbHelper = OfcApplication.getDBComponent().getDBHelper();
         this.clicklistener = new ClickListener() {
             @Override
             public void onClick(View view, final int position) {
@@ -56,12 +56,12 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
             public void onLongClick(View view, int position) {
                 Toast.makeText(getContext(), "Long press on position :" + position,
                         Toast.LENGTH_LONG).show();
-                if ( getView().getTabLayout().getSelectedTabPosition() == 0) {
-                    dbHelper.removeByNameDebit((mDebitList.get(position)).getName());
+                if (getView().getTabLayout().getSelectedTabPosition() == 0) {
+                    dbHelper().removeByNameDebit((mDebitList.get(position)).getName());
                     viewReady();
                 }
                 if (getView().getTabLayout().getSelectedTabPosition() == 1) {
-                    dbHelper.removeByNameCredit((mCredits.get(position)).getName());
+                    dbHelper().removeByNameCredit((mCredits.get(position)).getName());
                     viewReady();
                 }
 
@@ -79,11 +79,15 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
                 View child = getView()
                         .getRecyclerView().findChildViewUnder(e.getX(), e.getY());
                 if (child != null && clicklistener != null) {
-                    clicklistener.onLongClick(child,  getView()
+                    clicklistener.onLongClick(child, getView()
                             .getRecyclerView().getChildAdapterPosition(child));
                 }
             }
         });
+    }
+
+    private DBHelper dbHelper() {
+        return DBHelperSQLite.get(getContext());
     }
 
     @Override
@@ -116,18 +120,18 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
     public void viewReady() {
         OfcView ofcView = getView();
         Log.v(TAG, String.valueOf(ofcView == null));
-        Log.v(TAG, "DBHELPER LIST" +dbHelper.debitList());
+        Log.v(TAG, "DBHELPER LIST" + dbHelper().debitList());
         if (Optional.ofNullable(ofcView.getTabLayout())
                 .map(TabLayout::getSelectedTabPosition)
                 .map(pos -> pos == 0)
                 .orElse(false)) {
-            List<Debit> list = dbHelper.debitList();
-            /*this.mDebitList = list;*/
+            List<Debit> list = dbHelper().debitList();
+            this.mDebitList = list;
             adapter = CardAdapter.of(list, (AbstractView) ofcView);
             ofcView.setUserFinance(adapter);
         }
         if (ofcView.getTabLayout().getSelectedTabPosition() == 1) {
-            List<Credit> list = dbHelper.creditList();
+            List<Credit> list = dbHelper().creditList();
             this.mCredits = list;
             adapter = CardAdapter.of(list, (AbstractView) ofcView);
             ofcView.setUserFinance(adapter);
@@ -143,7 +147,7 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
     private void testAdd() {
         OfcView ofcView = getView();
         if (ofcView.getTabLayout().getSelectedTabPosition() == 0) {
-            dbHelper.putDebit(Debit.builder().name("Test Debit " + new Random().nextInt(100))
+            dbHelper().putDebit(Debit.builder().name("Test Debit " + new Random().nextInt(100))
                     .arrival(new Random().nextFloat() + new Random().nextInt(4000))
                     .typePeriod(TypePeriod.DAY)
                     .build());
@@ -152,7 +156,7 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
             Credit credit = Credit.builder()
                     .name("Test Credit " + new Random().nextInt(100))
                     .arrivalSize(new Random().nextFloat() + new Random().nextInt(4000)).build();
-            dbHelper.putCredit(credit);
+            dbHelper().putCredit(credit);
         }
     }
 
