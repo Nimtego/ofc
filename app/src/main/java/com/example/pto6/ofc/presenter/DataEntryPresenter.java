@@ -9,7 +9,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.pto6.ofc.R;
+import com.example.pto6.ofc.dto.CreditDTO;
 import com.example.pto6.ofc.dto.DebitDTO;
+import com.example.pto6.ofc.dto.UserFinanceDTO;
+import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
 import com.example.pto6.ofc.service.DBHelperSQLite;
 import com.example.pto6.ofc.utils.CommonUtils;
@@ -97,20 +100,39 @@ public class DataEntryPresenter<T extends DataEntryView>
     }
 
     @Override
-    public void takeDTO(DebitDTO debitDTO) {
-        Float ammount = Float.valueOf(debitDTO.getAmount());
-        String name = debitDTO.getName();
-        Date create = new Date();
-        Date change = new Date();
-        Debit debit = Debit.builder()
-                .arrival(ammount)
-                .name(name)
-                .createDate(create)
-                .changeDate(change)
-                .build();
+    public void takeDTO(UserFinanceDTO dto) {
+        if (dto instanceof DebitDTO) {
+            DebitDTO debitDTO = (DebitDTO) dto;
+            Float ammount = Float.valueOf(debitDTO.getAmount());
+            String name = debitDTO.getName();
+            Date create = new Date();
+            Date change = new Date();
+            Debit debit = Debit.builder()
+                    .arrival(ammount)
+                    .name(name)
+                    .createDate(create)
+                    .changeDate(change)
+                    .build();
 //        mDBHelper.putDebit(debit);
-        DBHelperSQLite.get(getContext()).putDebit(debit);
-        CommonUtils.showLoadingDialog((Context) getView());
+            DBHelperSQLite.get(getContext()).putDebit(debit);
+            CommonUtils.showLoadingDialog((Context) getView());
+        }
+        if (dto instanceof CreditDTO) {
+            CreditDTO creditDTO = (CreditDTO) dto;
+            Float ammount = Float.valueOf(creditDTO.getAmount());
+            String name = creditDTO.getName();
+            Date create = new Date();
+            Date change = new Date();
+            Credit credit = Credit.builder()
+                    .arrivalSize(ammount)
+                    .name(name)
+                    .createDate(create)
+                    .changeDate(change)
+                    .build();
+//        mDBHelper.putDebit(debit);
+            DBHelperSQLite.get(getContext()).putCredit(credit);
+            CommonUtils.showLoadingDialog((Context) getView());
+        }
         getView().onBackPressed();
     }
 }

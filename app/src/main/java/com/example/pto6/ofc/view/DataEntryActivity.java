@@ -63,13 +63,7 @@ public class DataEntryActivity extends AbstractView implements DataEntryView, Ad
     public void someEvent(View view) {
         if (view.getId() == R.id.button_add) {
             Fragment fragment = getFragmentManager().findFragmentById(R.id.fragment_form);
-            TextView name = fragment.getView().findViewById(R.id.input_name_edit_text);
-            TextView ammount = fragment.getView().findViewById(R.id.input_amount_edit_text);
-            DebitDTO debitDTO = DebitDTO.builder()
-                    .name(String.valueOf(name.getText()))
-                    .amount(ammount.getText().toString())
-                    .build();
-            ((DataEntryPresenter) mPresenter).takeDTO(debitDTO);
+            ((DataEntryPresenter) mPresenter).takeDTO(mFragment.getDTO());
         }
         else mPresenter.onClick(view);
     }
@@ -83,11 +77,12 @@ public class DataEntryActivity extends AbstractView implements DataEntryView, Ad
     }
 
     @Override
-    public DebitDTO getDTO() {
-        UserFinanceDTO userFinanceDTO = mFragment.getDTO();
+    public UserFinanceDTO getDTO() {
+        UserFinanceDTO dto = null;
         if(mFragment instanceof AddDebitFragment)
-            return (DebitDTO) userFinanceDTO;
-        else
-            return null; // TODO: 14.08.2018  
+            dto = mFragment.getDTO();
+        if(mFragment instanceof AddCreditFragment)
+            dto = mFragment.getDTO();
+        return dto;
     }
 }
