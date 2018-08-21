@@ -37,6 +37,11 @@ public class OfcListActivity extends AbstractView implements OfcView {
         setContentView(R.layout.activity_ofc_list);
         setUnBinder(ButterKnife.bind(this));
         init();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         mPresenter.viewReady();
     }
 
