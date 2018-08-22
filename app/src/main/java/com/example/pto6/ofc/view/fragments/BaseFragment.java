@@ -42,7 +42,7 @@ public abstract class BaseFragment extends Fragment implements CommonView{
         if (context instanceof AbstractView) {
             AbstractView activity = (AbstractView) context;
             this.mAbstractView = activity;
-            activity.onFragmentAttached();
+           // activity.onFragmentAttached();
         }
     }
 

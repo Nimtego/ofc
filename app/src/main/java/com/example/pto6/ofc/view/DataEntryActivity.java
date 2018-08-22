@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
-import com.example.pto6.ofc.dto.DebitDTO;
 import com.example.pto6.ofc.dto.UserFinanceDTO;
 import com.example.pto6.ofc.presenter.DataEntryPresenter;
 import com.example.pto6.ofc.presenter.Presenter;
@@ -48,10 +47,6 @@ public class DataEntryActivity extends AbstractView implements DataEntryView, Ad
         mFragmentTransaction = getFragmentManager().beginTransaction();
         mFragmentTransaction.add(R.id.fragment_form, mFragment);
         mFragmentTransaction.commit();
-/*        addButton = findViewById(R.id.button_add);
-        cancelButton = findViewById(R.id.button_cancel);
-        addButton.setOnClickListener(mPresenter);
-        cancelButton.setOnClickListener(mPresenter);*/
     }
 
     @Override
@@ -78,11 +73,6 @@ public class DataEntryActivity extends AbstractView implements DataEntryView, Ad
 
     @Override
     public UserFinanceDTO getDTO() {
-        UserFinanceDTO dto = null;
-        if(mFragment instanceof AddDebitFragment)
-            dto = mFragment.getDTO();
-        if(mFragment instanceof AddCreditFragment)
-            dto = mFragment.getDTO();
-        return dto;
+        return mFragment.getDTO();
     }
 }

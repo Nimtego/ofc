@@ -1,12 +1,10 @@
 package com.example.pto6.ofc.presenter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.dto.CreditDTO;
@@ -92,17 +90,16 @@ public class DataEntryPresenter<T extends DataEntryView>
 
     @Override
     public void takeDTO(UserFinanceDTO dto) {
+        Date date = new Date();
         if (dto instanceof DebitDTO) {
             DebitDTO debitDTO = (DebitDTO) dto;
             Float ammount = Float.valueOf(debitDTO.getAmount());
             String name = debitDTO.getName();
-            Date create = new Date();
-            Date change = new Date();
             Debit debit = Debit.builder()
                     .arrival(ammount)
                     .name(name)
-                    .createDate(create)
-                    .changeDate(change)
+                    .createDate(date)
+                    .changeDate(date)
                     .build();
             DBHelperSQLite.get(getContext()).putDebit(debit);
             CommonUtils.showLoadingDialog((Context) getView());
@@ -111,13 +108,11 @@ public class DataEntryPresenter<T extends DataEntryView>
             CreditDTO creditDTO = (CreditDTO) dto;
             Float ammount = Float.valueOf(creditDTO.getAmount());
             String name = creditDTO.getName();
-            Date create = new Date();
-            Date change = new Date();
             Credit credit = Credit.builder()
                     .arrivalSize(ammount)
                     .name(name)
-                    .createDate(create)
-                    .changeDate(change)
+                    .createDate(date)
+                    .changeDate(date)
                     .build();
             DBHelperSQLite.get(getContext()).putCredit(credit);
             CommonUtils.showLoadingDialog((Context) getView());
