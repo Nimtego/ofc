@@ -115,17 +115,6 @@ public abstract class BaseFragment extends Fragment implements CommonView{
         }
     }
 
-/*    public ActivityComponent getActivityComponent() {
-        if (mAbstractView != null) {
-            return mAbstractView.getActivityComponent();
-        }
-        return null;
-    }
-
-    public BaseActivity getBaseActivity() {
-        return mActivity;
-    }*/
-
     public void setUnBinder(Unbinder unBinder) {
         mUnBinder = unBinder;
     }

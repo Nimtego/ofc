@@ -90,15 +90,6 @@ public class DataEntryPresenter<T extends DataEntryView>
         }
     }
 
-    private void getDataFromView() {
-        TextView cap = ((Activity)getView()).findViewById(R.id.cap); // TODO: 06.08.2018 убрать колхоз
-        if (cap.getText().equals("Debit")) { // TODO: 06.08.2018 убрать колхоз
-            /*Debit dto = commonView.getUserData();*/
-        }
-
-
-    }
-
     @Override
     public void takeDTO(UserFinanceDTO dto) {
         if (dto instanceof DebitDTO) {
@@ -113,7 +104,6 @@ public class DataEntryPresenter<T extends DataEntryView>
                     .createDate(create)
                     .changeDate(change)
                     .build();
-//        mDBHelper.putDebit(debit);
             DBHelperSQLite.get(getContext()).putDebit(debit);
             CommonUtils.showLoadingDialog((Context) getView());
         }
@@ -129,7 +119,6 @@ public class DataEntryPresenter<T extends DataEntryView>
                     .createDate(create)
                     .changeDate(change)
                     .build();
-//        mDBHelper.putDebit(debit);
             DBHelperSQLite.get(getContext()).putCredit(credit);
             CommonUtils.showLoadingDialog((Context) getView());
         }
