@@ -1,15 +1,16 @@
 package com.example.pto6.ofc.presenter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.pto6.ofc.R;
+import com.example.pto6.ofc.dto.CreditDTO;
 import com.example.pto6.ofc.dto.DebitDTO;
+import com.example.pto6.ofc.dto.UserFinanceDTO;
+import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
 import com.example.pto6.ofc.service.DBHelperSQLite;
 import com.example.pto6.ofc.utils.CommonUtils;
@@ -87,30 +88,35 @@ public class DataEntryPresenter<T extends DataEntryView>
         }
     }
 
-    private void getDataFromView() {
-        TextView cap = ((Activity)getView()).findViewById(R.id.cap); // TODO: 06.08.2018 убрать колхоз
-        if (cap.getText().equals("Debit")) { // TODO: 06.08.2018 убрать колхоз
-            /*Debit dto = commonView.getUserData();*/
-        }
-
-
-    }
-
     @Override
-    public void takeDTO(DebitDTO debitDTO) {
-        Float ammount = Float.valueOf(debitDTO.getAmount());
-        String name = debitDTO.getName();
-        Date create = new Date();
-        Date change = new Date();
-        Debit debit = Debit.builder()
-                .arrival(ammount)
-                .name(name)
-                .createDate(create)
-                .changeDate(change)
-                .build();
-//        mDBHelper.putDebit(debit);
-        DBHelperSQLite.get(getContext()).putDebit(debit);
-        CommonUtils.showLoadingDialog((Context) getView());
+    public void takeDTO(UserFinanceDTO dto) {
+        Date date = new Date();
+        if (dto instanceof DebitDTO) {
+            DebitDTO debitDTO = (DebitDTO) dto;
+            Float ammount = Float.valueOf(debitDTO.getAmount());
+            String name = debitDTO.getName();
+            Debit debit = Debit.builder()
+                    .arrival(ammount)
+                    .name(name)
+                    .createDate(date)
+                    .changeDate(date)
+                    .build();
+            DBHelperSQLite.get(getContext()).putDebit(debit);
+            CommonUtils.showLoadingDialog((Context) getView());
+        }
+        if (dto instanceof CreditDTO) {
+            CreditDTO creditDTO = (CreditDTO) dto;
+            Float ammount = Float.valueOf(creditDTO.getAmount());
+            String name = creditDTO.getName();
+            Credit credit = Credit.builder()
+                    .arrivalSize(ammount)
+                    .name(name)
+                    .createDate(date)
+                    .changeDate(date)
+                    .build();
+            DBHelperSQLite.get(getContext()).putCredit(credit);
+            CommonUtils.showLoadingDialog((Context) getView());
+        }
         getView().onBackPressed();
     }
 }

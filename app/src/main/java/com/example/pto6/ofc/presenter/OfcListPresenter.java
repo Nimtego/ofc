@@ -2,17 +2,14 @@ package com.example.pto6.ofc.presenter;
 
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.Toast;
 
 import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
-import com.example.pto6.ofc.model.TypePeriod;
 import com.example.pto6.ofc.service.DBHelper;
 import com.example.pto6.ofc.service.DBHelperSQLite;
 import com.example.pto6.ofc.view.AbstractView;
@@ -24,7 +21,6 @@ import com.example.pto6.ofc.view.OfcView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 import javax.inject.Inject;
 
@@ -35,8 +31,6 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
 
     private static final String TAG = "OfcListPresenter";
 
-    //    private DBHelper dbHelper;
-    private RecyclerView.Adapter adapter;
     private ClickListener clicklistener;
     private GestureDetector gestureDetector;
     private List<Debit> mDebitList;
@@ -44,7 +38,6 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
 
     @Inject
     public OfcListPresenter() {
-//        this.dbHelper = OfcApplication.getDBComponent().getDBHelper();
         this.clicklistener = new ClickListener() {
             @Override
             public void onClick(View view, final int position) {
@@ -118,9 +111,10 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
 
     @Override
     public void viewReady() {
+
         OfcView ofcView = getView();
-        Log.v(TAG, String.valueOf(ofcView == null));
-        Log.v(TAG, "DBHELPER LIST" + dbHelper().debitList());
+        RecyclerView.Adapter adapter;
+
         if (Optional.ofNullable(ofcView.getTabLayout())
                 .map(TabLayout::getSelectedTabPosition)
                 .map(pos -> pos == 0)
@@ -143,27 +137,6 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
                     Toast.LENGTH_SHORT).show();
         }
     }
-
-    private void testAdd() {
-        OfcView ofcView = getView();
-        if (ofcView.getTabLayout().getSelectedTabPosition() == 0) {
-            dbHelper().putDebit(Debit.builder().name("Test Debit " + new Random().nextInt(100))
-                    .arrival(new Random().nextFloat() + new Random().nextInt(4000))
-                    .typePeriod(TypePeriod.DAY)
-                    .build());
-        }
-        if (ofcView.getTabLayout().getSelectedTabPosition() == 1) {
-            Credit credit = Credit.builder()
-                    .name("Test Credit " + new Random().nextInt(100))
-                    .arrivalSize(new Random().nextFloat() + new Random().nextInt(4000)).build();
-            dbHelper().putCredit(credit);
-        }
-    }
-
-    public Adapter getAdapter() {
-        return (Adapter) adapter;
-    }
-
     @Override
     public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
         View child = rv.findChildViewUnder(e.getX(), e.getY());

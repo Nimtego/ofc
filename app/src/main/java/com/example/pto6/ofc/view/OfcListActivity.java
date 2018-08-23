@@ -11,10 +11,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
-import com.example.pto6.ofc.presenter.OfcPresenter;
 import com.example.pto6.ofc.presenter.Presenter;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +34,11 @@ public class OfcListActivity extends AbstractView implements OfcView {
         setContentView(R.layout.activity_ofc_list);
         setUnBinder(ButterKnife.bind(this));
         init();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         mPresenter.viewReady();
     }
 
@@ -45,7 +47,7 @@ public class OfcListActivity extends AbstractView implements OfcView {
         tabs.addTab(tabs.newTab().setText("Debit"));
         tabs.addTab(tabs.newTab().setText("Credit"));
         tabs.addTab(tabs.newTab().setText("Data"));
-        tabs.addOnTabSelectedListener(mPresenter);
+        tabs.addOnTabSelectedListener((TabLayout.OnTabSelectedListener) mPresenter);
         fab.setOnClickListener(mPresenter);
     }
 

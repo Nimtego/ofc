@@ -14,12 +14,10 @@ import android.widget.Toast;
 
 import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.presenter.Presenter;
-import com.example.pto6.ofc.view.fragments.BaseFragment;
-
 import butterknife.Unbinder;
 
 
-public abstract class AbstractView extends AppCompatActivity implements CommonView, BaseFragment.Callback{
+public abstract class AbstractView extends AppCompatActivity implements CommonView {
 
     protected Presenter mPresenter;
     private Unbinder mUnBinder;
@@ -46,7 +44,7 @@ public abstract class AbstractView extends AppCompatActivity implements CommonVi
     }
     @Override
     protected void onDestroy() {
-        /*mPresenter.detach();*/
+        mPresenter.detach();
         if (mUnBinder != null) {
             mUnBinder.unbind();
         }
@@ -117,16 +115,6 @@ public abstract class AbstractView extends AppCompatActivity implements CommonVi
 
     @Override
     public void hideKeyboard() {
-
-    }
-
-    @Override
-    public void onFragmentAttached() {
-
-    }
-
-    @Override
-    public void onFragmentDetached(String tag) {
 
     }
 }

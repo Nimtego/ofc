@@ -6,13 +6,24 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.example.pto6.ofc.R;
+import com.example.pto6.ofc.dto.CreditDTO;
+import com.example.pto6.ofc.dto.DebitDTO;
 import com.example.pto6.ofc.dto.UserFinanceDTO;
+import com.example.pto6.ofc.model.Credit;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class AddCreditFragment extends BaseFragment {
 
     OnSomeEventListener someEventListener;
+    @BindView(R.id.input_name_edit_text)
+    EditText name;
+    @BindView(R.id.input_amount_edit_text)
+    EditText amount;
 
     @Override
     protected void setUp(View view) {
@@ -21,7 +32,7 @@ public class AddCreditFragment extends BaseFragment {
 
     @Override
     public UserFinanceDTO getDTO() {
-        return null;
+        return CreditDTO.builder().name(String.valueOf(name.getText())).amount(amount.getText().toString()).build();
     }
 
     public interface OnSomeEventListener {
@@ -43,6 +54,9 @@ public class AddCreditFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_add_credit, null);
+        setUnBinder(ButterKnife.bind(rootView));
+        name = rootView.findViewById(R.id.input_name_edit_text);
+        amount = rootView.findViewById(R.id.input_amount_edit_text);
         rootView.findViewById(R.id.button_add).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

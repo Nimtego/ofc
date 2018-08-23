@@ -8,4 +8,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @Builder
 public class CreditDTO extends UserFinanceDTO {
+    private String name;
+    private String amount;
+    private PaymentPeriod mPaymentPeriod;
 }

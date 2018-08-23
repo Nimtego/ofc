@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
-import com.example.pto6.ofc.dto.DebitDTO;
 import com.example.pto6.ofc.dto.UserFinanceDTO;
 import com.example.pto6.ofc.presenter.DataEntryPresenter;
 import com.example.pto6.ofc.presenter.Presenter;
@@ -48,10 +47,6 @@ public class DataEntryActivity extends AbstractView implements DataEntryView, Ad
         mFragmentTransaction = getFragmentManager().beginTransaction();
         mFragmentTransaction.add(R.id.fragment_form, mFragment);
         mFragmentTransaction.commit();
-/*        addButton = findViewById(R.id.button_add);
-        cancelButton = findViewById(R.id.button_cancel);
-        addButton.setOnClickListener(mPresenter);
-        cancelButton.setOnClickListener(mPresenter);*/
     }
 
     @Override
@@ -63,13 +58,7 @@ public class DataEntryActivity extends AbstractView implements DataEntryView, Ad
     public void someEvent(View view) {
         if (view.getId() == R.id.button_add) {
             Fragment fragment = getFragmentManager().findFragmentById(R.id.fragment_form);
-            TextView name = fragment.getView().findViewById(R.id.input_name_edit_text);
-            TextView ammount = fragment.getView().findViewById(R.id.input_amount_edit_text);
-            DebitDTO debitDTO = DebitDTO.builder()
-                    .name(String.valueOf(name.getText()))
-                    .amount(ammount.getText().toString())
-                    .build();
-            ((DataEntryPresenter) mPresenter).takeDTO(debitDTO);
+            ((DataEntryPresenter) mPresenter).takeDTO(mFragment.getDTO());
         }
         else mPresenter.onClick(view);
     }
@@ -83,11 +72,7 @@ public class DataEntryActivity extends AbstractView implements DataEntryView, Ad
     }
 
     @Override
-    public DebitDTO getDTO() {
-        UserFinanceDTO userFinanceDTO = mFragment.getDTO();
-        if(mFragment instanceof AddDebitFragment)
-            return (DebitDTO) userFinanceDTO;
-        else
-            return null; // TODO: 14.08.2018  
+    public UserFinanceDTO getDTO() {
+        return mFragment.getDTO();
     }
 }
