@@ -24,7 +24,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':repository-api')
 
     compileOnly 'org.projectlombok:lombok:1.18.2'
