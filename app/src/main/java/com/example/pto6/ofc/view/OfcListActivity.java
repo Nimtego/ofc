@@ -22,8 +22,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class OfcListActivity extends BaseView<OfcContract.OfcPresenter>
-        implements OfcContract.OfcView<OfcContract.OfcPresenter>, TabLayout.OnTabSelectedListener {
+public class OfcListActivity extends BaseView<OfcContract.Presenter>
+        implements OfcContract.View<OfcContract.Presenter>, TabLayout.OnTabSelectedListener {
 
 
     @BindView(R.id.recycler_view)
@@ -105,7 +105,7 @@ public class OfcListActivity extends BaseView<OfcContract.OfcPresenter>
     }
 
     @Override
-    public OfcContract.OfcPresenter supplyPresenter() {
+    public OfcContract.Presenter supplyPresenter() {
         return OfcApplication.getPresenterComponent().getOfcListPresenter();
 
     }

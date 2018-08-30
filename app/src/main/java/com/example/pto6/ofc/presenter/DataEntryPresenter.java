@@ -2,6 +2,7 @@ package com.example.pto6.ofc.presenter;
 
 import android.content.Context;
 
+
 import com.example.pto6.ofc.contracts.DataEntryContract;
 import com.example.pto6.ofc.dto.CreditDTO;
 import com.example.pto6.ofc.dto.DebitDTO;
@@ -15,8 +16,8 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
-public class DataEntryPresenter extends BasePresenter<DataEntryContract.DataEntryView>
-        implements DataEntryContract.DataPresenter<DataEntryContract.DataEntryView> {
+public class DataEntryPresenter extends BasePresenter<DataEntryContract.View>
+        implements DataEntryContract.Presenter<DataEntryContract.View> {
 
     private static final String TAG = "DataEntryPresenter";
 

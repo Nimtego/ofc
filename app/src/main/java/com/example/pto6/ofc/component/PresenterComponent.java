@@ -8,7 +8,7 @@ import dagger.Component;
 
 @Component(modules = PresenterModule.class)
 public interface PresenterComponent {
-    OfcContract.OfcPresenter getOfcListPresenter();
+    OfcContract.Presenter getOfcListPresenter();
 
-    DataEntryContract.DataPresenter getDataEntryPresenter();
+    DataEntryContract.Presenter getDataEntryPresenter();
 }

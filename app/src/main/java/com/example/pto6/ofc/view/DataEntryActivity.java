@@ -17,8 +17,8 @@ import com.example.pto6.ofc.view.fragments.AddCreditFragment;
 import com.example.pto6.ofc.view.fragments.AddDebitFragment;
 import com.example.pto6.ofc.view.fragments.BaseFragment;
 
-public class DataEntryActivity extends BaseView<DataEntryContract.DataPresenter>
-                        implements DataEntryContract.DataEntryView<DataEntryContract.DataPresenter>,
+public class DataEntryActivity extends BaseView<DataEntryContract.Presenter>
+                        implements DataEntryContract.View<DataEntryContract.Presenter>,
                                     AddCreditFragment.OnSomeEventListener{
 
     private static final String TAG = "DataEntryActivity";
@@ -50,8 +50,8 @@ public class DataEntryActivity extends BaseView<DataEntryContract.DataPresenter>
         mFragmentTransaction.commit();
     }
     @Override
-    public DataEntryPresenter supplyPresenter() {
-        return (DataEntryPresenter) OfcApplication
+    public DataEntryContract.Presenter supplyPresenter() {
+        return  OfcApplication
                 .getPresenterComponent()
                 .getDataEntryPresenter();
     }

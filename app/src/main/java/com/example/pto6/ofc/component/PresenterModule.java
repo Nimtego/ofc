@@ -13,11 +13,11 @@ import dagger.Provides;
 @Module
 public class PresenterModule {
     @Provides
-    DataEntryContract.DataPresenter dataEntryPresenter() {
+    DataEntryContract.Presenter dataEntryPresenter() {
         return new DataEntryPresenter();
     }
     @Provides
-    OfcContract.OfcPresenter ofcListPresenter() {
+    OfcContract.Presenter ofcListPresenter() {
         return new OfcListPresenter();
     }
 }

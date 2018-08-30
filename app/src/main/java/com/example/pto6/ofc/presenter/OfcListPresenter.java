@@ -8,8 +8,8 @@ import com.example.pto6.ofc.view.OfcListActivity;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class OfcListPresenter extends BasePresenter<OfcContract.OfcView>
-                                        implements OfcContract.OfcPresenter<OfcContract.OfcView> {
+public class OfcListPresenter extends BasePresenter<OfcContract.View>
+                                        implements OfcContract.Presenter<OfcContract.View> {
 
     private static final String TAG = "OfcListPresenter";
 
