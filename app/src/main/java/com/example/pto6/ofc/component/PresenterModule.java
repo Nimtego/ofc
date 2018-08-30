@@ -1,5 +1,7 @@
 package com.example.pto6.ofc.component;
 
+import com.example.pto6.ofc.contracts.DataEntryContract;
+import com.example.pto6.ofc.contracts.OfcContract;
 import com.example.pto6.ofc.presenter.DataEntryPresenter;
 import com.example.pto6.ofc.presenter.DataPresenter;
 import com.example.pto6.ofc.presenter.OfcListPresenter;
@@ -11,11 +13,11 @@ import dagger.Provides;
 @Module
 public class PresenterModule {
     @Provides
-    DataPresenter dataEntryPresenter() {
+    DataEntryContract.DataPresenter dataEntryPresenter() {
         return new DataEntryPresenter();
     }
     @Provides
-    OfcPresenter ofcListPresenter() {
+    OfcContract.OfcPresenter ofcListPresenter() {
         return new OfcListPresenter();
     }
 }

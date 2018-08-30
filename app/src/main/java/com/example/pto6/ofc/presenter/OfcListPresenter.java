@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.pto6.ofc.R;
+import com.example.pto6.ofc.contracts.OfcContract;
 import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
 import com.example.pto6.ofc.service.DBHelper;
@@ -27,16 +28,18 @@ import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T> implements OfcPresenter<T> {
+public class OfcListPresenter<T extends OfcContract.OfcView>
+                                        extends AbstractBasePresenter<T>
+                                        implements OfcContract.OfcPresenter<T> {
 
     private static final String TAG = "OfcListPresenter";
 
-    private ClickListener clicklistener;
+/*    private ClickListener clicklistener;
     private GestureDetector gestureDetector;
     private List<Debit> mDebitList;
-    private List<Credit> mCredits;
+    private List<Credit> mCredits;*/
 
-    @Inject
+/*    @Inject
     public OfcListPresenter() {
         this.clicklistener = new ClickListener() {
             @Override
@@ -77,7 +80,7 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
                 }
             }
         });
-    }
+    }*/
 
     private DBHelper dbHelper() {
         return DBHelperSQLite.get(getContext());
@@ -88,7 +91,7 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
         return DataEntryActivity.class;
     }
 
-    @Override
+/*    @Override
     public void onClick(View view) {
         if (view.getId() == R.id.fab) {
             int tabsNumber = getView().getTabLayout().getSelectedTabPosition();
@@ -106,10 +109,10 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
             } else
                 viewReady();
         }
-    }
+    }*/
 
 
-    @Override
+/*    @Override
     public void viewReady() {
 
         OfcView ofcView = getView();
@@ -171,6 +174,26 @@ public class OfcListPresenter<T extends OfcView> extends AbstractBasePresenter<T
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
+
+    }*/
+
+    @Override
+    public void tabLayoutSelect(int numberTab) {
+
+    }
+
+    @Override
+    public void pushFab() {
+
+    }
+
+    @Override
+    public void longPushInRV(int number) {
+
+    }
+
+    @Override
+    public void pushInRV(int number) {
 
     }
 }

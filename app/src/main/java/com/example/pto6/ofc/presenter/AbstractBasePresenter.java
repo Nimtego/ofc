@@ -4,19 +4,21 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import com.example.pto6.ofc.contracts.BaseContract;
+import com.example.pto6.ofc.contracts.OfcContract;
 import com.example.pto6.ofc.view.CommonView;
 import com.example.pto6.ofc.view.toast.SimpleToastAlarm;
 import com.example.pto6.ofc.view.toast.ToastAlarm;
 
 
-public abstract class AbstractBasePresenter<T extends CommonView> implements
-        Presenter<T> {
-    private T commonView;
+public abstract class AbstractBasePresenter<V extends BaseContract.CommonView> implements
+        BaseContract.Presenter<V> {
+    private V commonView;
     private ToastAlarm toastAlarm;
 
 
     @Override
-    public void attach(T commonView) {
+    public void attach(V commonView) {
         this.commonView = commonView;
         this.toastAlarm = new SimpleToastAlarm(getContext());
     }
@@ -40,7 +42,7 @@ public abstract class AbstractBasePresenter<T extends CommonView> implements
         ((Activity) commonView).startActivity(intent);
     }
 
-    protected T getView() {
+    protected V getView() {
         return commonView;
     }
     protected Context getContext() {

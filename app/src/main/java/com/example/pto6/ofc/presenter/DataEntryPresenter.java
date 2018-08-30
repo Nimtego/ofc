@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.example.pto6.ofc.R;
+import com.example.pto6.ofc.contracts.DataEntryContract;
 import com.example.pto6.ofc.dto.CreditDTO;
 import com.example.pto6.ofc.dto.DebitDTO;
 import com.example.pto6.ofc.dto.UserFinanceDTO;
@@ -22,9 +23,9 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
-public class DataEntryPresenter<T extends DataEntryView>
+public class DataEntryPresenter<T extends DataEntryContract.DataEntryView>
                                     extends AbstractBasePresenter<T>
-                                    implements DataPresenter<T> {
+                                    implements DataEntryContract.DataPresenter<T> {
 
     private static final String TAG = "DataEntryPresenter";
 
@@ -40,42 +41,7 @@ public class DataEntryPresenter<T extends DataEntryView>
         return null;
     }
 
-    @Override
-    public void viewReady() {
-
-    }
-
-    @Override
-    public void onTabSelected(TabLayout.Tab tab) {
-
-    }
-
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-
-    }
-
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
-
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-
-    }
-
-    @Override
-    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-    }
-
-    @Override
+/*    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_add:
@@ -86,7 +52,7 @@ public class DataEntryPresenter<T extends DataEntryView>
                 getView().onBackPressed();
                 break;
         }
-    }
+    }*/
 
     @Override
     public void takeDTO(UserFinanceDTO dto) {

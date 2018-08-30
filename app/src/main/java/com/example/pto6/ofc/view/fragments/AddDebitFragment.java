@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.pto6.ofc.R;
+import com.example.pto6.ofc.contracts.BaseContract;
 import com.example.pto6.ofc.dto.DebitDTO;
 import com.example.pto6.ofc.dto.UserFinanceDTO;
 
@@ -65,5 +66,10 @@ public class AddDebitFragment extends BaseFragment {
     @Override
     public UserFinanceDTO getDTO() {
         return DebitDTO.builder().name(String.valueOf(name.getText())).amount(amount.getText().toString()).build();
+    }
+
+    @Override
+    public BaseContract.Presenter setPresenter() {
+        return null;
     }
 }

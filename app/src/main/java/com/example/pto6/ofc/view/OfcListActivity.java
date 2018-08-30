@@ -11,13 +11,19 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
+import com.example.pto6.ofc.contracts.BaseContract;
+import com.example.pto6.ofc.contracts.OfcContract;
+import com.example.pto6.ofc.model.Credit;
+import com.example.pto6.ofc.model.Debit;
 import com.example.pto6.ofc.presenter.Presenter;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class OfcListActivity extends AbstractView implements OfcView {
+public class OfcListActivity extends AbstractView implements OfcContract.OfcView {
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
@@ -39,7 +45,7 @@ public class OfcListActivity extends AbstractView implements OfcView {
     @Override
     protected void onStart() {
         super.onStart();
-        mPresenter.viewReady();
+       // mPresenter.viewReady();
     }
 
     private void init() {
@@ -48,7 +54,7 @@ public class OfcListActivity extends AbstractView implements OfcView {
         tabs.addTab(tabs.newTab().setText("Credit"));
         tabs.addTab(tabs.newTab().setText("Data"));
         tabs.addOnTabSelectedListener((TabLayout.OnTabSelectedListener) mPresenter);
-        fab.setOnClickListener(mPresenter);
+       // fab.setOnClickListener(mPresenter);
     }
 
     private void setUpRecyclerView() {
@@ -60,10 +66,10 @@ public class OfcListActivity extends AbstractView implements OfcView {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL);
         mRecyclerView.addItemDecoration(dividerItemDecoration);
-        mRecyclerView.addOnItemTouchListener(mPresenter);
+       // mRecyclerView.addOnItemTouchListener(mPresenter);
     }
 
-    @Override
+  /*  @Override
     public Presenter setPresenter() {
         return OfcApplication.getPresenterComponent().getOfcListPresenter();
     }
@@ -81,7 +87,7 @@ public class OfcListActivity extends AbstractView implements OfcView {
     @Override
     public TabLayout getTabLayout() {
         return tabs;
-    }
+    }*/
 
     @Override
     protected void onDestroy() {
@@ -89,4 +95,18 @@ public class OfcListActivity extends AbstractView implements OfcView {
         super.onDestroy();
     }
 
+    @Override
+    public void setDebitListView(List<? extends Debit> listDebit) {
+
+    }
+
+    @Override
+    public void setCredittListView(List<? extends Credit> listCredit) {
+
+    }
+
+    @Override
+    public BaseContract.Presenter setPresenter() {
+        return null;
+    }
 }

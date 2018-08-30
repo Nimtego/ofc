@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.view.View;
 
+import com.example.pto6.ofc.contracts.BaseContract;
 import com.example.pto6.ofc.dto.UserFinanceDTO;
 import com.example.pto6.ofc.presenter.Presenter;
 import com.example.pto6.ofc.utils.CommonUtils;
@@ -16,7 +17,7 @@ import com.example.pto6.ofc.view.CommonView;
 
 import butterknife.Unbinder;
 
-public abstract class BaseFragment extends Fragment implements CommonView{
+public abstract class BaseFragment extends Fragment implements BaseContract.CommonView{
 
 
     private AbstractView mAbstractView;
@@ -46,7 +47,7 @@ public abstract class BaseFragment extends Fragment implements CommonView{
         }
     }
 
-    @Override
+/*    @Override
     public void showLoading() {
         hideLoading();
         mProgressDialog = CommonUtils.showLoadingDialog(this.getContext());
@@ -57,9 +58,9 @@ public abstract class BaseFragment extends Fragment implements CommonView{
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.cancel();
         }
-    }
+    }*/
 
-    @Override
+/*    @Override
     public void onError(String message) {
         if (mAbstractView != null) {
             mAbstractView.onError(message);
@@ -93,7 +94,7 @@ public abstract class BaseFragment extends Fragment implements CommonView{
             return mAbstractView.isNetworkConnected();
         }
         return false;
-    }
+    }*/
 
     @Override
     public void onDetach() {
@@ -101,7 +102,7 @@ public abstract class BaseFragment extends Fragment implements CommonView{
         super.onDetach();
     }
 
-    @Override
+/*    @Override
     public void hideKeyboard() {
         if (mAbstractView != null) {
             mAbstractView.hideKeyboard();
@@ -113,7 +114,7 @@ public abstract class BaseFragment extends Fragment implements CommonView{
         if (mAbstractView != null) {
             mAbstractView.openActivityOnTokenExpire();
         }
-    }
+    }*/
 
     public void setUnBinder(Unbinder unBinder) {
         mUnBinder = unBinder;
@@ -129,10 +130,10 @@ public abstract class BaseFragment extends Fragment implements CommonView{
         super.onDestroy();
     }
 
-    @Override
+/*    @Override
     public Presenter setPresenter() {
         return null;
-    }
+    }*/
     public abstract UserFinanceDTO getDTO();
 
     public interface Callback {
