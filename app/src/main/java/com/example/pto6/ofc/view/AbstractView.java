@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.presenter.Presenter;
+
 import butterknife.Unbinder;
 
 
@@ -42,6 +43,7 @@ public abstract class AbstractView extends AppCompatActivity implements CommonVi
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||
                 checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED;
     }
+
     @Override
     protected void onDestroy() {
         mPresenter.detach();

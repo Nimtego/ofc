@@ -4,11 +4,7 @@ import android.support.annotation.StringRes;
 
 
 public interface BaseContract {
-    interface Presenter<V extends CommonView> {
-
-        void attach(V commonView);
-
-        void detach();
+    interface Presenter<V extends CommonView> extends Contract.Presenter<V> {
 
         void intent();
 
@@ -17,15 +13,22 @@ public interface BaseContract {
         void viewReady();
     }
 
-    interface CommonView {
+    interface CommonView<P extends BaseContract.Presenter> extends Contract.View<P> {
+
         void showLoading();
+
         void hideLoading();
+
         void openActivityOnTokenExpire();
+
         void onError(@StringRes int resId);
+
         void onError(String message);
+
         void showMessage(String message);
+
         void showMessage(@StringRes int resId);
+
         void hideKeyboard();
-        Presenter setPresenter();
     }
 }
