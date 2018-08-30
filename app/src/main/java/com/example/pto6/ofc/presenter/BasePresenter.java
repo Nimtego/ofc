@@ -1,9 +1,9 @@
 package com.example.pto6.ofc.presenter;
 
 import com.example.pto6.ofc.contracts.Contract;
-import com.example.pto6.ofc.view.BaseView;
+import com.example.pto6.ofc.contracts.OfcContract;
 
-public abstract class BasePresenter<V extends BaseView>
+public abstract class BasePresenter<V extends OfcContract.OfcView>
         implements Contract.Presenter<V> {
     protected V view;
 

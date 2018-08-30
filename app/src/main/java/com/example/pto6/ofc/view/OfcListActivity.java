@@ -14,7 +14,6 @@ import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.contracts.OfcContract;
 import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
-import com.example.pto6.ofc.presenter.OfcListPresenter;
 
 import java.util.List;
 
@@ -22,8 +21,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class OfcListActivity extends BaseView<OfcListPresenter>
-        implements OfcContract.OfcView<OfcListPresenter>, TabLayout.OnTabSelectedListener {
+public class OfcListActivity extends BaseView<OfcContract.OfcPresenter>
+        implements OfcContract.OfcView<OfcContract.OfcPresenter>, TabLayout.OnTabSelectedListener {
 
 
     @BindView(R.id.recycler_view)
@@ -102,8 +101,8 @@ public class OfcListActivity extends BaseView<OfcListPresenter>
     }
 
     @Override
-    public OfcListPresenter supplyPresenter() {
-        return (OfcListPresenter) OfcApplication.getPresenterComponent().getOfcListPresenter();
+    public OfcContract.OfcPresenter supplyPresenter() {
+        return OfcApplication.getPresenterComponent().getOfcListPresenter();
 
     }
 

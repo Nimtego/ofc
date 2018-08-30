@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.pto6.ofc.contracts.Contract;
-import com.example.pto6.ofc.presenter.BasePresenter;
+import com.example.pto6.ofc.contracts.OfcContract;
 
-public abstract class BaseView<P extends BasePresenter>
+public abstract class BaseView<P extends OfcContract.OfcPresenter>
         extends AppCompatActivity
         implements Contract.View<P> {
 
