@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.pto6.ofc.R;
-import com.example.pto6.ofc.contracts.BaseContract;
+import com.example.pto6.ofc.contracts.Contract;
 import com.example.pto6.ofc.dto.DebitDTO;
 import com.example.pto6.ofc.dto.UserFinanceDTO;
 
@@ -69,7 +69,7 @@ public class AddDebitFragment extends BaseFragment {
     }
 
     @Override
-    public BaseContract.Presenter setPresenter() {
+    public Contract.Presenter supplyPresenter() {
         return null;
     }
 }

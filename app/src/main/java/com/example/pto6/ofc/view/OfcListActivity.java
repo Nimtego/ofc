@@ -11,11 +11,10 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
-import com.example.pto6.ofc.contracts.BaseContract;
 import com.example.pto6.ofc.contracts.OfcContract;
 import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
-import com.example.pto6.ofc.presenter.Presenter;
+import com.example.pto6.ofc.presenter.OfcListPresenter;
 
 import java.util.List;
 
@@ -23,7 +22,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class OfcListActivity extends AbstractView implements OfcContract.OfcView {
+public class OfcListActivity extends BaseView<OfcListPresenter>
+        implements OfcContract.OfcView<OfcListPresenter>, TabLayout.OnTabSelectedListener {
+
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
@@ -38,14 +39,15 @@ public class OfcListActivity extends AbstractView implements OfcContract.OfcView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ofc_list);
-        setUnBinder(ButterKnife.bind(this));
+        ButterKnife.bind(this);
+        // setUnBinder(ButterKnife.bind(this));
         init();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-       // mPresenter.viewReady();
+        mPresenter.viewIsReady();
     }
 
     private void init() {
@@ -53,8 +55,8 @@ public class OfcListActivity extends AbstractView implements OfcContract.OfcView
         tabs.addTab(tabs.newTab().setText("Debit"));
         tabs.addTab(tabs.newTab().setText("Credit"));
         tabs.addTab(tabs.newTab().setText("Data"));
-        tabs.addOnTabSelectedListener((TabLayout.OnTabSelectedListener) mPresenter);
-       // fab.setOnClickListener(mPresenter);
+        tabs.addOnTabSelectedListener(this);
+        // fab.setOnClickListener(mPresenter);
     }
 
     private void setUpRecyclerView() {
@@ -66,7 +68,7 @@ public class OfcListActivity extends AbstractView implements OfcContract.OfcView
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL);
         mRecyclerView.addItemDecoration(dividerItemDecoration);
-       // mRecyclerView.addOnItemTouchListener(mPresenter);
+        // mRecyclerView.addOnItemTouchListener(mPresenter);
     }
 
   /*  @Override
@@ -90,12 +92,6 @@ public class OfcListActivity extends AbstractView implements OfcContract.OfcView
     }*/
 
     @Override
-    protected void onDestroy() {
-        mPresenter.detach();
-        super.onDestroy();
-    }
-
-    @Override
     public void setDebitListView(List<? extends Debit> listDebit) {
 
     }
@@ -106,7 +102,23 @@ public class OfcListActivity extends AbstractView implements OfcContract.OfcView
     }
 
     @Override
-    public BaseContract.Presenter setPresenter() {
-        return null;
+    public OfcListPresenter supplyPresenter() {
+        return (OfcListPresenter) OfcApplication.getPresenterComponent().getOfcListPresenter();
+
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
     }
 }

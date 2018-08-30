@@ -10,7 +10,7 @@ public abstract class BaseView<P extends BasePresenter>
         extends AppCompatActivity
         implements Contract.View<P> {
 
-    private P mPresenter;
+    protected P mPresenter;
 
     @Override
     @SuppressWarnings("unchecked")

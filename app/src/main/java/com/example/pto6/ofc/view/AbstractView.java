@@ -13,21 +13,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pto6.ofc.R;
+import com.example.pto6.ofc.contracts.Contract;
 import com.example.pto6.ofc.presenter.Presenter;
 
 import butterknife.Unbinder;
 
 
-public abstract class AbstractView extends AppCompatActivity implements CommonView {
+public abstract class AbstractView extends AppCompatActivity implements Contract.View {
 
-    protected Presenter mPresenter;
+/*    protected P mPresenter;*/
     private Unbinder mUnBinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter = setPresenter();
-        mPresenter.attach(this);
+/*        mPresenter = setPresenter();
+        mPresenter.attach(this);*/
     }
 
 
@@ -44,20 +45,20 @@ public abstract class AbstractView extends AppCompatActivity implements CommonVi
                 checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED;
     }
 
-    @Override
+/*    @Override
     protected void onDestroy() {
         mPresenter.detach();
         if (mUnBinder != null) {
             mUnBinder.unbind();
         }
         super.onDestroy();
-    }
+    }*/
 
     public void setUnBinder(Unbinder unBinder) {
         mUnBinder = unBinder;
     }
 
-    @Override
+/*    @Override
     public void showLoading() {
 
     }
@@ -84,7 +85,7 @@ public abstract class AbstractView extends AppCompatActivity implements CommonVi
         } else {
             showSnackBar(getString(R.string.some_error));
         }
-    }
+    }*/
 
     private void showSnackBar(String message) {
         Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),
@@ -96,16 +97,16 @@ public abstract class AbstractView extends AppCompatActivity implements CommonVi
         snackbar.show();
     }
 
-    @Override
+/*    @Override
     public void showMessage(String message) {
         if (message != null) {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, getString(R.string.some_error), Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
-    @Override
+/*    @Override
     public void showMessage(@StringRes int resId) {
         showMessage(getString(resId));
     }
@@ -118,5 +119,5 @@ public abstract class AbstractView extends AppCompatActivity implements CommonVi
     @Override
     public void hideKeyboard() {
 
-    }
+    }*/
 }

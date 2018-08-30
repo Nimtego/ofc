@@ -7,16 +7,16 @@ import java.util.List;
 
 
 public interface OfcContract {
-    interface OfcPresenter<T extends BaseContract.CommonView> extends BaseContract.Presenter<T> {
+    interface OfcPresenter<V extends Contract.View> extends Contract.Presenter<V> {
         void tabLayoutSelect(int numberTab);
         void pushFab();
         void longPushInRV(int number);
         void pushInRV(int number);
+        void viewIsReady();
     }
 
-    interface OfcView extends BaseContract.CommonView {
+    interface OfcView<P extends OfcPresenter> extends Contract.View<P> {
         void setDebitListView(List<? extends Debit> listDebit);
         void setCredittListView(List<? extends Credit> listCredit);
-
     }
 }

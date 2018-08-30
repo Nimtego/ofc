@@ -10,16 +10,15 @@ import android.widget.TextView;
 
 import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
-import com.example.pto6.ofc.contracts.BaseContract;
 import com.example.pto6.ofc.contracts.DataEntryContract;
 import com.example.pto6.ofc.dto.UserFinanceDTO;
+import com.example.pto6.ofc.presenter.DataEntryPresenter;
 import com.example.pto6.ofc.view.fragments.AddCreditFragment;
 import com.example.pto6.ofc.view.fragments.AddDebitFragment;
 import com.example.pto6.ofc.view.fragments.BaseFragment;
 
-public class DataEntryActivity
-                        extends AbstractView
-                        implements DataEntryContract.DataEntryView,
+public class DataEntryActivity extends BaseView<DataEntryPresenter>
+                        implements DataEntryContract.DataEntryView<DataEntryPresenter>,
                                     AddCreditFragment.OnSomeEventListener{
 
     private static final String TAG = "DataEntryActivity";
@@ -51,8 +50,10 @@ public class DataEntryActivity
         mFragmentTransaction.commit();
     }
     @Override
-    public BaseContract.Presenter setPresenter() {
-        return OfcApplication.getPresenterComponent().getDataEntryPresenter();
+    public DataEntryPresenter supplyPresenter() {
+        return (DataEntryPresenter) OfcApplication
+                .getPresenterComponent()
+                .getDataEntryPresenter();
     }
 
 /*    @Override

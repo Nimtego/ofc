@@ -1,12 +1,8 @@
 package com.example.pto6.ofc.presenter;
 
 import android.content.Context;
-import android.support.design.widget.TabLayout;
-import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
-import android.view.View;
 
-import com.example.pto6.ofc.R;
+
 import com.example.pto6.ofc.contracts.DataEntryContract;
 import com.example.pto6.ofc.dto.CreditDTO;
 import com.example.pto6.ofc.dto.DebitDTO;
@@ -15,17 +11,14 @@ import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
 import com.example.pto6.ofc.service.DBHelperSQLite;
 import com.example.pto6.ofc.utils.CommonUtils;
-import com.example.pto6.ofc.view.DataEntryView;
-import com.example.pto6.ofc.view.toast.SimpleToastAlarm;
-import com.example.pto6.ofc.view.toast.ToastAlarm;
+import com.example.pto6.ofc.view.DataEntryActivity;
 
 import java.util.Date;
 
 import javax.inject.Inject;
 
-public class DataEntryPresenter<T extends DataEntryContract.DataEntryView>
-                                    extends AbstractBasePresenter<T>
-                                    implements DataEntryContract.DataPresenter<T> {
+public class DataEntryPresenter extends BasePresenter<DataEntryActivity>
+        implements DataEntryContract.DataPresenter<DataEntryActivity> {
 
     private static final String TAG = "DataEntryPresenter";
 
@@ -36,10 +29,7 @@ public class DataEntryPresenter<T extends DataEntryContract.DataEntryView>
 //        mDBHelper = OfcApplication.getDBComponent().getDBHelper();
     }
 
-    @Override
-    Class getNextActivity() {
-        return null;
-    }
+
 
 /*    @Override
     public void onClick(View view) {
@@ -67,8 +57,8 @@ public class DataEntryPresenter<T extends DataEntryContract.DataEntryView>
                     .createDate(date)
                     .changeDate(date)
                     .build();
-            DBHelperSQLite.get(getContext()).putDebit(debit);
-            CommonUtils.showLoadingDialog((Context) getView());
+            DBHelperSQLite.get(getView().getApplicationContext()).putDebit(debit);
+            CommonUtils.showLoadingDialog(getView());
         }
         if (dto instanceof CreditDTO) {
             CreditDTO creditDTO = (CreditDTO) dto;
@@ -80,8 +70,8 @@ public class DataEntryPresenter<T extends DataEntryContract.DataEntryView>
                     .createDate(date)
                     .changeDate(date)
                     .build();
-            DBHelperSQLite.get(getContext()).putCredit(credit);
-            CommonUtils.showLoadingDialog((Context) getView());
+            DBHelperSQLite.get(getView().getApplicationContext()).putCredit(credit);
+            CommonUtils.showLoadingDialog(getView());
         }
         getView().onBackPressed();
     }

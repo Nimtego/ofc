@@ -1,36 +1,15 @@
 package com.example.pto6.ofc.presenter;
 
-import android.support.design.widget.TabLayout;
-import android.support.v7.widget.RecyclerView;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Toast;
-
-import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.contracts.OfcContract;
-import com.example.pto6.ofc.model.Credit;
-import com.example.pto6.ofc.model.Debit;
-import com.example.pto6.ofc.service.DBHelper;
-import com.example.pto6.ofc.service.DBHelperSQLite;
-import com.example.pto6.ofc.view.AbstractView;
-import com.example.pto6.ofc.view.CardAdapter;
-import com.example.pto6.ofc.view.ClickListener;
-import com.example.pto6.ofc.view.DataEntryActivity;
-import com.example.pto6.ofc.view.OfcView;
+import com.example.pto6.ofc.view.OfcListActivity;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
-import javax.inject.Inject;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class OfcListPresenter<T extends OfcContract.OfcView>
-                                        extends AbstractBasePresenter<T>
-                                        implements OfcContract.OfcPresenter<T> {
+public class OfcListPresenter extends BasePresenter<OfcListActivity>
+                                        implements OfcContract.OfcPresenter<OfcListActivity> {
 
     private static final String TAG = "OfcListPresenter";
 
@@ -82,14 +61,14 @@ public class OfcListPresenter<T extends OfcContract.OfcView>
         });
     }*/
 
-    private DBHelper dbHelper() {
+/*    private DBHelper dbHelper() {
         return DBHelperSQLite.get(getContext());
-    }
+    }*/
 
-    @Override
+/*    @Override
     Class getNextActivity() {
         return DataEntryActivity.class;
-    }
+    }*/
 
 /*    @Override
     public void onClick(View view) {
@@ -194,6 +173,11 @@ public class OfcListPresenter<T extends OfcContract.OfcView>
 
     @Override
     public void pushInRV(int number) {
+
+    }
+
+    @Override
+    public void viewIsReady() {
 
     }
 }

@@ -1,18 +1,14 @@
 package com.example.pto6.ofc.presenter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 
-import com.example.pto6.ofc.contracts.BaseContract;
-import com.example.pto6.ofc.contracts.OfcContract;
-import com.example.pto6.ofc.view.CommonView;
+import com.example.pto6.ofc.contracts.Contract;
 import com.example.pto6.ofc.view.toast.SimpleToastAlarm;
 import com.example.pto6.ofc.view.toast.ToastAlarm;
 
 
-public abstract class AbstractBasePresenter<V extends BaseContract.CommonView> implements
-        BaseContract.Presenter<V> {
+public abstract class AbstractBasePresenter<V extends Contract.View> implements
+        Contract.Presenter<V> {
     private V commonView;
     private ToastAlarm toastAlarm;
 
@@ -29,23 +25,23 @@ public abstract class AbstractBasePresenter<V extends BaseContract.CommonView> i
         toastAlarm.destroy();
     }
 
-    @Override
+/*    @Override
     public void intent() {
         Intent intent = new Intent((Activity) commonView, getNextActivity());
         ((Activity) commonView).startActivity(intent);
-    }
+    }*/
 
-    @Override
+/*    @Override
     public void intent(String key, String value) {
         Intent intent = new Intent((Activity) commonView, getNextActivity());
         intent.putExtra(key, value);
         ((Activity) commonView).startActivity(intent);
-    }
+    }*/
 
-    protected V getView() {
+    public V getView() {
         return commonView;
     }
-    protected Context getContext() {
+    public Context getContext() {
         return (Context) commonView;
     }
 

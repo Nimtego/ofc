@@ -8,7 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.view.View;
 
-import com.example.pto6.ofc.contracts.BaseContract;
+import com.example.pto6.ofc.contracts.Contract;
 import com.example.pto6.ofc.dto.UserFinanceDTO;
 import com.example.pto6.ofc.presenter.Presenter;
 import com.example.pto6.ofc.utils.CommonUtils;
@@ -17,7 +17,7 @@ import com.example.pto6.ofc.view.CommonView;
 
 import butterknife.Unbinder;
 
-public abstract class BaseFragment extends Fragment implements BaseContract.CommonView{
+public abstract class BaseFragment extends Fragment implements Contract.View{
 
 
     private AbstractView mAbstractView;
