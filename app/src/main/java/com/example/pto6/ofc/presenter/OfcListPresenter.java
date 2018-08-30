@@ -1,12 +1,15 @@
 package com.example.pto6.ofc.presenter;
 
 import com.example.pto6.ofc.contracts.OfcContract;
+import com.example.pto6.ofc.view.OfcListActivity;
+
+
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class OfcListPresenter extends BasePresenter<OfcContract.OfcView>
-        implements OfcContract.OfcPresenter<OfcContract.OfcView> {
+                                        implements OfcContract.OfcPresenter<OfcContract.OfcView> {
 
     private static final String TAG = "OfcListPresenter";
 

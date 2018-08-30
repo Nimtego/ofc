@@ -19,6 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class OfcListActivity extends BaseView<OfcContract.OfcPresenter>
@@ -67,8 +68,11 @@ public class OfcListActivity extends BaseView<OfcContract.OfcPresenter>
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL);
         mRecyclerView.addItemDecoration(dividerItemDecoration);
+
         // mRecyclerView.addOnItemTouchListener(mPresenter);
     }
+    @OnClick(R.id.recycler_view)
+    void onClick(){}
 
   /*  @Override
     public Presenter setPresenter() {

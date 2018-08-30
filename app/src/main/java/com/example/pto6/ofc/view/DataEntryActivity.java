@@ -2,6 +2,7 @@ package com.example.pto6.ofc.view;
 
 
 import android.app.FragmentTransaction;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,12 +12,13 @@ import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.contracts.DataEntryContract;
 import com.example.pto6.ofc.dto.UserFinanceDTO;
+import com.example.pto6.ofc.presenter.DataEntryPresenter;
 import com.example.pto6.ofc.view.fragments.AddCreditFragment;
 import com.example.pto6.ofc.view.fragments.AddDebitFragment;
 import com.example.pto6.ofc.view.fragments.BaseFragment;
 
 public class DataEntryActivity extends BaseView<DataEntryContract.DataPresenter>
-        implements DataEntryContract.DataEntryView<DataEntryContract.DataPresenter>,
+                        implements DataEntryContract.DataEntryView<DataEntryContract.DataPresenter>,
                                     AddCreditFragment.OnSomeEventListener{
 
     private static final String TAG = "DataEntryActivity";
@@ -48,8 +50,8 @@ public class DataEntryActivity extends BaseView<DataEntryContract.DataPresenter>
         mFragmentTransaction.commit();
     }
     @Override
-    public DataEntryContract.DataPresenter supplyPresenter() {
-        return OfcApplication
+    public DataEntryPresenter supplyPresenter() {
+        return (DataEntryPresenter) OfcApplication
                 .getPresenterComponent()
                 .getDataEntryPresenter();
     }
