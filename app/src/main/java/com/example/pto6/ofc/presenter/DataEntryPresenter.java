@@ -2,7 +2,6 @@ package com.example.pto6.ofc.presenter;
 
 import android.content.Context;
 
-
 import com.example.pto6.ofc.contracts.DataEntryContract;
 import com.example.pto6.ofc.dto.CreditDTO;
 import com.example.pto6.ofc.dto.DebitDTO;
@@ -11,14 +10,13 @@ import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
 import com.example.pto6.ofc.service.DBHelperSQLite;
 import com.example.pto6.ofc.utils.CommonUtils;
-import com.example.pto6.ofc.view.DataEntryActivity;
 
 import java.util.Date;
 
 import javax.inject.Inject;
 
-public class DataEntryPresenter extends BasePresenter<DataEntryActivity>
-        implements DataEntryContract.DataPresenter<DataEntryActivity> {
+public class DataEntryPresenter extends BasePresenter<DataEntryContract.DataEntryView>
+        implements DataEntryContract.DataPresenter<DataEntryContract.DataEntryView> {
 
     private static final String TAG = "DataEntryPresenter";
 
@@ -57,8 +55,8 @@ public class DataEntryPresenter extends BasePresenter<DataEntryActivity>
                     .createDate(date)
                     .changeDate(date)
                     .build();
-            DBHelperSQLite.get(getView().getApplicationContext()).putDebit(debit);
-            CommonUtils.showLoadingDialog(getView());
+            DBHelperSQLite.get(((Context) getView()).getApplicationContext()).putDebit(debit);
+            CommonUtils.showLoadingDialog((Context) getView());
         }
         if (dto instanceof CreditDTO) {
             CreditDTO creditDTO = (CreditDTO) dto;
@@ -70,8 +68,8 @@ public class DataEntryPresenter extends BasePresenter<DataEntryActivity>
                     .createDate(date)
                     .changeDate(date)
                     .build();
-            DBHelperSQLite.get(getView().getApplicationContext()).putCredit(credit);
-            CommonUtils.showLoadingDialog(getView());
+            DBHelperSQLite.get(((Context) getView()).getApplicationContext()).putCredit(credit);
+            CommonUtils.showLoadingDialog((Context) getView());
         }
         getView().onBackPressed();
     }
