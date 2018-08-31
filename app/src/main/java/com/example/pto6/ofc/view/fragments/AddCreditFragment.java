@@ -1,7 +1,6 @@
 package com.example.pto6.ofc.view.fragments;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +41,7 @@ public class AddCreditFragment extends BaseFragment {
         return null;
     }
 
+
     public interface OnSomeEventListener {
         void someEvent(View view);
     }
@@ -64,18 +64,8 @@ public class AddCreditFragment extends BaseFragment {
         setUnBinder(ButterKnife.bind(rootView));
         name = rootView.findViewById(R.id.input_name_edit_text);
         amount = rootView.findViewById(R.id.input_amount_edit_text);
-        rootView.findViewById(R.id.button_add).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                    someEventListener.someEvent(view);
-                }
-            });
-        rootView.findViewById(R.id.button_cancel).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                        someEventListener.someEvent(view);
-                    }
-                });
+        rootView.findViewById(R.id.button_add).setOnClickListener(view -> someEventListener.someEvent(view));
+        rootView.findViewById(R.id.button_cancel).setOnClickListener(view -> someEventListener.someEvent(view));
         return rootView;
     }
 }

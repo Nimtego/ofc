@@ -17,7 +17,5 @@ public interface Contract {
     interface View<P extends Contract.Presenter> {
 
         P supplyPresenter();
-        void intent();
-
     }
 }

@@ -76,12 +76,39 @@ public class DataEntryPresenter extends BasePresenter<DataEntryContract.View>
     }*/
 
     @Override
-    Class getNextActivity() {
+    public Class getNextActivity() {
         return null;
     }
 
     @Override
-    public void takeDTO(UserFinanceDTO debitDTO) {
-
+    public void takeDTO(UserFinanceDTO dto) {
+        Date date = new Date();
+        if (dto instanceof DebitDTO) {
+            DebitDTO debitDTO = (DebitDTO) dto;
+            Float ammount = Float.valueOf(debitDTO.getAmount());
+            String name = debitDTO.getName();
+            Debit debit = Debit.builder()
+                    .arrival(ammount)
+                    .name(name)
+                    .createDate(date)
+                    .changeDate(date)
+                    .build();
+            DBHelperSQLite.get(((Context) getView()).getApplicationContext()).putDebit(debit);
+            CommonUtils.showLoadingDialog((Context) getView());
+        }
+        if (dto instanceof CreditDTO) {
+            CreditDTO creditDTO = (CreditDTO) dto;
+            Float ammount = Float.valueOf(creditDTO.getAmount());
+            String name = creditDTO.getName();
+            Credit credit = Credit.builder()
+                    .arrivalSize(ammount)
+                    .name(name)
+                    .createDate(date)
+                    .changeDate(date)
+                    .build();
+            DBHelperSQLite.get(((Context) getView()).getApplicationContext()).putCredit(credit);
+            CommonUtils.showLoadingDialog((Context) getView());
+        }
+        getView().onBackPressed();
     }
 }

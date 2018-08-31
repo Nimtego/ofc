@@ -84,6 +84,7 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
     }
     @OnClick(R.id.fab)
     public void fabSinglePressing(View view) {
+        toast("Fab pushed");
         mPresenter.pushFab();
     }
 
@@ -197,8 +198,9 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
     }
 
     @Override
-    public void intent() {
+    public void intent(String tabType) {
         Intent intent = new Intent(this, mPresenter.getNextActivity());
+        intent.putExtra("TYPE", tabType);
         (this).startActivity(intent);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.pto6.ofc.view;
 
 
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 
 import android.content.Intent;
@@ -34,7 +35,7 @@ public class DataEntryActivity extends BaseView<DataEntryContract.Presenter>
 
 
         Intent intent = getIntent();
-        String type = intent.getStringExtra("type");
+        String type = intent.getStringExtra("TYPE");
         cap = findViewById(R.id.cap);
         if (type.equals("DEBIT")) {
             mFragment = new AddDebitFragment();
@@ -55,14 +56,14 @@ public class DataEntryActivity extends BaseView<DataEntryContract.Presenter>
                 .getDataEntryPresenter();
     }
 
-/*    @Override
+    @Override
     public void someEvent(View view) {
         if (view.getId() == R.id.button_add) {
             Fragment fragment = getFragmentManager().findFragmentById(R.id.fragment_form);
-            ((DataEntryPresenter) mPresenter).takeDTO(mFragment.getDTO());
+            mPresenter.takeDTO(mFragment.getDTO());
         }
-        else mPresenter.onClick(view);
-    }*/
+        else onBackPressed();
+    }
 
     @Override
     protected void onDestroy() {
@@ -77,8 +78,4 @@ public class DataEntryActivity extends BaseView<DataEntryContract.Presenter>
         return mFragment.getDTO();
     }
 
-    @Override
-    public void someEvent(View view) {
-
-    }
 }

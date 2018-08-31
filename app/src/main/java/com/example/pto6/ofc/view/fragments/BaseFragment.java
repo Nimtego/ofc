@@ -5,22 +5,19 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
+
 import android.view.View;
 
 import com.example.pto6.ofc.contracts.Contract;
 import com.example.pto6.ofc.dto.UserFinanceDTO;
-import com.example.pto6.ofc.presenter.Presenter;
-import com.example.pto6.ofc.utils.CommonUtils;
-import com.example.pto6.ofc.view.AbstractView;
-import com.example.pto6.ofc.view.CommonView;
+import com.example.pto6.ofc.view.BaseView;
 
 import butterknife.Unbinder;
 
 public abstract class BaseFragment extends Fragment implements Contract.View{
 
 
-    private AbstractView mAbstractView;
+    private BaseView mAbstractView;
     private Unbinder mUnBinder;
     private ProgressDialog mProgressDialog;
 
@@ -40,9 +37,8 @@ public abstract class BaseFragment extends Fragment implements Contract.View{
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof AbstractView) {
-            AbstractView activity = (AbstractView) context;
-            this.mAbstractView = activity;
+        if (context instanceof BaseView) {
+            this.mAbstractView = (BaseView) context;
            // activity.onFragmentAttached();
         }
     }

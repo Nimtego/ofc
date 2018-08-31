@@ -21,5 +21,6 @@ public interface OfcContract {
         void setCredittListView(List<? extends Credit> listCredit);
         TabType getState();
         void toast(String message);
+        void intent(String tabType);
     }
 }

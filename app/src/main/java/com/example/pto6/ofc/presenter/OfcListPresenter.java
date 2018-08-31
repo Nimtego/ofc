@@ -37,7 +37,7 @@ public class OfcListPresenter extends BasePresenter<OfcContract.View>
 
     @Override
     public void pushFab() {
-
+        view.intent(tabType.toString());
     }
 
     @Override

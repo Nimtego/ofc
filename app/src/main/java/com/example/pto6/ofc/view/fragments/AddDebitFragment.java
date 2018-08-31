@@ -72,4 +72,6 @@ public class AddDebitFragment extends BaseFragment {
     public Contract.Presenter supplyPresenter() {
         return null;
     }
+
+
 }
