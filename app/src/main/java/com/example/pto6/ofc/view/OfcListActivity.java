@@ -2,6 +2,7 @@ package com.example.pto6.ofc.view;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -80,7 +81,6 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
                 DividerItemDecoration.VERTICAL);
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
-        // mRecyclerView.addOnItemTouchListener(mPresenter);
     }
     @OnClick(R.id.fab)
     public void fabSinglePressing(View view) {
@@ -92,29 +92,6 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
         Toast.makeText(this, "Fab Long Pressing ", LENGTH_SHORT).show();
         return true;
     }
-/*    @OnItemClick(R2.id.list_of_things) void onItemClick(int position) {
-        Toast.makeText(this, "You clicked: " + adapter.getItem(position), LENGTH_SHORT).show();
-    }*/
-
-  /*  @Override
-    public Presenter setPresenter() {
-        return OfcApplication.getPresenterComponent().getOfcListPresenter();
-    }
-
-    @Override
-    public void setUserFinance(RecyclerView.Adapter mAdapter) {
-        mRecyclerView.setAdapter(mAdapter);
-    }
-
-    @Override
-    public RecyclerView getRecyclerView() {
-        return mRecyclerView;
-    }
-
-    @Override
-    public TabLayout getTabLayout() {
-        return tabs;
-    }*/
 
     @Override
     public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
@@ -217,5 +194,11 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
+    }
+
+    @Override
+    public void intent() {
+        Intent intent = new Intent(this, mPresenter.getNextActivity());
+        (this).startActivity(intent);
     }
 }

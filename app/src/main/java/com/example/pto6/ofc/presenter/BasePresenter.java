@@ -20,6 +20,4 @@ public abstract class BasePresenter<V extends Contract.View>
     public V getView() {
         return view;
     }
-
-    abstract Class getNextActivity();
 }

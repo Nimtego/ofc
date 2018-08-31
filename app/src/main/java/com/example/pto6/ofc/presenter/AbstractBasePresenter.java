@@ -45,5 +45,4 @@ public abstract class AbstractBasePresenter<V extends Contract.View> implements
         return (Context) commonView;
     }
 
-    abstract Class getNextActivity();
 }

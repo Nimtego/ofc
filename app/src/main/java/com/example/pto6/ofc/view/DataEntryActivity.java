@@ -12,7 +12,6 @@ import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.contracts.DataEntryContract;
 import com.example.pto6.ofc.dto.UserFinanceDTO;
-import com.example.pto6.ofc.presenter.DataEntryPresenter;
 import com.example.pto6.ofc.view.fragments.AddCreditFragment;
 import com.example.pto6.ofc.view.fragments.AddDebitFragment;
 import com.example.pto6.ofc.view.fragments.BaseFragment;

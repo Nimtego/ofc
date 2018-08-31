@@ -10,10 +10,14 @@ public interface Contract {
 
         V getView();
 
+        Class getNextActivity();
+
     }
 
     interface View<P extends Contract.Presenter> {
 
         P supplyPresenter();
+        void intent();
+
     }
 }

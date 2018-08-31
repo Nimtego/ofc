@@ -1,5 +1,7 @@
 package com.example.pto6.ofc.view;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -25,4 +27,9 @@ public abstract class BaseView<P extends Contract.Presenter>
         super.onDestroy();
     }
 
+    @Override
+    public void intent() {
+        Intent intent = new Intent(this, mPresenter.getNextActivity());
+        (this).startActivity(intent);
+    }
 }

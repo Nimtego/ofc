@@ -1,7 +1,5 @@
 package com.example.pto6.ofc.presenter;
 
-import android.app.Application;
-
 import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.contracts.OfcContract;
 import com.example.pto6.ofc.model.Credit;
@@ -10,11 +8,9 @@ import com.example.pto6.ofc.service.DBHelper;
 import com.example.pto6.ofc.service.DBHelperSQLite;
 import com.example.pto6.ofc.utils.TabType;
 import com.example.pto6.ofc.view.DataEntryActivity;
-import com.example.pto6.ofc.view.OfcListActivity;
 
 
 import java.util.List;
-import java.util.Optional;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,12 +27,7 @@ public class OfcListPresenter extends BasePresenter<OfcContract.View>
         return DBHelperSQLite.get(OfcApplication.getAppContext());
     }
 
-    @Override
-    Class getNextActivity() {
-        return DataEntryActivity.class;
-    }
 
-    @Override
     public void tabLayoutSelect(TabType tabType) {
         if(!tabType.equals(this.tabType)) {
             this.tabType = tabType;
@@ -82,5 +73,10 @@ public class OfcListPresenter extends BasePresenter<OfcContract.View>
             view.toast("IN PROGRESS");
             // TODO: 31.08.2018
         }
+    }
+
+    @Override
+    public Class getNextActivity() {
+        return DataEntryActivity.class;
     }
 }
