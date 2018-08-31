@@ -43,7 +43,7 @@ public class DataEntryPresenter extends BasePresenter<DataEntryContract.View>
         }
     }*/
 
-    @Override
+  /*  @Override
     public void takeDTO(UserFinanceDTO dto) {
         Date date = new Date();
         if (dto instanceof DebitDTO) {
@@ -73,5 +73,15 @@ public class DataEntryPresenter extends BasePresenter<DataEntryContract.View>
             CommonUtils.showLoadingDialog((Context) getView());
         }
         getView().onBackPressed();
+    }*/
+
+    @Override
+    Class getNextActivity() {
+        return null;
+    }
+
+    @Override
+    public void takeDTO(UserFinanceDTO debitDTO) {
+
     }
 }

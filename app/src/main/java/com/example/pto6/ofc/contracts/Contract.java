@@ -9,6 +9,7 @@ public interface Contract {
         void detach();
 
         V getView();
+
     }
 
     interface View<P extends Contract.Presenter> {

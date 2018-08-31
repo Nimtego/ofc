@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.example.pto6.ofc.R;
+import com.example.pto6.ofc.contracts.OfcContract;
 import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
 import com.example.pto6.ofc.model.UserFinance;
@@ -19,7 +20,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class CardAdapter<T extends UserFinance, V extends AbstractView>
+public class CardAdapter<T extends UserFinance, V extends OfcContract.View>
         extends RecyclerView.Adapter<CardAdapter.PersonViewHolder> implements AdapterView.OnItemClickListener {
 
     private static final String TAG = "CardAdapter";
@@ -31,7 +32,7 @@ public class CardAdapter<T extends UserFinance, V extends AbstractView>
         this.viewParent = viewParent;
     }
 
-    public static <T extends UserFinance, V extends AbstractView> CardAdapter<T, V> of(List<T> persons, V viewParent) {
+    public static <T extends UserFinance, V extends OfcContract.View> CardAdapter<T, V> of(List<T> persons, V viewParent) {
         return new CardAdapter<>(persons, viewParent);
     }
 
@@ -54,12 +55,12 @@ public class CardAdapter<T extends UserFinance, V extends AbstractView>
         personViewHolder.mTextViewName.setText(dataSet.get(i).getName());
         personViewHolder.mTextViewDate.setText(df.format(create));
         personViewHolder.mTextViewDateChange.setText(df.format(change));
-        if (dataSet.get(i) instanceof Debit) {
+/*        if (dataSet.get(i) instanceof Debit) {
             personViewHolder.mTextViewAmount.setText(String.valueOf(((Debit) dataSet.get(i)).getArrival()));
         }
         if (dataSet.get(i) instanceof Credit) {
             personViewHolder.mTextViewAmount.setText(String.valueOf(((Credit) dataSet.get(i)).getArrivalSize()));
-        }
+        }*/
     }
 
     @Override
