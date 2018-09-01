@@ -39,16 +39,19 @@ public class OfcListPresenter extends BasePresenter<OfcContract.View>
 
     @Override
     public void longPushInRV(int number) {
+        view.toast("I in longPushInRV");
         if (tabType.equals(TabType.DEBIT)) {
             dbHelper().removeByNameDebit(mDebitList.get(number).getName());
         }
         if (tabType.equals(TabType.CREDIT)) {
             dbHelper().removeByNameDebit(mCreditList.get(number).getName());
         }
+        viewIsReady();
     }
 
     @Override
     public void pushInRV(int number) {
+        view.toast("I in pushInRV");
         // TODO: 31.08.2018
     }
 
