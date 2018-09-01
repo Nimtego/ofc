@@ -23,6 +23,7 @@ import com.example.pto6.ofc.utils.TabType;
 import com.example.pto6.ofc.view.toast.SimpleToastAlarm;
 import com.example.pto6.ofc.view.toast.ToastAlarm;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -157,6 +158,13 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
     @Override
     public void setCreditListView(List<? extends Credit> listCredit) {
         RecyclerView.Adapter adapter = CardAdapter.of(listCredit, this);
+        mRecyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void clearList() {
+        // TODO: 01.09.2018 залипуха исправить
+        RecyclerView.Adapter adapter = CardAdapter.of(new ArrayList<>(), this);
         mRecyclerView.setAdapter(adapter);
     }
 

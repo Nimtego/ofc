@@ -28,9 +28,7 @@ public class OfcListPresenter extends BasePresenter<OfcContract.View>
 
 
     public void tabLayoutSelect(TabType tabType) {
-        if (!tabType.equals(this.tabType)) {
-            this.tabType = tabType;
-        }
+        this.tabType = tabType;
         viewIsReady();
     }
 
@@ -60,16 +58,19 @@ public class OfcListPresenter extends BasePresenter<OfcContract.View>
             tabType = view.getState();
             viewIsReady();
         }
-        if (tabType.equals(TabType.CREDIT))
+        if (tabType.equals(TabType.CREDIT)) {
             this.mCreditList = dbHelper().creditList();
-        view.setCreditListView(mCreditList);
+            view.setCreditListView(mCreditList);
+        }
 
-        if (tabType.equals(TabType.DEBIT))
+        if (tabType.equals(TabType.DEBIT)) {
             this.mDebitList = dbHelper().debitList();
-        view.setDebitListView(mDebitList);
+            view.setDebitListView(mDebitList);
+        }
 
         if (tabType.equals(TabType.DATA)) {
             view.toast("IN PROGRESS");
+            view.clearList();
             // TODO: 31.08.2018
         }
     }

@@ -25,6 +25,8 @@ public interface OfcContract {
 
         void setCreditListView(List<? extends Credit> listCredit);
 
+        void clearList();
+
         TabType getState();
 
         void toast(String message);
