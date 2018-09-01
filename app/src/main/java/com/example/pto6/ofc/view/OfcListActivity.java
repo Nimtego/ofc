@@ -1,18 +1,17 @@
 package com.example.pto6.ofc.view;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.pto6.ofc.OfcApplication;
@@ -82,6 +81,7 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
     }
+
     @OnClick(R.id.fab)
     public void fabSinglePressing(View view) {
         toast("Fab pushed");
@@ -155,7 +155,7 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
     }
 
     @Override
-    public void setCredittListView(List<? extends Credit> listCredit) {
+    public void setCreditListView(List<? extends Credit> listCredit) {
         RecyclerView.Adapter adapter = CardAdapter.of(listCredit, this);
         mRecyclerView.setAdapter(adapter);
     }
@@ -163,10 +163,14 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
     @Override
     public TabType getState() {
         switch (tabs.getSelectedTabPosition()) {
-            case 0: return TabType.DEBIT;
-            case 1: return TabType.CREDIT;
-            case 2: return TabType.DATA;
-            default: return null;
+            case 0:
+                return TabType.DEBIT;
+            case 1:
+                return TabType.CREDIT;
+            case 2:
+                return TabType.DATA;
+            default:
+                return null;
         }
     }
 

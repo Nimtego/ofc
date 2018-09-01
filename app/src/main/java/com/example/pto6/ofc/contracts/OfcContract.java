@@ -10,17 +10,25 @@ import java.util.List;
 public interface OfcContract {
     interface Presenter<V extends View> extends Contract.Presenter<V> {
         void tabLayoutSelect(TabType tabType);
+
         void pushFab();
+
         void longPushInRV(int number);
+
         void pushInRV(int number);
+
         void viewIsReady();
     }
 
     interface View<P extends Presenter> extends Contract.View<P> {
         void setDebitListView(List<? extends Debit> listDebit);
-        void setCredittListView(List<? extends Credit> listCredit);
+
+        void setCreditListView(List<? extends Credit> listCredit);
+
         TabType getState();
+
         void toast(String message);
+
         void intent(String tabType);
     }
 }

@@ -1,12 +1,9 @@
 package com.example.pto6.ofc.view;
 
 
-import android.app.Fragment;
 import android.app.FragmentTransaction;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import com.example.pto6.ofc.OfcApplication;
@@ -15,23 +12,21 @@ import com.example.pto6.ofc.contracts.DataEntryContract;
 import com.example.pto6.ofc.dto.UserFinanceDTO;
 import com.example.pto6.ofc.view.fragments.AddCreditFragment;
 import com.example.pto6.ofc.view.fragments.AddDebitFragment;
-import com.example.pto6.ofc.view.fragments.BaseFragment;
+import com.example.pto6.ofc.view.fragments.DataEntryFragment;
 
 public class DataEntryActivity extends BaseView<DataEntryContract.Presenter>
-                        implements DataEntryContract.View<DataEntryContract.Presenter>,
-                                    AddCreditFragment.OnSomeEventListener{
+        implements DataEntryContract.View<DataEntryContract.Presenter>,
+        DataEntryListener {
 
     private static final String TAG = "DataEntryActivity";
-    private BaseFragment mFragment;
-    private FragmentTransaction mFragmentTransaction;
     TextView cap;
-
+    private DataEntryFragment mFragment;
+    private FragmentTransaction mFragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_entry);
-
 
 
         Intent intent = getIntent();
@@ -49,20 +44,12 @@ public class DataEntryActivity extends BaseView<DataEntryContract.Presenter>
         mFragmentTransaction.add(R.id.fragment_form, mFragment);
         mFragmentTransaction.commit();
     }
-    @Override
-    public DataEntryContract.Presenter supplyPresenter() {
-        return  OfcApplication
-                .getPresenterComponent()
-                .getDataEntryPresenter();
-    }
 
     @Override
-    public void someEvent(View view) {
-        if (view.getId() == R.id.button_add) {
-            Fragment fragment = getFragmentManager().findFragmentById(R.id.fragment_form);
-            mPresenter.takeDTO(mFragment.getDTO());
-        }
-        else onBackPressed();
+    public DataEntryContract.Presenter supplyPresenter() {
+        return OfcApplication
+                .getPresenterComponent()
+                .getDataEntryPresenter();
     }
 
     @Override
@@ -74,8 +61,17 @@ public class DataEntryActivity extends BaseView<DataEntryContract.Presenter>
     }
 
     @Override
-    public UserFinanceDTO getDTO() {
-        return mFragment.getDTO();
+    public UserFinanceDTO getFormData() {
+        return mFragment.getFormData();
     }
 
+    @Override
+    public void onAddPressed() {
+        mPresenter.addButtonPressed();
+    }
+
+    @Override
+    public void onCancelPressed() {
+        mPresenter.cancelButtonPressed();
+    }
 }

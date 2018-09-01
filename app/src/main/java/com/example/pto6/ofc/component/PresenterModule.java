@@ -14,6 +14,7 @@ public class PresenterModule {
     DataEntryContract.Presenter dataEntryPresenter() {
         return new DataEntryPresenter();
     }
+
     @Provides
     OfcContract.Presenter ofcListPresenter() {
         return new OfcListPresenter();

@@ -17,12 +17,11 @@ import lombok.ToString;
 @ToString
 public final class DBHelperStub implements DBHelper {
 
-    private Repository<Debit> debitRepository;
-    private Repository<Credit> creditRepository;
-
     //todo: dagger-way
     @Getter
     private static DBHelper instance = new DBHelperStub(new RepositoryStub<>(), new RepositoryStub<>());
+    private Repository<Debit> debitRepository;
+    private Repository<Credit> creditRepository;
 
     @Inject
     public DBHelperStub(Repository<Debit> debitRepository, Repository<Credit> creditRepository) {

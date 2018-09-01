@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.contracts.OfcContract;
-import com.example.pto6.ofc.model.Credit;
-import com.example.pto6.ofc.model.Debit;
 import com.example.pto6.ofc.model.UserFinance;
 
 import java.text.DateFormat;
@@ -75,6 +73,11 @@ public class CardAdapter<T extends UserFinance, V extends OfcContract.View>
         return pvh;
     }
 
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+    }
+
     public static class PersonViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
         TextView mTextViewName;
@@ -90,10 +93,5 @@ public class CardAdapter<T extends UserFinance, V extends OfcContract.View>
             mTextViewDateChange = itemView.findViewById(R.id.change_date);
             mTextViewAmount = itemView.findViewById(R.id.amount);
         }
-    }
-
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
     }
 }

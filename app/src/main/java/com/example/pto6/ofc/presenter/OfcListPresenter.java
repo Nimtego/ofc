@@ -9,14 +9,13 @@ import com.example.pto6.ofc.service.DBHelperSQLite;
 import com.example.pto6.ofc.utils.TabType;
 import com.example.pto6.ofc.view.DataEntryActivity;
 
-
 import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class OfcListPresenter extends BasePresenter<OfcContract.View>
-                                        implements OfcContract.Presenter<OfcContract.View> {
+        implements OfcContract.Presenter<OfcContract.View> {
 
     private static final String TAG = "OfcListPresenter";
     private TabType tabType;
@@ -29,7 +28,7 @@ public class OfcListPresenter extends BasePresenter<OfcContract.View>
 
 
     public void tabLayoutSelect(TabType tabType) {
-        if(!tabType.equals(this.tabType)) {
+        if (!tabType.equals(this.tabType)) {
             this.tabType = tabType;
         }
         viewIsReady();
@@ -57,17 +56,17 @@ public class OfcListPresenter extends BasePresenter<OfcContract.View>
 
     @Override
     public void viewIsReady() {
-        if(tabType == null) {
+        if (tabType == null) {
             tabType = view.getState();
             viewIsReady();
         }
         if (tabType.equals(TabType.CREDIT))
             this.mCreditList = dbHelper().creditList();
-            view.setCredittListView(mCreditList);
+        view.setCreditListView(mCreditList);
 
         if (tabType.equals(TabType.DEBIT))
             this.mDebitList = dbHelper().debitList();
-            view.setDebitListView(mDebitList);
+        view.setDebitListView(mDebitList);
 
         if (tabType.equals(TabType.DATA)) {
             view.toast("IN PROGRESS");
