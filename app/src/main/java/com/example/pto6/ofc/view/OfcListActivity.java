@@ -18,6 +18,7 @@ import com.example.pto6.ofc.contracts.OfcContract;
 import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
 import com.example.pto6.ofc.utils.RecyclerItemClickListener;
+import com.example.pto6.ofc.utils.TabSelectedListener;
 import com.example.pto6.ofc.utils.TabType;
 import com.example.pto6.ofc.view.toast.SimpleToastAlarm;
 import com.example.pto6.ofc.view.toast.ToastAlarm;
@@ -65,22 +66,7 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
         tabs.addTab(tabs.newTab().setText("Debit"));
         tabs.addTab(tabs.newTab().setText("Credit"));
         tabs.addTab(tabs.newTab().setText("Data"));
-        tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                mPresenter.tabLayoutSelect(getState());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
+        tabs.addOnTabSelectedListener((TabSelectedListener) tab -> mPresenter.tabLayoutSelect(getState()));
     }
 
     private void setUpRecyclerView() {
