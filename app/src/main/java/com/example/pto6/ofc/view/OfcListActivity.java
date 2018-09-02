@@ -79,13 +79,15 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
                 DividerItemDecoration.VERTICAL);
         mRecyclerView.addItemDecoration(dividerItemDecoration);
         mRecyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(this, mRecyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
+                new RecyclerItemClickListener(this, mRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
                         toast("Single Click on position:\n" + position);
                         mPresenter.pushInRV(position);
                     }
 
-                    @Override public void onLongItemClick(View view, int position) {
+                    @Override
+                    public void onLongItemClick(View view, int position) {
                         toast("Long press on position:\n" + position);
                         mPresenter.longPushInRV(position);
                     }
