@@ -41,7 +41,9 @@ public abstract class BaseFragment<L> extends Fragment {
         mUnBinder = unBinder;
     }
 
-    protected abstract void setUp(View view);
+    protected void setUp(View view) {
+        /*no op*/
+    }
 
     @Override
     public void onDestroy() {

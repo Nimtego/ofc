@@ -34,10 +34,6 @@ public class AddDebitFragment extends DataEntryFragment {
     }
 
     @Override
-    protected void setUp(View view) {
-
-    }
-
     public UserFinanceDTO getFormData() {
         return DebitDTO.builder().name(String.valueOf(name.getText())).amount(amount.getText().toString()).build();
     }

@@ -15,6 +15,6 @@ public class Credit implements UserFinance {
     private Date dateOfCapture;
     private int numberOfMonths;
     private int percent;
-    private float arrivalSize;
+    private float arrival;
     private CreditType creditType;
 }

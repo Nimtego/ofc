@@ -16,4 +16,6 @@ public interface UserFinance extends Entity {
     Date getChangeDate();
 
     void setChangeDate(Date date);
+
+    float getArrival();
 }

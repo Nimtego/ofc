@@ -21,10 +21,6 @@ public class AddCreditFragment extends DataEntryFragment {
     EditText amount;
 
     @Override
-    protected void setUp(View view) {
-
-    }
-
     public UserFinanceDTO getFormData() {
         return CreditDTO.builder().name(String.valueOf(name.getText())).amount(amount.getText().toString()).build();
     }

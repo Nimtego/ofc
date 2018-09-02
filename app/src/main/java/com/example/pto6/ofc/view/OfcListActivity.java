@@ -37,7 +37,6 @@ import static android.widget.Toast.LENGTH_SHORT;
 public class OfcListActivity extends BaseView<OfcContract.Presenter>
         implements OfcContract.View<OfcContract.Presenter>, TabLayout.OnTabSelectedListener, RecyclerView.OnItemTouchListener {
 
-
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
@@ -80,7 +79,6 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL);
         mRecyclerView.addItemDecoration(dividerItemDecoration);
-
     }
 
     @OnClick(R.id.fab)
@@ -141,12 +139,12 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
 
     @Override
     public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-
+        /*no op*/
     }
 
     @Override
     public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
+        /*no op*/
     }
 
     @Override
@@ -191,7 +189,6 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
     @Override
     public OfcContract.Presenter supplyPresenter() {
         return OfcApplication.getPresenterComponent().getOfcListPresenter();
-
     }
 
     @Override
@@ -201,12 +198,12 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
 
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
-
+        /*no op*/
     }
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
-
+        /*no op*/
     }
 
     @Override
