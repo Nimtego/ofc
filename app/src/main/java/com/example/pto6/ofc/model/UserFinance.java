@@ -7,13 +7,15 @@ import java.util.Date;
 public interface UserFinance extends Entity {
     String getName();
 
+    void setName(String name);
+
     Date getCreateDate();
+
+    void setCreateDate(Date date);
 
     Date getChangeDate();
 
-    void setName(String name);
-
     void setChangeDate(Date date);
 
-    void setCreateDate(Date date);
+    float getArrival();
 }

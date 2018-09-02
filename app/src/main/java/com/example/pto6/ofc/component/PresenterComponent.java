@@ -1,13 +1,14 @@
 package com.example.pto6.ofc.component;
 
-import com.example.pto6.ofc.presenter.DataPresenter;
-import com.example.pto6.ofc.presenter.OfcPresenter;
+
+import com.example.pto6.ofc.contracts.DataEntryContract;
+import com.example.pto6.ofc.contracts.OfcContract;
 
 import dagger.Component;
 
 @Component(modules = PresenterModule.class)
 public interface PresenterComponent {
-    OfcPresenter getOfcListPresenter();
+    OfcContract.Presenter getOfcListPresenter();
 
-    DataPresenter getDataEntryPresenter();
+    DataEntryContract.Presenter getDataEntryPresenter();
 }
