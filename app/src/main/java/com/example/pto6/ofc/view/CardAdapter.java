@@ -64,8 +64,7 @@ public class CardAdapter<T extends UserFinance, V extends OfcContract.View>
     @Override
     public PersonViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_card_cd, viewGroup, false);
-        PersonViewHolder pvh = new PersonViewHolder(v);
-        return pvh;
+        return new PersonViewHolder(v);
     }
 
     @Override

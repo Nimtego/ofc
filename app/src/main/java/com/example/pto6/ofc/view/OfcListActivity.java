@@ -9,8 +9,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -19,6 +17,7 @@ import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.contracts.OfcContract;
 import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
+import com.example.pto6.ofc.utils.RecyclerItemClickListener;
 import com.example.pto6.ofc.utils.TabType;
 import com.example.pto6.ofc.view.toast.SimpleToastAlarm;
 import com.example.pto6.ofc.view.toast.ToastAlarm;
@@ -35,7 +34,7 @@ import static android.widget.Toast.LENGTH_SHORT;
 
 
 public class OfcListActivity extends BaseView<OfcContract.Presenter>
-        implements OfcContract.View<OfcContract.Presenter>, TabLayout.OnTabSelectedListener, RecyclerView.OnItemTouchListener {
+        implements OfcContract.View<OfcContract.Presenter>, TabLayout.OnTabSelectedListener {
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
@@ -79,6 +78,19 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL);
         mRecyclerView.addItemDecoration(dividerItemDecoration);
+        mRecyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(this, mRecyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        toast("Single Click on position:\n" + position);
+                        mPresenter.pushInRV(position);
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        toast("Long press on position:\n" + position);
+                        mPresenter.longPushInRV(position);
+                    }
+                })
+        );
     }
 
     @OnClick(R.id.fab)
@@ -93,9 +105,9 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
         return true;
     }
 
-    @Override
+/*    @Override
     public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-        OfcListActivity ofcListActivity = this;
+        *//*fcListActivity ofcListActivity = this;*//*
         ClickListener clicklistener = new ClickListener() {
             @Override
             public void onClick(View view, final int position) {
@@ -135,17 +147,17 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
         }
 
         return false;
-    }
+    }*/
 
-    @Override
+/*    @Override
     public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-        /*no op*/
+        *//*no op*//*
     }
 
     @Override
     public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-        /*no op*/
-    }
+        *//*no op*//*
+    }*/
 
     @Override
     public void setDebitListView(List<? extends Debit> listDebit) {

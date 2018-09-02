@@ -44,7 +44,7 @@ public class OfcListPresenter extends BasePresenter<OfcContract.View>
             dbHelper().removeByNameDebit(mDebitList.get(number).getName());
         }
         if (tabType.equals(TabType.CREDIT)) {
-            dbHelper().removeByNameDebit(mCreditList.get(number).getName());
+            dbHelper().removeByNameCredit(mCreditList.get(number).getName());
         }
         viewIsReady();
     }
