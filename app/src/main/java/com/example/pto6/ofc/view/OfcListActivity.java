@@ -58,6 +58,9 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
     @Override
     protected void onStart() {
         super.onStart();
+        TabLayout.Tab tab = tabs.getTabAt(0);
+        if (tab != null)
+            tab.select();
         mPresenter.viewIsReady();
     }
 
@@ -66,7 +69,7 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
         tabs.addTab(tabs.newTab().setText("Debit"));
         tabs.addTab(tabs.newTab().setText("Credit"));
         tabs.addTab(tabs.newTab().setText("Data"));
-        tabs.addOnTabSelectedListener((TabSelectedListener) tab -> mPresenter.tabLayoutSelect(getState()));
+        tabs.addOnTabSelectedListener((TabSelectedListener) t -> mPresenter.tabLayoutSelect(getState()));
     }
 
     private void setUpRecyclerView() {

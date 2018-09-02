@@ -1,15 +1,22 @@
 package com.example.pto6.ofc.view;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
+import com.example.pto6.ofc.contracts.GraphsContract;
 
-public class GraphsActivity extends AppCompatActivity {
+public class GraphsActivity extends BaseView<GraphsContract.Presenter>
+        implements GraphsContract.View<GraphsContract.Presenter> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graphs);
+    }
+
+    @Override
+    public GraphsContract.Presenter supplyPresenter() {
+        return OfcApplication.getPresenterComponent().getGraphsPresenter();
     }
 }

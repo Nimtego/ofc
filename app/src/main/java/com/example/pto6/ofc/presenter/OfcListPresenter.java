@@ -8,6 +8,7 @@ import com.example.pto6.ofc.service.DBHelper;
 import com.example.pto6.ofc.service.DBHelperSQLite;
 import com.example.pto6.ofc.utils.TabType;
 import com.example.pto6.ofc.view.DataEntryActivity;
+import com.example.pto6.ofc.view.GraphsActivity;
 
 import java.util.List;
 
@@ -73,13 +74,14 @@ public class OfcListPresenter extends BasePresenter<OfcContract.View>
 
         if (tabType.equals(TabType.DATA)) {
             view.toast("IN PROGRESS");
-            view.clearList();
-            // TODO: 31.08.2018
+            view.intent(tabType.toString());
         }
     }
 
     @Override
     public Class getNextActivity() {
-        return DataEntryActivity.class;
+        if (!tabType.equals(TabType.DATA))
+            return DataEntryActivity.class;
+        return GraphsActivity.class;
     }
 }
