@@ -79,7 +79,7 @@ public class OfcListPresenter extends BasePresenter<OfcContract.View>
     }
 
     @Override
-    public Class getNextActivity() {
+    public Class<?> getNextActivity() {
         return DataEntryActivity.class;
     }
 }

@@ -28,7 +28,7 @@ public class DataEntryPresenter extends BasePresenter<DataEntryContract.View>
     }
 
     @Override
-    public Class getNextActivity() {
+    public Class<?> getNextActivity() {
         return null;
     }
 
