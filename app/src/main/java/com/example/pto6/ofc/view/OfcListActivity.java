@@ -9,8 +9,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -19,6 +17,8 @@ import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.contracts.OfcContract;
 import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
+import com.example.pto6.ofc.utils.RecyclerItemClickListener;
+import com.example.pto6.ofc.utils.TabSelectedListener;
 import com.example.pto6.ofc.utils.TabType;
 import com.example.pto6.ofc.view.toast.SimpleToastAlarm;
 import com.example.pto6.ofc.view.toast.ToastAlarm;
@@ -35,7 +35,7 @@ import static android.widget.Toast.LENGTH_SHORT;
 
 
 public class OfcListActivity extends BaseView<OfcContract.Presenter>
-        implements OfcContract.View<OfcContract.Presenter>, TabLayout.OnTabSelectedListener, RecyclerView.OnItemTouchListener {
+        implements OfcContract.View<OfcContract.Presenter> {
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
@@ -52,7 +52,6 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ofc_list);
         ButterKnife.bind(this);
-        // setUnBinder(ButterKnife.bind(this));
         init();
     }
 
@@ -67,7 +66,7 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
         tabs.addTab(tabs.newTab().setText("Debit"));
         tabs.addTab(tabs.newTab().setText("Credit"));
         tabs.addTab(tabs.newTab().setText("Data"));
-        tabs.addOnTabSelectedListener(this);
+        tabs.addOnTabSelectedListener((TabSelectedListener) tab -> mPresenter.tabLayoutSelect(getState()));
     }
 
     private void setUpRecyclerView() {
@@ -79,6 +78,22 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL);
         mRecyclerView.addItemDecoration(dividerItemDecoration);
+        mRecyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(this, mRecyclerView,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                toast("Single Click on position:\n" + position);
+                                mPresenter.pushInRV(position);
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+                                toast("Long press on position:\n" + position);
+                                mPresenter.longPushInRV(position);
+                            }
+                        })
+        );
     }
 
     @OnClick(R.id.fab)
@@ -91,60 +106,6 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
     public boolean fabLongPressing() {
         Toast.makeText(this, "Fab Long Pressing ", LENGTH_SHORT).show();
         return true;
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-        OfcListActivity ofcListActivity = this;
-        ClickListener clicklistener = new ClickListener() {
-            @Override
-            public void onClick(View view, final int position) {
-                Toast.makeText(ofcListActivity, "Single Click on position        :" + position,
-                        Toast.LENGTH_SHORT).show();
-                mPresenter.pushInRV(position);
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-                Toast.makeText(ofcListActivity, "Long press on position :" + position,
-                        Toast.LENGTH_LONG).show();
-                mPresenter.longPushInRV(position);
-            }
-        };
-
-        GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
-            @Override
-            public boolean onSingleTapUp(MotionEvent e) {
-                return true;
-            }
-
-            @Override
-            public void onLongPress(MotionEvent e) {
-                View child = ofcListActivity.mRecyclerView.findChildViewUnder(e.getX(), e.getY());
-                if (child != null) {
-                    clicklistener.onLongClick(child, ofcListActivity
-                            .mRecyclerView.getChildAdapterPosition(child));
-                }
-            }
-        });
-
-
-        View child = rv.findChildViewUnder(e.getX(), e.getY());
-        if (child != null && gestureDetector.onTouchEvent(e)) {
-            clicklistener.onClick(child, rv.getChildAdapterPosition(child));
-        }
-
-        return false;
-    }
-
-    @Override
-    public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-        /*no op*/
-    }
-
-    @Override
-    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-        /*no op*/
     }
 
     @Override
@@ -189,21 +150,6 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
     @Override
     public OfcContract.Presenter supplyPresenter() {
         return OfcApplication.getPresenterComponent().getOfcListPresenter();
-    }
-
-    @Override
-    public void onTabSelected(TabLayout.Tab tab) {
-        mPresenter.tabLayoutSelect(getState());
-    }
-
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-        /*no op*/
-    }
-
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
-        /*no op*/
     }
 
     @Override
