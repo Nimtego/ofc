@@ -52,6 +52,7 @@ dependencies {
     annotationProcessor 'com.google.dagger:dagger-compiler:2.15'
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.robinhood.ticker:ticker:2.0.0'
 
     testImplementation 'junit:junit:4.12'
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.21.0'

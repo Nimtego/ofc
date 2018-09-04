@@ -7,4 +7,151 @@
     android:layout_height="match_parent"
     tools:context=".view.GraphsActivity">
 
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/cv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:layout_marginTop="12dp"
+        android:elevation="12dp"
+        android:foreground="?attr/selectableItemBackground">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="?attr/selectableItemBackground"
+            android:padding="15dp">
+            <TextView
+                android:id="@+id/text_view_care"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/debit_name"
+                android:text="@string/care"
+                android:textSize="28sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/edit_text_care_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/_0"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/text_view_care"
+                app:layout_constraintStart_toStartOf="@+id/edit_text_parish_speed"
+                app:layout_constraintTop_toTopOf="@+id/text_view_care"
+                app:layout_constraintVertical_bias="1.0"/>
+
+            <TextView
+                android:id="@+id/text_view_parish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="16dp"
+                android:text="@string/parish"
+                android:textColor="@color/debit_name"
+                android:textSize="28sp"
+                app:layout_constraintStart_toStartOf="@+id/text_view_care"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_care"/>
+
+            <TextView
+                android:id="@+id/edit_text_parish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/parish"
+                android:textSize="16sp"
+                android:textColor="@color/simple_green"
+                app:layout_constraintBottom_toBottomOf="@+id/text_view_parish"
+                app:layout_constraintStart_toStartOf="@+id/edit_text_income"
+                app:layout_constraintTop_toTopOf="@+id/text_view_parish"
+                app:layout_constraintVertical_bias="0.875"/>
+
+            <TextView
+                android:id="@+id/text_view_income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="16dp"
+                android:text="@string/income"
+                android:textColor="@color/debit_name"
+                android:textSize="28sp"
+                app:layout_constraintStart_toStartOf="@+id/text_view_parish"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_parish"/>
+
+            <TextView
+                android:id="@+id/edit_text_income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/income"
+                android:textColor="@color/simple_orange"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/text_view_income"
+                app:layout_constraintStart_toEndOf="@+id/text_view_income"
+                app:layout_constraintTop_toTopOf="@+id/text_view_income"/>
+
+            <TextView
+                android:id="@+id/edit_text_care"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/care"
+                android:textSize="16sp"
+                android:textColor="@color/simple_red"
+                app:layout_constraintBottom_toBottomOf="@+id/text_view_care"
+                app:layout_constraintStart_toStartOf="@+id/edit_text_income"
+                app:layout_constraintTop_toTopOf="@+id/text_view_care"/>
+
+            <TextView
+                android:id="@+id/edit_text_parish_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/_0"
+                android:textSize="16sp"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_text_parish"
+                app:layout_constraintStart_toStartOf="@+id/edit_text_income_speed"
+                app:layout_constraintTop_toTopOf="@+id/edit_text_parish"/>
+
+            <TextView
+                android:id="@+id/edit_text_income_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="32dp"
+                android:text="@string/_0"
+                android:textSize="16sp"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_text_income"
+                app:layout_constraintStart_toEndOf="@+id/edit_text_income"
+                app:layout_constraintTop_toTopOf="@+id/edit_text_income"/>
+
+
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
 </android.support.constraint.ConstraintLayout>

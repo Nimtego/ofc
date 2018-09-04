@@ -23,4 +23,5 @@
     <string name="parish">Parish</string>
     <string name="care">Care</string>
     <string name="income">Income</string>
+    <string name="_0">0</string>
 </resources>
