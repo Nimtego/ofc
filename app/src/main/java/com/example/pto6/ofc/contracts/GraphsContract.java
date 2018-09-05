@@ -1,7 +1,6 @@
 package com.example.pto6.ofc.contracts;
 
 
-import com.example.pto6.ofc.utils.Pair;
 
 import java.util.Map;
 
@@ -12,7 +11,9 @@ public interface GraphsContract {
     }
 
     interface View<P extends GraphsContract.Presenter> extends Contract.View<P> {
-        void setData(Map<DynamicData, Float> data);
+        void startAction(Map<DynamicData, Runnable> runnableMap, int delay);
+        void updateCare(String value);
+        void updateParish(String value);
+        void updateIncome(String value);
     }
-
 }

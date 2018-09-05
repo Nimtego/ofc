@@ -39,7 +39,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-            <TextView
+            <TextSwitcher
                 android:id="@+id/edit_text_care_speed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
                 app:layout_constraintStart_toStartOf="@+id/edit_text_income"
                 app:layout_constraintTop_toTopOf="@+id/text_view_care"/>
 
-            <TextView
+            <TextSwitcher
                 android:id="@+id/edit_text_parish_speed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -137,7 +137,7 @@
                 app:layout_constraintStart_toStartOf="@+id/edit_text_income_speed"
                 app:layout_constraintTop_toTopOf="@+id/edit_text_parish"/>
 
-            <TextView
+            <TextSwitcher
                 android:id="@+id/edit_text_income_speed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

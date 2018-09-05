@@ -15,7 +15,6 @@ public class GraphsPresenter extends BasePresenter<GraphsContract.View>
     private float parish;
     private float care;
     private float income;
-    private boolean initData;
 
 
     @Override
@@ -25,23 +24,22 @@ public class GraphsPresenter extends BasePresenter<GraphsContract.View>
 
     @Override
     public void viewReady() {
-        if (!initData) {
             DBHelper dbHelper = OfcApplication.getDBComponent().getDBHelper();
             dbHelper.debitList().forEach(v -> parish += v.getArrival());
             dbHelper.creditList().forEach(v -> care += v.getArrival());
             income = parish - care;
-            initData = true;
-        }
-        view.setData(getMap());
+
+
+        view.startAction(getMap(), 100);
 
 
     }//2592000  576000
 
-    private Map<DynamicData, Float> getMap() {
-        Map<DynamicData, Float> map = new HashMap<>();
-        map.put(DynamicData.CARE, care / 576000F);
-        map.put(DynamicData.PARISH, parish / 576000F);
-        map.put(DynamicData.INCOME, income / 576000F);
+    private Map<DynamicData, Runnable> getMap() {
+        Map<DynamicData, Runnable> map = new HashMap<>();
+        map.put(DynamicData.CARE,() -> view.updateCare(String.valueOf(100/*care / 5F*/)));
+        map.put(DynamicData.PARISH,() -> view.updateParish(String.valueOf(100)));
+        map.put(DynamicData.INCOME,() -> view.updateIncome(String.valueOf(100)));
         return map;
     }
 }
