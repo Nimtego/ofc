@@ -25,4 +25,9 @@ public abstract class BaseView<P extends Contract.Presenter>
         super.onDestroy();
     }
 
+    @Override
+    public void runOnMainThread(Runnable runnable) {
+        if (!isDestroyed())
+            runOnUiThread(runnable);
+    }
 }
