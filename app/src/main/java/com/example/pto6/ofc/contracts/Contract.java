@@ -16,6 +16,8 @@ public interface Contract {
 
     interface View<P extends Contract.Presenter> {
 
+        void runOnMainThread(Runnable runnable);
+
         P supplyPresenter();
     }
 }
