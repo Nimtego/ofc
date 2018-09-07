@@ -8,9 +8,9 @@ import java.util.function.Consumer;
 
 public interface AsyncDBHelper {
 
-    void debitList(Consumer<List<? super Debit>> onSuccess, Consumer<? super Throwable> onError);
+    void debitList(Consumer<List<Debit>> onSuccess, Consumer<? super Throwable> onError);
 
-    void creditList(Consumer<List<? super Credit>> onSuccess, Consumer<? super Throwable> onError);
+    void creditList(Consumer<List<Credit>> onSuccess, Consumer<? super Throwable> onError);
 
     void putDebitList(List<Debit> debits, Runnable onSuccess, Consumer<? super Throwable> onError);
 
