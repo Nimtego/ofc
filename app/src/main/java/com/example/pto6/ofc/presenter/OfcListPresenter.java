@@ -7,10 +7,13 @@ import com.example.pto6.ofc.model.Debit;
 import com.example.pto6.ofc.service.AsyncDBHelper;
 import com.example.pto6.ofc.service.AsyncDBHelperSQLite;
 import com.example.pto6.ofc.utils.TabType;
-import com.example.pto6.ofc.view.DataEntryActivity;
-import com.example.pto6.ofc.view.GraphsActivity;
+import com.example.pto6.ofc.view.ViewTable;
+import com.example.pto6.ofc.view.ViewTableImpl;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,7 +22,9 @@ public class OfcListPresenter extends BasePresenter<OfcContract.View>
         implements OfcContract.Presenter<OfcContract.View> {
 
     private static final String TAG = "OfcListPresenter";
-    private TabType tabType;
+    //todo DI
+    private final ViewTable viewTable = new ViewTableImpl();
+    private TabType tabType = TabType.DEBIT;
     private List<Debit> mDebitList;
     private List<Credit> mCreditList;
 
@@ -35,7 +40,12 @@ public class OfcListPresenter extends BasePresenter<OfcContract.View>
 
     @Override
     public void pushFab() {
-        view.intent(tabType.toString());
+        if (!tabType.equals(TabType.DATA)) {
+            Map<String, String> props = new HashMap<>();
+            props.put("TYPE", tabType.toString());
+            view.intent(props, viewTable.get("data"));
+        } else
+            runGraphsView();
     }
 
     @Override
@@ -65,10 +75,6 @@ public class OfcListPresenter extends BasePresenter<OfcContract.View>
 
     @Override
     public void viewIsReady() {
-        if (tabType == null) {
-            tabType = view.getState();
-            viewIsReady();
-        }
         if (tabType.equals(TabType.CREDIT)) {
             dbHelper().creditList(
                     list -> {
@@ -91,14 +97,18 @@ public class OfcListPresenter extends BasePresenter<OfcContract.View>
 
         if (tabType.equals(TabType.DATA)) {
             view.toast("IN PROGRESS");
-            view.intent(tabType.toString());
+//            runGraphsView(); todo
+            view.clearList();
         }
     }
 
     @Override
-    public Class getNextActivity() {
-        if (!tabType.equals(TabType.DATA))
-            return DataEntryActivity.class;
-        return GraphsActivity.class;
+    public TabType getState() {
+        return tabType;
     }
+
+    private void runGraphsView() {
+        view.intent(Collections.emptyMap(), viewTable.get("graphs"));
+    }
+
 }

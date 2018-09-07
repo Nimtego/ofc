@@ -28,7 +28,6 @@ public class DataEntryActivity extends BaseView<DataEntryContract.Presenter>
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_entry);
 
-
         Intent intent = getIntent();
         String type = intent.getStringExtra("TYPE");
         cap = findViewById(R.id.cap);

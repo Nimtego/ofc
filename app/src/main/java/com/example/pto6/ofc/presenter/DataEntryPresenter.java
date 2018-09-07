@@ -29,11 +29,6 @@ public class DataEntryPresenter extends BasePresenter<DataEntryContract.View>
     }
 
     @Override
-    public Class getNextActivity() {
-        return null;
-    }
-
-    @Override
     public void addButtonPressed() {
         UserFinanceDTO dto = getView().getFormData();
         Date date = new Date();

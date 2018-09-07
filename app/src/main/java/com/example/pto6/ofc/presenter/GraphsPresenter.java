@@ -5,9 +5,4 @@ import com.example.pto6.ofc.contracts.GraphsContract;
 
 public class GraphsPresenter extends BasePresenter<GraphsContract.View>
         implements GraphsContract.Presenter<GraphsContract.View>{
-
-    @Override
-    public Class getNextActivity() {
-        return null;
-    }
 }
