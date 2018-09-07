@@ -1,5 +1,6 @@
 package com.example.pto6.ofc.presenter;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 
 import com.example.pto6.ofc.contracts.DataEntryContract;
@@ -8,7 +9,7 @@ import com.example.pto6.ofc.dto.DebitDTO;
 import com.example.pto6.ofc.dto.UserFinanceDTO;
 import com.example.pto6.ofc.model.Credit;
 import com.example.pto6.ofc.model.Debit;
-import com.example.pto6.ofc.service.DBHelperSQLite;
+import com.example.pto6.ofc.service.AsyncDBHelperSQLite;
 import com.example.pto6.ofc.utils.CommonUtils;
 
 import java.util.Date;
@@ -46,8 +47,15 @@ public class DataEntryPresenter extends BasePresenter<DataEntryContract.View>
                     .createDate(date)
                     .changeDate(date)
                     .build();
-            DBHelperSQLite.get(((Context) getView()).getApplicationContext()).putDebit(debit);
-            CommonUtils.showLoadingDialog((Context) getView());
+            ProgressDialog progressDialog = CommonUtils.showLoadingDialog((Context) getView());
+            AsyncDBHelperSQLite.get(((Context) getView()).getApplicationContext()).putDebit(
+                    debit,
+                    () -> getView().runOnMainThread(() -> {
+                        getView().onBackPressed();
+                        progressDialog.cancel();
+                    }),
+                    err -> getView().runOnMainThread(progressDialog::cancel)
+            );
         } else if (dto instanceof CreditDTO) {
             CreditDTO creditDTO = (CreditDTO) dto;
             Float amount = Float.valueOf(creditDTO.getAmount());
@@ -58,10 +66,16 @@ public class DataEntryPresenter extends BasePresenter<DataEntryContract.View>
                     .createDate(date)
                     .changeDate(date)
                     .build();
-            DBHelperSQLite.get(((Context) getView()).getApplicationContext()).putCredit(credit);
-            CommonUtils.showLoadingDialog((Context) getView());
+            ProgressDialog progressDialog = CommonUtils.showLoadingDialog((Context) getView());
+            AsyncDBHelperSQLite.get(((Context) getView()).getApplicationContext()).putCredit(
+                    credit,
+                    () -> getView().runOnMainThread(() -> {
+                        getView().onBackPressed();
+                        progressDialog.cancel();
+                    }),
+                    err -> getView().runOnMainThread(progressDialog::cancel)
+            );
         }
-        getView().onBackPressed();
     }
 
     @Override

@@ -11,11 +11,9 @@ import com.example.repository.sqlite.RepositoryHelperSQLite;
 import com.example.repository.sqlite.RepositorySQLite;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
-import java.util.stream.Stream;
 
 public class AsyncDBHelperSQLite implements AsyncDBHelper {
     private static final String FINANCE = "finance";
@@ -54,154 +52,164 @@ public class AsyncDBHelperSQLite implements AsyncDBHelper {
     }
 
     @Override
-    public void debitList(Consumer<List<? super Debit>> onSuccess, Consumer<? super Throwable> onError) {
-        CompletableFuture.supplyAsync(() -> debitRepository.getAll())
-                .thenApply(ArrayList::new)
-                .whenComplete((list, error) -> {
-                    if (list != null)
-                        onSuccess.accept(list);
-                    else
-                        onError.accept(error);
-                });
+    public void debitList(Consumer<List<Debit>> onSuccess, Consumer<? super Throwable> onError) {
+        CompletableFuture.runAsync(() -> {
+            try {
+                ArrayList<Debit> debits = new ArrayList<>(debitRepository.getAll());
+                onSuccess.accept(debits);
+            } catch (Exception e) {
+                onError.accept(e);
+            }
+        });
     }
 
     @Override
-    public void creditList(Consumer<List<? super Credit>> onSuccess, Consumer<? super Throwable> onError) {
-        CompletableFuture.supplyAsync(() -> creditRepository.getAll())
-                .thenApply(ArrayList::new)
-                .whenComplete((list, error) -> {
-                    if (list != null)
-                        onSuccess.accept(list);
-                    else
-                        onError.accept(error);
-                });
+    public void creditList(Consumer<List<Credit>> onSuccess, Consumer<? super Throwable> onError) {
+        CompletableFuture.runAsync(() -> {
+            try {
+                ArrayList<Credit> credits = new ArrayList<>(creditRepository.getAll());
+                onSuccess.accept(credits);
+            } catch (Exception e) {
+                onError.accept(e);
+            }
+        });
     }
 
     @Override
     public void putDebitList(List<Debit> debits, Runnable onSuccess, Consumer<? super Throwable> onError) {
-        CompletableFuture.runAsync(() -> debits.forEach(debitRepository::save))
-                .whenComplete((nothing, error) -> {
-                    if (nothing != null)
-                        onSuccess.run();
-                    else
-                        onError.accept(error);
-                });
+        CompletableFuture.runAsync(() -> {
+            try {
+                debits.forEach(debitRepository::save);
+                onSuccess.run();
+            } catch (Exception e) {
+                onError.accept(e);
+            }
+        });
     }
 
     @Override
     public void putCreditList(List<Credit> credits, Runnable onSuccess, Consumer<? super Throwable> onError) {
-        CompletableFuture.runAsync(() -> credits.forEach(creditRepository::save))
-                .whenComplete((nothing, error) -> {
-                    if (nothing != null)
-                        onSuccess.run();
-                    else
-                        onError.accept(error);
-                });
+        CompletableFuture.runAsync(() -> {
+            try {
+                credits.forEach(creditRepository::save);
+                onSuccess.run();
+            } catch (Exception e) {
+                onError.accept(e);
+            }
+        });
     }
 
     @Override
     public void getDebitById(long id, Consumer<? super Debit> onSuccess, Consumer<? super Throwable> onError) {
-        CompletableFuture.supplyAsync(() -> debitRepository.getOne(id))
-                .whenComplete((unit, error) -> {
-                    if (unit != null)
-                        onSuccess.accept(unit);
-                    else
-                        onError.accept(error);
-                });
+        CompletableFuture.runAsync(() -> {
+            try {
+                Debit one = debitRepository.getOne(id);
+                onSuccess.accept(one);
+            } catch (Exception e) {
+                onError.accept(e);
+            }
+        });
     }
 
     @Override
     public void getCreditByID(long id, Consumer<? super Credit> onSuccess, Consumer<? super Throwable> onError) {
-        CompletableFuture.supplyAsync(() -> creditRepository.getOne(id))
-                .whenComplete((unit, error) -> {
-                    if (unit != null)
-                        onSuccess.accept(unit);
-                    else
-                        onError.accept(error);
-                });
+        CompletableFuture.runAsync(() -> {
+            try {
+                Credit one = creditRepository.getOne(id);
+                onSuccess.accept(one);
+            } catch (Exception e) {
+                onError.accept(e);
+            }
+        });
     }
 
     @Override
     public void putCredit(Credit credit, Runnable onSuccess, Consumer<? super Throwable> onError) {
-        CompletableFuture.runAsync(() -> creditRepository.save(credit))
-                .whenComplete((unit, error) -> {
-                    if (unit != null)
-                        onSuccess.run();
-                    else
-                        onError.accept(error);
-                });
+        CompletableFuture.runAsync(() -> {
+            try {
+                creditRepository.save(credit);
+                onSuccess.run();
+            } catch (Exception e) {
+                onError.accept(e);
+            }
+        });
     }
 
     @Override
     public void putDebit(Debit debit, Runnable onSuccess, Consumer<? super Throwable> onError) {
-        CompletableFuture.runAsync(() -> debitRepository.save(debit))
-                .whenComplete((unit, error) -> {
-                    if (unit != null)
-                        onSuccess.run();
-                    else
-                        onError.accept(error);
-                });
+        CompletableFuture.runAsync(() -> {
+            try {
+                debitRepository.save(debit);
+                onSuccess.run();
+            } catch (Exception e) {
+                onError.accept(e);
+            }
+        });
     }
 
     @Override
     public void removeDebit(Debit debit, Runnable onSuccess, Consumer<? super Throwable> onError) {
-        CompletableFuture.runAsync(() -> debitRepository.delete(debit.getId()))
-                .whenComplete((unit, error) -> {
-                    if (unit != null)
-                        onSuccess.run();
-                    else
-                        onError.accept(error);
-                });
+        CompletableFuture.runAsync(() -> {
+            try {
+                debitRepository.delete(debit.getId());
+                onSuccess.run();
+            } catch (Exception e) {
+                onError.accept(e);
+            }
+        });
     }
 
     @Override
     public void removeByNameDebit(String name, Runnable onSuccess, Consumer<? super Throwable> onError) {
-        CompletableFuture.supplyAsync(() -> debitRepository.getAll())
-                .thenApply(Collection::stream)
-                .thenApply(s -> s.filter(u -> u.getName().equals(name)))
-                .thenApply(Stream::findAny)
-                .whenComplete((opt, error) -> {
-                    if (opt != null) {
-                        if (opt.isPresent()) {
-                            debitRepository.delete(opt.get().getId());
-                            onSuccess.run();
-                        } else {
-                            onError.accept(new IllegalArgumentException("User with name [" + name + "] not found"));
-                        }
-                    } else {
-                        onError.accept(error);
-                    }
-                });
+        CompletableFuture.runAsync(() -> {
+            try {
+                boolean present = debitRepository.getAll()
+                        .stream()
+                        .filter(dbt -> dbt.getName().equals(name))
+                        .map(dbt -> debitRepository.delete(dbt.getId()))
+                        .findAny()
+                        .isPresent();
+                if (present) {
+                    onSuccess.run();
+                } else {
+                    onError.accept(new IllegalArgumentException("No entry with name [" + name + "] found"));
+                }
+            } catch (Exception e) {
+                onError.accept(e);
+            }
+        });
     }
 
     @Override
     public void removeCredit(Credit credit, Runnable onSuccess, Consumer<? super Throwable> onError) {
-        CompletableFuture.runAsync(() -> creditRepository.delete(credit.getId()))
-                .whenComplete((unit, error) -> {
-                    if (unit != null)
-                        onSuccess.run();
-                    else
-                        onError.accept(error);
-                });
+        CompletableFuture.runAsync(() -> {
+            try {
+                creditRepository.delete(credit.getId());
+                onSuccess.run();
+            } catch (Exception e) {
+                onError.accept(e);
+            }
+        });
     }
 
     @Override
     public void removeByNameCredit(String name, Runnable onSuccess, Consumer<? super Throwable> onError) {
-        CompletableFuture.supplyAsync(() -> creditRepository.getAll())
-                .thenApply(Collection::stream)
-                .thenApply(s -> s.filter(u -> u.getName().equals(name)))
-                .thenApply(Stream::findAny)
-                .whenComplete((opt, error) -> {
-                    if (opt != null) {
-                        if (opt.isPresent()) {
-                            creditRepository.delete(opt.get().getId());
-                            onSuccess.run();
-                        } else {
-                            onError.accept(new IllegalArgumentException("User with name [" + name + "] not found"));
-                        }
-                    } else {
-                        onError.accept(error);
-                    }
-                });
+        CompletableFuture.runAsync(() -> {
+            try {
+                boolean present = creditRepository.getAll()
+                        .stream()
+                        .filter(dbt -> dbt.getName().equals(name))
+                        .map(dbt -> creditRepository.delete(dbt.getId()))
+                        .findAny()
+                        .isPresent();
+                if (present) {
+                    onSuccess.run();
+                } else {
+                    onError.accept(new IllegalArgumentException("No entry with name [" + name + "] found"));
+                }
+            } catch (Exception e) {
+                onError.accept(e);
+            }
+        });
     }
 }
