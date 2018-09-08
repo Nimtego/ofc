@@ -34,8 +34,13 @@ public class DataEntryPresenter extends BasePresenter<DataEntryContract.View>
         Date date = new Date();
         if (dto instanceof DebitDTO) {
             DebitDTO debitDTO = (DebitDTO) dto;
-            Float amount = Float.valueOf(debitDTO.getAmount());
+            String value = debitDTO.getAmount();
             String name = debitDTO.getName();
+            if (value.isEmpty() || name.isEmpty()) {
+                getView().onBackPressed();
+                return;
+            }
+            Float amount = Float.valueOf(value);
             Debit debit = Debit.builder()
                     .arrival(amount)
                     .name(name)
@@ -53,8 +58,13 @@ public class DataEntryPresenter extends BasePresenter<DataEntryContract.View>
             );
         } else if (dto instanceof CreditDTO) {
             CreditDTO creditDTO = (CreditDTO) dto;
-            Float amount = Float.valueOf(creditDTO.getAmount());
             String name = creditDTO.getName();
+            String value = creditDTO.getAmount();
+            if (value.isEmpty() || name.isEmpty()) {
+                getView().onBackPressed();
+                return;
+            }
+            Float amount = Float.valueOf(value);
             Credit credit = Credit.builder()
                     .arrival(amount)
                     .name(name)
