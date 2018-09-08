@@ -9,12 +9,11 @@ public interface Contract {
         void detach();
 
         V getView();
-
-        Class<?> getNextActivity();
-
     }
 
     interface View<P extends Contract.Presenter> {
+
+        void runOnMainThread(Runnable runnable);
 
         P supplyPresenter();
     }

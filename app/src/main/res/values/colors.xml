@@ -15,4 +15,8 @@
     <color name="separator_gray">#98a6af</color>
     <color name="font_text_gray">#fdfdfd</color>
     <color name="black_effective">#2a2a2a</color>
+
+    <color name="simple_red">#c10e0e</color>
+    <color name="simple_green">#4eb318</color>
+    <color name="simple_orange">#fd6f10</color>
 </resources>

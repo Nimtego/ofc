@@ -17,10 +17,8 @@
         android:layout_height="match_parent"
         android:foreground="?attr/selectableItemBackground"
         android:padding="15dp">
-
-
         <TextView
-            android:id="@+id/parish2"
+            android:id="@+id/text_view_care"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -28,49 +26,117 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textColor="@color/debit_name"
-            android:text="@string/parish"
+            android:text="@string/care"
             android:textSize="28sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
-            android:id="@+id/edit_text_parish3"
+            android:id="@+id/edit_text_care"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
-            android:text="@string/create"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/care"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/parish"
-            app:layout_constraintStart_toEndOf="@+id/parish"
-            app:layout_constraintTop_toTopOf="@+id/parish"/>
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_care"
+            app:layout_constraintStart_toStartOf="@+id/edit_text_parish_speed"
+            app:layout_constraintTop_toTopOf="@+id/text_view_care"
+            app:layout_constraintVertical_bias="1.0"/>
 
         <TextView
-            android:id="@+id/parish"
+            android:id="@+id/text_view_parish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/debit_name"
+            android:layout_marginTop="16dp"
             android:text="@string/parish"
+            android:textColor="@color/debit_name"
             android:textSize="28sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintStart_toStartOf="@+id/text_view_care"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_care"/>
 
         <TextView
             android:id="@+id/edit_text_parish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
-            android:text="@string/create"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/parish"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/parish"
-            app:layout_constraintStart_toEndOf="@+id/parish"
-            app:layout_constraintTop_toTopOf="@+id/parish"/>
+            android:textColor="@color/simple_green"
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_parish"
+            app:layout_constraintStart_toStartOf="@+id/edit_text_income"
+            app:layout_constraintTop_toTopOf="@+id/text_view_parish"
+            app:layout_constraintVertical_bias="0.875"/>
 
+        <TextView
+            android:id="@+id/text_view_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="16dp"
+            android:text="@string/income"
+            android:textColor="@color/debit_name"
+            android:textSize="28sp"
+            app:layout_constraintStart_toStartOf="@+id/text_view_parish"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_parish"/>
+
+        <TextView
+            android:id="@+id/edit_text_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/income"
+            android:textColor="@color/simple_orange"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_income"
+            app:layout_constraintStart_toEndOf="@+id/text_view_income"
+            app:layout_constraintTop_toTopOf="@+id/text_view_income"/>
+
+        <TextView
+            android:id="@+id/edit_text_care_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/care"
+            android:textSize="16sp"
+            android:textColor="@color/simple_red"
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_care"
+            app:layout_constraintStart_toStartOf="@+id/edit_text_income"
+            app:layout_constraintTop_toTopOf="@+id/text_view_care"/>
+
+        <TextView
+            android:id="@+id/edit_text_parish_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/parish"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_text_parish"
+            app:layout_constraintStart_toStartOf="@+id/edit_text_income_speed"
+            app:layout_constraintTop_toTopOf="@+id/edit_text_parish"/>
+
+        <TextView
+            android:id="@+id/edit_text_income_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="32dp"
+            android:text="@string/income"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_text_income"
+            app:layout_constraintStart_toEndOf="@+id/edit_text_income"
+            app:layout_constraintTop_toTopOf="@+id/edit_text_income"/>
 
 
 

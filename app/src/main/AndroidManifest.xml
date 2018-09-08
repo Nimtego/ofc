@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".view.DataEntryActivity">
         </activity>
+        <activity android:name=".view.GraphsActivity">
+        </activity>
     </application>
 
 </manifest>
