@@ -12,7 +12,9 @@ import com.example.repository.sqlite.RepositorySQLite;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 public class AsyncDBHelperSQLite implements AsyncDBHelper {
@@ -55,6 +57,7 @@ public class AsyncDBHelperSQLite implements AsyncDBHelper {
     public void debitList(Consumer<List<Debit>> onSuccess, Consumer<? super Throwable> onError) {
         CompletableFuture.runAsync(() -> {
             try {
+                sleep();
                 ArrayList<Debit> debits = new ArrayList<>(debitRepository.getAll());
                 onSuccess.accept(debits);
             } catch (Exception e) {
@@ -67,6 +70,7 @@ public class AsyncDBHelperSQLite implements AsyncDBHelper {
     public void creditList(Consumer<List<Credit>> onSuccess, Consumer<? super Throwable> onError) {
         CompletableFuture.runAsync(() -> {
             try {
+                sleep();
                 ArrayList<Credit> credits = new ArrayList<>(creditRepository.getAll());
                 onSuccess.accept(credits);
             } catch (Exception e) {
@@ -79,6 +83,7 @@ public class AsyncDBHelperSQLite implements AsyncDBHelper {
     public void putDebitList(List<Debit> debits, Runnable onSuccess, Consumer<? super Throwable> onError) {
         CompletableFuture.runAsync(() -> {
             try {
+                sleep();
                 debits.forEach(debitRepository::save);
                 onSuccess.run();
             } catch (Exception e) {
@@ -91,6 +96,7 @@ public class AsyncDBHelperSQLite implements AsyncDBHelper {
     public void putCreditList(List<Credit> credits, Runnable onSuccess, Consumer<? super Throwable> onError) {
         CompletableFuture.runAsync(() -> {
             try {
+                sleep();
                 credits.forEach(creditRepository::save);
                 onSuccess.run();
             } catch (Exception e) {
@@ -103,6 +109,7 @@ public class AsyncDBHelperSQLite implements AsyncDBHelper {
     public void getDebitById(long id, Consumer<? super Debit> onSuccess, Consumer<? super Throwable> onError) {
         CompletableFuture.runAsync(() -> {
             try {
+                sleep();
                 Debit one = debitRepository.getOne(id);
                 onSuccess.accept(one);
             } catch (Exception e) {
@@ -115,6 +122,7 @@ public class AsyncDBHelperSQLite implements AsyncDBHelper {
     public void getCreditByID(long id, Consumer<? super Credit> onSuccess, Consumer<? super Throwable> onError) {
         CompletableFuture.runAsync(() -> {
             try {
+                sleep();
                 Credit one = creditRepository.getOne(id);
                 onSuccess.accept(one);
             } catch (Exception e) {
@@ -127,6 +135,7 @@ public class AsyncDBHelperSQLite implements AsyncDBHelper {
     public void putCredit(Credit credit, Runnable onSuccess, Consumer<? super Throwable> onError) {
         CompletableFuture.runAsync(() -> {
             try {
+                sleep();
                 creditRepository.save(credit);
                 onSuccess.run();
             } catch (Exception e) {
@@ -139,6 +148,7 @@ public class AsyncDBHelperSQLite implements AsyncDBHelper {
     public void putDebit(Debit debit, Runnable onSuccess, Consumer<? super Throwable> onError) {
         CompletableFuture.runAsync(() -> {
             try {
+                sleep();
                 debitRepository.save(debit);
                 onSuccess.run();
             } catch (Exception e) {
@@ -151,6 +161,7 @@ public class AsyncDBHelperSQLite implements AsyncDBHelper {
     public void removeDebit(Debit debit, Runnable onSuccess, Consumer<? super Throwable> onError) {
         CompletableFuture.runAsync(() -> {
             try {
+                sleep();
                 debitRepository.delete(debit.getId());
                 onSuccess.run();
             } catch (Exception e) {
@@ -163,6 +174,7 @@ public class AsyncDBHelperSQLite implements AsyncDBHelper {
     public void removeByNameDebit(String name, Runnable onSuccess, Consumer<? super Throwable> onError) {
         CompletableFuture.runAsync(() -> {
             try {
+                sleep();
                 boolean present = debitRepository.getAll()
                         .stream()
                         .filter(dbt -> dbt.getName().equals(name))
@@ -184,6 +196,7 @@ public class AsyncDBHelperSQLite implements AsyncDBHelper {
     public void removeCredit(Credit credit, Runnable onSuccess, Consumer<? super Throwable> onError) {
         CompletableFuture.runAsync(() -> {
             try {
+                sleep();
                 creditRepository.delete(credit.getId());
                 onSuccess.run();
             } catch (Exception e) {
@@ -196,6 +209,7 @@ public class AsyncDBHelperSQLite implements AsyncDBHelper {
     public void removeByNameCredit(String name, Runnable onSuccess, Consumer<? super Throwable> onError) {
         CompletableFuture.runAsync(() -> {
             try {
+                sleep();
                 boolean present = creditRepository.getAll()
                         .stream()
                         .filter(dbt -> dbt.getName().equals(name))
@@ -211,5 +225,15 @@ public class AsyncDBHelperSQLite implements AsyncDBHelper {
                 onError.accept(e);
             }
         });
+    }
+
+    private void sleep() {
+        try {
+            TimeUnit.SECONDS.sleep(1);
+            int i = new Random().nextInt(10);
+            if (i < 3)
+                throw new RuntimeException("Can't connect to database");
+        } catch (InterruptedException ignored) {
+        }
     }
 }

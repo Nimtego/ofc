@@ -5,6 +5,7 @@ import com.example.pto6.ofc.model.Debit;
 import com.example.pto6.ofc.utils.TabType;
 
 import java.util.List;
+import java.util.Map;
 
 
 public interface OfcContract {
@@ -18,6 +19,8 @@ public interface OfcContract {
         void pushInRV(int number);
 
         void viewIsReady();
+
+        TabType getState();
     }
 
     interface View<P extends Presenter> extends Contract.View<P> {
@@ -27,10 +30,8 @@ public interface OfcContract {
 
         void clearList();
 
-        TabType getState();
-
         void toast(String message);
 
-        void intent(String tabType);
+        void intent(Map<String, String> props, Class nextView);
     }
 }

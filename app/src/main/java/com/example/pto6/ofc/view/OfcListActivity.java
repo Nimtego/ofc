@@ -25,6 +25,7 @@ import com.example.pto6.ofc.view.toast.ToastAlarm;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,7 +59,8 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
     @Override
     protected void onStart() {
         super.onStart();
-        TabLayout.Tab tab = tabs.getTabAt(0);
+        TabType state = mPresenter.getState();
+        TabLayout.Tab tab = tabs.getTabAt(getTab(state));
         if (tab != null)
             tab.select();
         mPresenter.viewIsReady();
@@ -130,7 +132,18 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
         mRecyclerView.setAdapter(adapter);
     }
 
-    @Override
+    private int getTab(TabType type) {
+        switch (type) {
+            case DEBIT:
+            default:
+                return 0;
+            case CREDIT:
+                return 1;
+            case DATA:
+                return 2;
+        }
+    }
+
     public TabType getState() {
         switch (tabs.getSelectedTabPosition()) {
             case 0:
@@ -156,9 +169,9 @@ public class OfcListActivity extends BaseView<OfcContract.Presenter>
     }
 
     @Override
-    public void intent(String tabType) {
-        Intent intent = new Intent(this, mPresenter.getNextActivity());
-        intent.putExtra("TYPE", tabType);
+    public void intent(Map<String, String> props, Class nextView) {
+        Intent intent = new Intent(this, nextView);
+        props.forEach(intent::putExtra);
         (this).startActivity(intent);
     }
 }

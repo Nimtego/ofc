@@ -16,12 +16,6 @@ public class GraphsPresenter extends BasePresenter<GraphsContract.View>
     private float care;
     private float income;
 
-
-    @Override
-    public Class getNextActivity() {
-        return null;
-    }
-
     @Override
     public void viewReady() {
             DBHelper dbHelper = OfcApplication.getDBComponent().getDBHelper();
