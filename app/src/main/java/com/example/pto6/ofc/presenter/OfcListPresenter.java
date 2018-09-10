@@ -15,9 +15,7 @@ import com.example.pto6.ofc.view.ViewTable;
 import com.example.pto6.ofc.view.ViewTableImpl;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -44,10 +42,10 @@ public class OfcListPresenter extends BasePresenter<OfcContract.View>
 
     @Override
     public void pushFab() {
-        if (!tabType.equals(TabType.DATA)) {
-            Map<String, String> props = new HashMap<>();
-            props.put("TYPE", tabType.toString());
-            view.intent(props, viewTable.get("data"));
+        if (tabType.equals(TabType.DEBIT)) {
+            view.intent(Collections.emptyMap(), viewTable.get("debit"));
+        } else if (tabType.equals(TabType.CREDIT)) {
+            view.intent(Collections.emptyMap(), viewTable.get("credit"));
         } else
             runGraphsView();
     }

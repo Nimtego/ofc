@@ -24,6 +24,8 @@
         </activity>
         <activity android:name=".view.GraphsActivity">
         </activity>
+        <activity android:name=".view.DebitEditView" />
+        <activity android:name=".view.CreditEditView" />
     </application>
 
 </manifest>

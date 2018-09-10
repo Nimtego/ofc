@@ -2,7 +2,6 @@ package com.example.pto6.ofc.view;
 
 
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -10,35 +9,24 @@ import com.example.pto6.ofc.OfcApplication;
 import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.contracts.DataEntryContract;
 import com.example.pto6.ofc.dto.UserFinanceDTO;
-import com.example.pto6.ofc.view.fragments.AddCreditFragment;
-import com.example.pto6.ofc.view.fragments.AddDebitFragment;
 import com.example.pto6.ofc.view.fragments.DataEntryFragment;
 
-public class DataEntryActivity extends BaseView<DataEntryContract.Presenter>
-        implements DataEntryContract.View<DataEntryContract.Presenter>,
+public abstract class DataEntryActivity<T extends UserFinanceDTO> extends BaseView<DataEntryContract.Presenter>
+        implements DataEntryContract.View<DataEntryContract.Presenter, T>,
         DataEntryListener {
 
     private static final String TAG = "DataEntryActivity";
-    TextView cap;
-    private DataEntryFragment mFragment;
+    private TextView cap;
+    private DataEntryFragment<? extends T> mFragment;
     private FragmentTransaction mFragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_entry);
-
-        Intent intent = getIntent();
-        String type = intent.getStringExtra("TYPE");
         cap = findViewById(R.id.cap);
-        if (type.equals("DEBIT")) {
-            mFragment = new AddDebitFragment();
-            cap.setText(getResources().getString(R.string.tab_layout_tab_debit));
-        }
-        if (type.equals("CREDIT")) {
-            mFragment = new AddCreditFragment();
-            cap.setText(getResources().getString(R.string.tab_layout_tab_credit));
-        }
+        this.mFragment = getFragment();
+        cap.setText(getCapText());
         mFragmentTransaction = getFragmentManager().beginTransaction();
         mFragmentTransaction.add(R.id.fragment_form, mFragment);
         mFragmentTransaction.commit();
@@ -59,8 +47,12 @@ public class DataEntryActivity extends BaseView<DataEntryContract.Presenter>
         super.onDestroy();
     }
 
+    protected abstract DataEntryFragment<? extends T> getFragment();
+
+    protected abstract String getCapText();
+
     @Override
-    public UserFinanceDTO getFormData() {
+    public T getFormData() {
         return mFragment.getFormData();
     }
 

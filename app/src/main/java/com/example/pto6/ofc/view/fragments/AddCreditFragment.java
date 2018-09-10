@@ -8,12 +8,12 @@ import android.widget.EditText;
 
 import com.example.pto6.ofc.R;
 import com.example.pto6.ofc.dto.CreditDTO;
-import com.example.pto6.ofc.dto.UserFinanceDTO;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AddCreditFragment extends DataEntryFragment {
+public class AddCreditFragment extends DataEntryFragment<CreditDTO> {
+    private static final String TAG = "<< AddCreditFragment >> - ";
 
     @BindView(R.id.input_name_edit_text)
     EditText name;
@@ -21,7 +21,7 @@ public class AddCreditFragment extends DataEntryFragment {
     EditText amount;
 
     @Override
-    public UserFinanceDTO getFormData() {
+    public CreditDTO getFormData() {
         return CreditDTO.builder().name(String.valueOf(name.getText())).amount(amount.getText().toString()).build();
     }
 
@@ -36,4 +36,5 @@ public class AddCreditFragment extends DataEntryFragment {
         rootView.findViewById(R.id.button_cancel).setOnClickListener(view -> listener.onCancelPressed());
         return rootView;
     }
+
 }

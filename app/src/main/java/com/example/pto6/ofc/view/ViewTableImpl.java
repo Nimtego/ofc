@@ -4,8 +4,10 @@ public class ViewTableImpl implements ViewTable {
     @Override
     public Class<?> get(String key) {
         switch (key) {
-            case "data":
-                return DataEntryActivity.class;
+            case "debit":
+                return DebitEditView.class;
+            case "credit":
+                return CreditEditView.class;
             case "graphs":
                 return GraphsActivity.class;
             case "main":

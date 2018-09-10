@@ -11,9 +11,9 @@ public interface DataEntryContract {
         void cancelButtonPressed();
     }
 
-    interface View<P extends Presenter> extends Contract.View<P> {
+    interface View<P extends Presenter, T extends UserFinanceDTO> extends Contract.View<P> {
         void onBackPressed();
 
-        UserFinanceDTO getFormData();
+        T getFormData();
     }
 }
